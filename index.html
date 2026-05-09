@@ -1,60 +1,167 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Já Te Contaram PcD? | Em Construção</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--azul-escuro:#123a8f;--azul-medio:#1f6fcf;--azul-claro:#25c2e8;--branco:#fff;--cinza:#f4f7fb;--texto:#1b2a42}
-body{font-family:Arial,sans-serif;background:linear-gradient(135deg,var(--cinza),#fff);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;color:var(--texto)}
-.container{max-width:980px;width:100%;background:#ffffffee;border-radius:24px;padding:40px 30px;text-align:center;box-shadow:0 20px 60px rgba(18,58,143,.12)}
-.topbar{height:6px;background:linear-gradient(90deg,var(--azul-escuro),var(--azul-claro));border-radius:20px;margin:-40px -30px 30px}
-.logo{max-width:520px;width:100%;margin-bottom:30px}
-h1{font-size:2.3rem;color:var(--azul-escuro);margin-bottom:10px}
-p{line-height:1.7;margin-bottom:12px}
-.badge{display:inline-block;padding:14px 24px;border-radius:999px;background:linear-gradient(90deg,var(--azul-medio),var(--azul-claro));color:#fff;font-weight:bold;margin:10px 0 24px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:18px 0 24px}
-.card,.box{background:#f7fbff;padding:16px;border-radius:16px;border:1px solid #dbeafe}
-.cta{display:inline-block;margin:10px 0 24px;padding:12px 22px;border-radius:999px;background:var(--azul-escuro);color:#fff;text-decoration:none;font-weight:bold}
-.section{margin-bottom:22px;text-align:left}
-.contatos{text-align:left}
-.item{margin:10px 0}
-footer{margin-top:20px;font-size:.9rem;color:#666}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Já Te Contaram PcD? | Em Construção</title>
+  <style>
+    /* RESET BÁSICO */
+    * { margin: 0; padding: 0; box-sizing: border-box; }/* CORES BASEADAS NA LOGO */
+:root {
+  --azul-escuro: #123a8f;
+  --azul-medio: #1f6fcf;
+  --azul-claro: #25c2e8;
+  --branco: #ffffff;
+  --cinza: #f4f7fb;
+  --texto: #1b2a42;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, var(--cinza), #ffffff);
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 60px rgba(18,58,143,0.12);
+  text-align: center;
+}
+
+/* LOGO */
+.logo {
+  max-width: 420px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  color: var(--azul-escuro);
+  margin-bottom: 12px;
+}
+
+p.sub {
+  font-size: 1.1rem;
+  color: #4b5b75;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* ETIQUETA EM CONSTRUÇÃO */
+.badge {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--azul-medio), var(--azul-claro));
+  color: var(--branco);
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 35px;
+  box-shadow: 0 10px 25px rgba(31,111,207,0.25);
+}
+
+/* ÁREA DE CONTATOS */
+.contatos {
+  margin-top: 10px;
+  padding: 25px;
+  background: #eef7ff;
+  border-radius: 18px;
+}
+
+.contatos h2 {
+  color: var(--azul-escuro);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.item {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.item a {
+  color: var(--azul-medio);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.item a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: #6a7890;
+}
+
+/* RESPONSIVO PARA CELULAR */
+@media (max-width: 600px) {
+  h1 { font-size: 1.8rem; }
+  .container { padding: 30px 20px; }
+  .badge { font-size: 0.95rem; }
+}
+
+/* animações premium */
+.pulse{animation:pulse 2s infinite;}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
+.topbar{height:6px;background:linear-gradient(90deg,var(--azul-escuro),var(--azul-claro));border-radius:20px 20px 0 0;margin:-40px -30px 30px -30px;}
+.cta{display:inline-block;margin-top:18px;padding:12px 22px;border-radius:999px;background:var(--azul-escuro);color:#fff;text-decoration:none;font-weight:bold;box-shadow:0 10px 25px rgba(18,58,143,.25)}
+.cta:hover{opacity:.92;transform:translateY(-2px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:24px 0}
+.card{background:#f7fbff;padding:16px;border-radius:16px;border:1px solid #dbeafe}
+
+  </style>
 </head>
 <body>
-<section class="container">
-<div class="topbar"></div>
-<img src="logo.png" class="logo" alt="Logo">
+  <section class="container">
+    <div class="topbar"></div><!-- TROQUE logo.png PELO NOME REAL DA SUA IMAGEM -->
+<img src="logo.png" alt="Logo Já Te Contaram PcD" class="logo" />
+
 <h1>Nosso site está chegando</h1>
-<p>Estamos preparando algo especial, moderno e acessível para apresentar o projeto.</p>
-<div class="badge">EM CONSTRUÇÃO</div>
+<p class="sub">
+  Estamos preparando algo especial, moderno e acessível para apresentar o projeto.
+  Em breve novidades por aqui.
+</p>
 
+<div class="badge pulse">EM CONSTRUÇÃO</div>
 <div class="grid">
-<div class="card"><strong>100%</strong><br>Responsivo</div>
-<div class="card"><strong>Acessível</strong><br>Projeto inclusivo</div>
-<div class="card"><strong>Em breve</strong><br>Novidades</div>
+  <div class="card"><strong>100%</strong><br>Responsivo</div>
+  <div class="card"><strong>Acessível</strong><br>Projeto inclusivo</div>
+  <div class="card"><strong>Em breve</strong><br>Novidades</div>
 </div>
+<a class="cta" href="https://wa.me/5500000000000">Fale Conosco</a>
 
-
-
-<div class="box section">
-<h2>Sobre o Projeto</h2>
-<p>O Já Te Contaram PcD é um projeto criado por Moisés Souza da Silva com o propósito de promover inclusão, acessibilidade e oportunidades para pessoas com deficiência.</p>
-<p>Atuamos na divulgação de vagas PcD, produção de conteúdos informativos, palestras, podcasts e ações de conscientização para empresas e sociedade.</p>
-<p>Acreditamos que informação bem estruturada transforma vidas e ajuda a construir um mercado de trabalho mais humano, acessível e inclusivo.</p>
-</div>
-
-<div class="box contatos">
-<h2>Contatos</h2>
-<div class="item">WhatsApp:+55 (21) 98414-5167</div>
-<div class="item">E-mail: moises1635211@gmail.com </div>
-<div class="item">Instagram: @jatecontarampcd</div>
-</div>
-<a class="cta" href="#">Fale Conosco</a>
-
-<footer>© 2026 - Projeto Já Te Contaram PcD?</footer>
+<section class="contatos" style="margin-bottom:22px;text-align:left;">
+  <h2>Sobre o Projeto</h2>
+  <p style="margin-top:10px;line-height:1.8;">O Já Te Contaram PcD é um projeto criado por Moisés Souza da Silva com o propósito de promover inclusão, acessibilidade e oportunidades para pessoas com deficiência.</p>
+  <p style="line-height:1.8;">Atuamos na divulgação de vagas PcD, produção de conteúdos informativos, palestras, podcasts e ações de conscientização para empresas e sociedade.</p>
+  <p style="line-height:1.8;">Acreditamos que informação bem estruturada transforma vidas e ajuda a construir um mercado de trabalho mais humano, acessível e inclusivo.</p>
 </section>
+
+<div class="contatos">
+  <h2>Contatos</h2>
+
+  <!-- EDITE COM SEUS DADOS REAIS -->
+  <div class="item">📞 WhatsApp: <a href="https://wa.me/5521984145167">Fale com a gente</a></div>
+  <div class="item">📧 E-mail: <a href="mailto:moises1635211@gmail.com ">clique aqui</a></div>
+  <div class="item">📷 Instagram: <a href="#">@jatecontarampcd</a></div>
+</div>
+
+<footer>
+  © 2026 - Projeto Já Te Contaram PcD? Todos os direitos reservados.
+</footer>
+
+  </section>
 </body>
 </html>
