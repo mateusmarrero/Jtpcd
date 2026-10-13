@@ -143,8 +143,8 @@ inclusão, #PraTodosLerem). Edite os `<li>` de `.topic-chips` para mudar os tema
 
 ## Publicação (Vercel)
 
-> **Publicado em:** <https://jate-contaram-pcd.vercel.app>
-> (projeto `jate-contaram-pcd`, escopo `mateus-s-projects-82d97a54`).
+> **Publicado em:** <https://jtpcd.vercel.app>
+> (projeto `jtpcd`, escopo `mateus-s-projects-82d97a54`).
 > Para atualizar o site depois de qualquer edição, rode `npx vercel --prod` dentro desta pasta.
 
 O site é 100% estático (HTML/CSS/JS, sem build). O `vercel.json` já define cache das
@@ -157,7 +157,7 @@ imagens e cabeçalhos de segurança.
 ### Opção A — arrastar a pasta (mais simples)
 1. Crie uma conta em <https://vercel.com> (pode entrar com Google/GitHub).
 2. Acesse <https://vercel.com/new> e **arraste a pasta `jate-contaram-pcd` inteira**.
-3. Confirme o deploy. A Vercel gera uma URL tipo `https://jate-contaram-pcd.vercel.app`.
+3. Confirme o deploy. A Vercel gera uma URL tipo `https://jtpcd.vercel.app`.
 4. Abra a URL, teste no celular e depois configure o domínio próprio (abaixo).
 
 ### Opção B — por linha de comando
@@ -167,7 +167,12 @@ npx vercel          # primeiro deploy (preview)
 npx vercel --prod   # publicar em produção
 ```
 
-### Domínio próprio (`jatecontarampcd.com.br`)
+### Domínio próprio (opcional — `jatecontarampcd.com.br`)
+O site está publicado em `https://jtpcd.vercel.app` e todas as referências
+(canonical, Open Graph, `robots.txt`, `sitemap.xml`, JSON-LD) já apontam para essa
+URL, então o **preview de compartilhamento** (WhatsApp/LinkedIn) já funciona.
+
+Se depois quiser um domínio próprio (`jatecontarampcd.com.br`):
 1. No painel do projeto: **Settings → Domains → Add**.
 2. Adicione `jatecontarampcd.com.br` e `www.jatecontarampcd.com.br`.
 3. A Vercel mostra os registros DNS para criar **no seu registrador** (ex.: Registro.br):
@@ -176,10 +181,8 @@ npx vercel --prod   # publicar em produção
 4. Marque o domínio **principal (apex)** como *Primary* para o `www` redirecionar para ele.
 5. Aguarde a propagação (minutos a algumas horas) e confirme em **Domains**.
 
-> `robots.txt`, `sitemap.xml` e as metas Open Graph já apontam para
-> `https://jatecontarampcd.com.br/`. Se você publicar primeiro no endereço
-> `.vercel.app`, o **preview de compartilhamento** (WhatsApp/LinkedIn) só ficará
-> correto **depois** que o domínio próprio estiver ativo.
+> Depois de migrar para o domínio próprio, refaça a troca de URL em `index.html`,
+> `robots.txt`, `sitemap.xml` e JSON-LD (buscar por `jtpcd.vercel.app`).
 
 ### Checklist antes de divulgar
 - [ ] Número do WhatsApp correto em todos os botões.
@@ -208,7 +211,7 @@ Como o tema do projeto é inclusão, o site foi construído com cuidado extra:
   serviços e pilares de atuação) e `FAQPage`.
 - `manifest.webmanifest`, `robots.txt` e `sitemap.xml`.
 
-> Troque o domínio `https://jatecontarampcd.com.br/` pela URL final antes de publicar.
+> A URL base usada no canonical/Open Graph/JSON-LD é `https://jtpcd.vercel.app/`.
 
 ## Observações
 
