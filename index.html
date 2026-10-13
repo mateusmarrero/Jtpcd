@@ -1,167 +1,633 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Já Te Contaram PcD? | Em Construção</title>
-  <style>
-    /* RESET BÁSICO */
-    * { margin: 0; padding: 0; box-sizing: border-box; }/* CORES BASEADAS NA LOGO */
-:root {
-  --azul-escuro: #123a8f;
-  --azul-medio: #1f6fcf;
-  --azul-claro: #25c2e8;
-  --branco: #ffffff;
-  --cinza: #f4f7fb;
-  --texto: #1b2a42;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, var(--cinza), #ffffff);
-  color: var(--texto);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+    <script>document.documentElement.classList.remove('no-js');</script>
 
-/* CONTAINER PRINCIPAL */
-.container {
-  width: 100%;
-  max-width: 900px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 24px;
-  padding: 40px 30px;
-  box-shadow: 0 20px 60px rgba(18,58,143,0.12);
-  text-align: center;
-}
+    <!-- SEO -->
+    <title>Já te contaram PcD? — Consultoria de inclusão e acessibilidade para empresas</title>
+    <meta name="description" content="Consultoria de inclusão e acessibilidade para empresas: diagnóstico, treinamentos, palestras, recrutamento e cultura de pertencimento. Fornecedor Petrobras, atendimento em todo o Brasil.">
+    <meta name="author" content="Já te contaram PcD?">
+    <meta name="keywords" content="consultoria inclusão PcD, acessibilidade para empresas, diversidade e inclusão, Lei de Cotas, treinamento PcD, palestra inclusão, recrutamento PcD, capacitismo">
+    <meta name="theme-color" content="#0E3A6B">
+    <link rel="canonical" href="https://jatecontarampcd.com.br/">
 
-/* LOGO */
-.logo {
-  max-width: 420px;
-  width: 100%;
-  margin-bottom: 30px;
-}
+    <!-- Open Graph / redes sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Já te contaram PcD?">
+    <meta property="og:title" content="Já te contaram PcD? — Consultoria de inclusão e acessibilidade">
+    <meta property="og:description" content="Torne sua empresa verdadeiramente inclusiva: diagnóstico de acessibilidade, treinamentos, palestras e cultura de pertencimento.">
+    <meta property="og:url" content="https://jatecontarampcd.com.br/">
+    <meta property="og:image" content="https://jatecontarampcd.com.br/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Já te contaram PcD? — Consultoria de inclusão e acessibilidade para empresas">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Já te contaram PcD?">
+    <meta name="twitter:description" content="Consultoria de inclusão e acessibilidade para empresas.">
+    <meta name="twitter:image" content="https://jatecontarampcd.com.br/assets/images/og-image.png">
+    <meta name="twitter:image:alt" content="Já te contaram PcD? — Consultoria de inclusão e acessibilidade para empresas">
 
-h1 {
-  font-size: 2.4rem;
-  color: var(--azul-escuro);
-  margin-bottom: 12px;
-}
+    <!-- Ícones e fontes -->
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-p.sub {
-  font-size: 1.1rem;
-  color: #4b5b75;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
+    <link rel="stylesheet" href="styles.css">
 
-/* ETIQUETA EM CONSTRUÇÃO */
-.badge {
-  display: inline-block;
-  padding: 14px 24px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--azul-medio), var(--azul-claro));
-  color: var(--branco);
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 35px;
-  box-shadow: 0 10px 25px rgba(31,111,207,0.25);
-}
-
-/* ÁREA DE CONTATOS */
-.contatos {
-  margin-top: 10px;
-  padding: 25px;
-  background: #eef7ff;
-  border-radius: 18px;
-}
-
-.contatos h2 {
-  color: var(--azul-escuro);
-  margin-bottom: 15px;
-  font-size: 1.4rem;
-}
-
-.item {
-  margin: 10px 0;
-  font-size: 1rem;
-}
-
-.item a {
-  color: var(--azul-medio);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.item a:hover {
-  text-decoration: underline;
-}
-
-footer {
-  margin-top: 25px;
-  font-size: 0.9rem;
-  color: #6a7890;
-}
-
-/* RESPONSIVO PARA CELULAR */
-@media (max-width: 600px) {
-  h1 { font-size: 1.8rem; }
-  .container { padding: 30px 20px; }
-  .badge { font-size: 0.95rem; }
-}
-
-/* animações premium */
-.pulse{animation:pulse 2s infinite;}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
-.topbar{height:6px;background:linear-gradient(90deg,var(--azul-escuro),var(--azul-claro));border-radius:20px 20px 0 0;margin:-40px -30px 30px -30px;}
-.cta{display:inline-block;margin-top:18px;padding:12px 22px;border-radius:999px;background:var(--azul-escuro);color:#fff;text-decoration:none;font-weight:bold;box-shadow:0 10px 25px rgba(18,58,143,.25)}
-.cta:hover{opacity:.92;transform:translateY(-2px)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:24px 0}
-.card{background:#f7fbff;padding:16px;border-radius:16px;border:1px solid #dbeafe}
-
-  </style>
+    <!-- Dados estruturados -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://jatecontarampcd.com.br/#organizacao",
+          "name": "Já te contaram PcD?",
+          "description": "Consultoria comprometida com a capacitação e a empregabilidade de pessoas com deficiência (PcD), promovendo inclusão, informação e oportunidades reais no mercado de trabalho.",
+          "url": "https://jatecontarampcd.com.br/",
+          "logo": "https://jatecontarampcd.com.br/assets/images/logo.png",
+          "image": "https://jatecontarampcd.com.br/assets/images/og-image.png",
+          "foundingDate": "2022",
+          "founder": { "@type": "Person", "name": "Moisés Souza" },
+          "areaServed": "BR",
+          "address": { "@type": "PostalAddress", "addressLocality": "Rio de Janeiro", "addressRegion": "RJ", "addressCountry": "BR" },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-21-98414-5167",
+            "contactType": "comercial",
+            "availableLanguage": "Portuguese"
+          },
+          "sameAs": [
+            "https://www.instagram.com/jatecontarampcd",
+            "https://www.threads.com/@jatecontarampcd",
+            "https://www.youtube.com/@jatecontarampcd",
+            "https://br.linkedin.com/company/jatecontarampcd",
+            "https://www.facebook.com/groups/jtcpcd"
+          ]
+        },
+        {
+          "@type": "Service",
+          "name": "Consultoria de inclusão e acessibilidade para empresas",
+          "serviceType": "Consultoria em diversidade, inclusão e acessibilidade",
+          "provider": { "@id": "https://jatecontarampcd.com.br/#organizacao" },
+          "areaServed": "BR",
+          "description": "Diagnóstico de acessibilidade, consultoria de inclusão, treinamentos, palestras, recrutamento de profissionais PcD e programas de mentoria.",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagnóstico e mapeamento de acessibilidade" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria de inclusão e cultura de pertencimento" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Treinamentos e workshops" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Palestras online e presenciais" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Recrutamento e divulgação de vagas PcD" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Programas de mentoria" } }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "O que é o diagnóstico de acessibilidade e inclusão?", "acceptedAnswer": { "@type": "Answer", "text": "É uma avaliação das barreiras físicas, digitais e de cultura da sua empresa. A partir dela, desenhamos um plano de ação para contratar, desenvolver e reter talentos com deficiência." } },
+            { "@type": "Question", "name": "Vocês ajudam a contratar profissionais PcD?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Conectamos a sua empresa a profissionais PcD de diferentes níveis de escolaridade e experiência, além de apoiar nos processos de seleção e integração." } },
+            { "@type": "Question", "name": "Minha empresa corre risco de multa por não cumprir a cota?", "acceptedAnswer": { "@type": "Answer", "text": "A Lei de Cotas (art. 93 da Lei 8.213/91) prevê reserva de vagas para PcD. Multas acontecem, mas a inclusão verdadeira vai além da obrigação legal: envolve processos humanizados e cultura de pertencimento." } },
+            { "@type": "Question", "name": "As palestras e treinamentos são online ou presenciais?", "acceptedAnswer": { "@type": "Answer", "text": "Nos dois formatos. Realizamos palestras, workshops e capacitações online ou presenciais, adaptados à realidade e ao porte da empresa." } },
+            { "@type": "Question", "name": "Vocês atendem em todo o Brasil?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Somos fornecedores Petrobras e atendemos empresas de todo o Brasil, de forma online ou presencial." } },
+            { "@type": "Question", "name": "Minha empresa é pequena. Vale a pena contratar uma consultoria?", "acceptedAnswer": { "@type": "Answer", "text": "Vale. A inclusão escala de baixo para cima: começamos com um diagnóstico acessível e priorizamos ações de maior impacto para o seu contexto." } }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
-<body>
-  <section class="container">
-    <div class="topbar"></div><!-- TROQUE logo.png PELO NOME REAL DA SUA IMAGEM -->
-<img src="logo.png" alt="Logo Já Te Contaram PcD" class="logo" />
+<body id="inicio">
 
-<h1>Nosso site está chegando</h1>
-<p class="sub">
-  Estamos preparando algo especial, moderno e acessível para apresentar o projeto.
-  Em breve novidades por aqui.
-</p>
+    <!-- Sprite de ícones (sem dependências externas) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true" focusable="false">
+        <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.7.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.41"/></symbol>
+        <symbol id="i-instagram" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.39S.94 3.35.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.31.79.72 1.46 1.39 2.13.67.67 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.3 1.46-.71 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.77.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.3-.79-.71-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63 19.1.33 18.23.13 16.95.07 15.67.01 15.26 0 12 0m0 2.16c3.2 0 3.59.02 4.85.07 1.17.06 1.81.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.59-.07 4.85c-.06 1.17-.26 1.81-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.07.36-2.24.41-1.27.06-1.65.07-4.86.07-3.21 0-3.59-.01-4.86-.07-1.17-.06-1.82-.26-2.24-.42-.57-.22-.96-.48-1.38-.9-.42-.42-.69-.82-.9-1.38-.17-.42-.36-1.07-.42-2.24-.05-1.26-.06-1.65-.06-4.84 0-3.2.02-3.59.06-4.86.06-1.17.26-1.81.42-2.23.21-.57.48-.96.9-1.38.42-.42.81-.69 1.38-.9.42-.17 1.05-.36 2.22-.42 1.28-.05 1.65-.06 4.86-.06zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8m7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0"/></symbol>
+        <symbol id="i-threads" viewBox="0 0 24 24"><path fill="currentColor" d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221Z"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14M7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0"/></symbol>
+        <symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8M9.55 15.57V8.43L15.82 12z"/></symbol>
+        <symbol id="i-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.07C24 5.44 18.63.07 12 .07S0 5.44 0 12.07c0 5.99 4.39 10.95 10.13 11.85v-8.38H7.08v-3.47h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.23 2.69.23v2.96h-1.51c-1.49 0-1.96.92-1.96 1.87v2.25h3.33l-.53 3.47h-2.8v8.38C19.61 23.02 24 18.06 24 12.07"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></g></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M20 6.5 9.2 17.3 4 12.1"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m6 9.5 6 6 6-6"/></symbol>
+        <symbol id="i-arrow-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19.5V4.5"/><path d="m5 11.5 7-7 7 7"/></g></symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></g></symbol>
+        <symbol id="i-arrow-left" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></g></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></g></symbol>
+        <symbol id="i-share" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></g></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></g></symbol>
+        <symbol id="i-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></g></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></g></symbol>
+        <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5M8.5 21.5h7"/></g></symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="13" rx="2.5"/><path d="M8.5 7V5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v2M2.5 12.5h19"/></g></symbol>
+        <symbol id="i-rocket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c2.8 1.7 4.5 5 4.5 8.5L15 15l-3 3-3-3-1.5-4C7.5 7.5 9.2 4.2 12 2.5z"/><circle cx="12" cy="9" r="1.8"/><path d="M9 18c-1.5.6-2.5 1.7-3 3.5 1.8-.2 3.2-.7 4.5-1.6M15 18c1.5.6 2.5 1.7 3 3.5-1.8-.2-3.2-.7-4.5-1.6"/></g></symbol>
+        <symbol id="i-access" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M5 8.5c4.5-1.3 9.5-1.3 14 0M12 6v6m0 0-3.2 7M12 12l3.2 7"/></g></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.5 5.5v6c0 4.5 3.2 8.4 7.5 10 4.3-1.6 7.5-5.5 7.5-10v-6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></g></symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M6.5 20.5v-6M11 20.5v-10M15.5 20.5v-4M20 20.5v-13"/></g></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8l1.1 1.1L12 21.2l7.7-7.7 1.1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+        <symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></g></symbol>
+        <symbol id="i-quote" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 5C6.5 6.4 4.6 9.2 4.6 12.6c0 2.9 1.7 4.9 4 4.9 1.9 0 3.3-1.4 3.3-3.3 0-1.8-1.3-3.1-3-3.1-.3 0-.6 0-.9.1.4-1.6 1.6-3 3.3-3.9zm9 0c-3 1.4-4.9 4.2-4.9 7.6 0 2.9 1.7 4.9 4 4.9 1.9 0 3.3-1.4 3.3-3.3 0-1.8-1.3-3.1-3-3.1-.3 0-.6 0-.9.1.4-1.6 1.6-3 3.3-3.9z"/></symbol>
+        <symbol id="i-text" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6V4h16v2M12 4v16M8.5 20h7"/></g></symbol>
+        <symbol id="i-contrast" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path fill="currentColor" stroke="none" d="M12 3a9 9 0 0 1 0 18z"/></g></symbol>
+    </svg>
 
-<div class="badge pulse">EM CONSTRUÇÃO</div>
-<div class="grid">
-  <div class="card"><strong>100%</strong><br>Responsivo</div>
-  <div class="card"><strong>Acessível</strong><br>Projeto inclusivo</div>
-  <div class="card"><strong>Em breve</strong><br>Novidades</div>
-</div>
-<a class="cta" href="https://wa.me/5500000000000">Fale Conosco</a>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
-<section class="contatos" style="margin-bottom:22px;text-align:left;">
-  <h2>Sobre o Projeto</h2>
-  <p style="margin-top:10px;line-height:1.8;">O Já Te Contaram PcD é um projeto criado por Moisés Souza da Silva com o propósito de promover inclusão, acessibilidade e oportunidades para pessoas com deficiência.</p>
-  <p style="line-height:1.8;">Atuamos na divulgação de vagas PcD, produção de conteúdos informativos, palestras, podcasts e ações de conscientização para empresas e sociedade.</p>
-  <p style="line-height:1.8;">Acreditamos que informação bem estruturada transforma vidas e ajuda a construir um mercado de trabalho mais humano, acessível e inclusivo.</p>
-</section>
+    <!-- Barra fixa de CTA -->
+    <div class="sticky-cta" id="stickyCta">
+        <span class="sticky-cta__label">Inclusão que transforma resultados</span>
+        <a href="#contato" class="btn btn-accent btn-sm">
+            <svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg> Solicitar diagnóstico
+        </a>
+    </div>
 
-<div class="contatos">
-  <h2>Contatos</h2>
+    <!-- Navegação -->
+    <header class="navbar" id="navbar">
+        <a href="#inicio" class="logo" aria-label="Já te contaram PcD?, ir para o início">
+            <img class="logo__mark" src="assets/images/selo.png" alt="" width="44" height="44" decoding="async">
+            <span class="logo__text">
+                <span class="logo__top">Já te contaram</span>
+                <span class="logo__bottom">PcD<span class="logo__q">?</span></span>
+            </span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menu de navegação">
+            <span></span><span></span><span></span>
+        </button>
+        <nav aria-label="Navegação principal">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sobre" data-nav="sobre">Quem somos</a></li>
+                <li><a href="#servicos" data-nav="servicos">Serviços</a></li>
+                <li><a href="#metodo" data-nav="metodo">Método</a></li>
+                <li><a href="#resultados" data-nav="resultados">Resultados</a></li>
+                <li><a href="#pcd" data-nav="pcd">Para PcD</a></li>
+                <li><a href="#duvidas" data-nav="duvidas">Dúvidas</a></li>
+                <li class="nav-links__cta"><a href="#contato" class="btn btn-accent btn-sm">Falar com especialista</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- EDITE COM SEUS DADOS REAIS -->
-  <div class="item">📞 WhatsApp: <a href="https://wa.me/5521984145167">Fale com a gente</a></div>
-  <div class="item">📧 E-mail: <a href="mailto:moises1635211@gmail.com ">clique aqui</a></div>
-  <div class="item">📷 Instagram: <a href="#">@jatecontarampcd</a></div>
-</div>
+    <main id="conteudo">
 
-<footer>
-  © 2026 - Projeto Já Te Contaram PcD? Todos os direitos reservados.
-</footer>
+        <!-- ===== Hero ===== -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <p class="eyebrow reveal" style="--delay:0s">Consultoria em inclusão e acessibilidade</p>
+                    <h1 id="hero-title" class="reveal" style="--delay:.08s">
+                        Torne sua empresa <em>verdadeiramente inclusiva</em>.
+                    </h1>
+                    <p class="hero-lede reveal" style="--delay:.16s">
+                        A <strong>Já te contaram PcD?</strong> apoia empresas a contratar, desenvolver e reter
+                        talentos com deficiência — com diagnóstico de acessibilidade, treinamento de equipes,
+                        palestras e uma cultura de pertencimento que reduz riscos e melhora resultados.
+                    </p>
+                    <div class="hero-actions reveal" style="--delay:.24s">
+                        <a href="#contato" class="btn btn-primary">
+                            <svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg> Solicitar diagnóstico
+                        </a>
+                        <a href="https://wa.me/5521984145167?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20consultoria%20de%20inclus%C3%A3o%20para%20empresas." target="_blank" rel="noopener" class="btn btn-ghost">
+                            <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"></use></svg> Falar no WhatsApp
+                        </a>
+                    </div>
+                    <ul class="hero-meta reveal" style="--delay:.32s">
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> Fornecedor Petrobras · todo o Brasil</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> +7.000 PcD impactadas</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> Desde 2022</li>
+                    </ul>
+                </div>
+                <div class="hero-cover reveal" style="--delay:.12s">
+                    <img class="hero-cover__logo" src="assets/images/logo.png" alt="Já te contaram PcD? — logo" width="481" height="253" decoding="async">
+                    <span class="hero-badge">+7.000<br>PcD impactadas</span>
+                </div>
+            </div>
+        </section>
 
-  </section>
+        <!-- ===== Faixa de confiança ===== -->
+        <section class="trust" aria-label="Diferenciais">
+            <div class="container trust__inner">
+                <p class="trust__item reveal-io"><svg class="ico" aria-hidden="true"><use href="#i-shield"></use></svg> Fornecedor Petrobras</p>
+                <p class="trust__item reveal-io" style="--delay:.06s"><svg class="ico" aria-hidden="true"><use href="#i-pin"></use></svg> Atendimento nacional</p>
+                <p class="trust__item reveal-io" style="--delay:.12s"><svg class="ico" aria-hidden="true"><use href="#i-mic"></use></svg> Consultoria, treinamentos e palestras</p>
+                <p class="trust__item reveal-io" style="--delay:.18s"><svg class="ico" aria-hidden="true"><use href="#i-access"></use></svg> Acessibilidade com prática</p>
+            </div>
+        </section>
+
+        <!-- ===== Faixa de marca ===== -->
+        <section class="brand-band" aria-label="Identidade visual Já te contaram PcD?">
+            <div class="container">
+                <img src="assets/images/linkedin-capa.png" alt="Capa da Já te contaram PcD? com o nome do projeto, o selo de inclusão e os canais de contato" width="1104" height="184" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- ===== Sobre ===== -->
+        <section class="chapter chapter--white" id="sobre" aria-labelledby="sobre-title">
+            <div class="container narrow">
+                <p class="chapter-tag">Quem somos</p>
+                <h2 id="sobre-title">Nascemos para mostrar que dá para incluir — com seriedade e prática.</h2>
+                <blockquote class="pull-quote">
+                    Não quero ser a sua história de superação. Quero ser a sua referência.
+                </blockquote>
+                <p class="chapter-text">
+                    A <strong>Já te contaram PcD?</strong> nasceu em 2022, no Rio de Janeiro, a partir da
+                    trajetória de <strong>Moisés Souza</strong> — que se tornou uma pessoa com deficiência aos
+                    7 anos, após um acidente, e transformou essa vivência em propósito: fazer com que as
+                    empresas enxerguem as pessoas com deficiência como talentos, e não como obrigação legal.
+                </p>
+                <p class="chapter-text">
+                    Hoje somos uma consultoria de inclusão e acessibilidade que une <strong>informação,
+                    capacitação e oportunidades reais</strong>. Atuamos como ponte entre empresas, profissionais
+                    PcD e conhecimento — do diagnóstico à cultura de pertencimento.
+                </p>
+
+                <div class="who reveal-io">
+                    <h3 class="who__title">Nossa credencial</h3>
+                    <ul class="who__list">
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> Consultoria de inclusão e acessibilidade para empresas</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> Palestrante, consultor e influenciador PcD</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> Fornecedor Petrobras com atendimento em todo o Brasil</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg> Mais de 7.000 PcD impactadas por conteúdo, vagas e capacitações</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Desafio ===== -->
+        <section class="chapter chapter--sky" id="desafio" aria-labelledby="desafio-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="chapter-tag">O desafio</p>
+                    <h2 id="desafio-title">O que sua empresa perde ao tratar inclusão como obrigação</h2>
+                    <p class="chapter-text">
+                        Inclusão não se resolve só com o cumprimento de cotas. Quando ela vira só papel,
+                        aparecem multas, rotatividade e uma cultura que não acolhe ninguém.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card reveal-io">
+                        <span class="feature-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+                        <h3>Riscos e multas</h3>
+                        <p>A Lei de Cotas exige reserva de vagas. O descumprimento gera sanções — e prejuízo à reputação.</p>
+                    </div>
+                    <div class="feature-card reveal-io" style="--delay:.06s">
+                        <span class="feature-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-users"></use></svg></span>
+                        <h3>Talento que não fica</h3>
+                        <p>Ninguém permanece num ambiente que não valoriza. Sem pertencimento, a rotatividade cresce.</p>
+                    </div>
+                    <div class="feature-card reveal-io" style="--delay:.12s">
+                        <span class="feature-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-access"></use></svg></span>
+                        <h3>Barreiras invisíveis</h3>
+                        <p>Acessibilidade física, digital e atitudinal. O que não é visto continua excluindo.</p>
+                    </div>
+                    <div class="feature-card reveal-io" style="--delay:.18s">
+                        <span class="feature-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+                        <h3>Cultura que não pertence</h3>
+                        <p>Diversidade sem inclusão é só número. Pertencimento é o que sustenta a mudança.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Serviços ===== -->
+        <section class="chapter chapter--white" id="servicos" aria-labelledby="servicos-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="chapter-tag">O que fazemos</p>
+                    <h2 id="servicos-title">Soluções completas — da estratégia ao dia a dia</h2>
+                    <p class="chapter-text">
+                        Um conjunto de serviços que se combinam conforme a maturidade da sua empresa em
+                        diversidade e inclusão.
+                    </p>
+                </div>
+
+                <div class="cards">
+                    <article class="service-card reveal-io">
+                        <span class="service-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg></span>
+                        <h3>Diagnóstico de acessibilidade</h3>
+                        <p>Mapeamos barreiras físicas, digitais e de cultura para entender o ponto de partida real da empresa.</p>
+                    </article>
+                    <article class="service-card reveal-io" style="--delay:.06s">
+                        <span class="service-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+                        <h3>Consultoria de inclusão</h3>
+                        <p>Desenhamos um plano de ação sob medida para contratar, desenvolver e reter talentos PcD.</p>
+                    </article>
+                    <article class="service-card reveal-io" style="--delay:.12s">
+                        <span class="service-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-users"></use></svg></span>
+                        <h3>Treinamentos e workshops</h3>
+                        <p>Capacitamos lideranças e equipes para uma convivência acessível, empática e sem capacitismo.</p>
+                    </article>
+                    <article class="service-card reveal-io" style="--delay:.18s">
+                        <span class="service-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-mic"></use></svg></span>
+                        <h3>Palestras online e presenciais</h3>
+                        <p>Conteúdo que provoca reflexão sobre diversidade, equidade e o protagonismo da pessoa com deficiência.</p>
+                    </article>
+                    <article class="service-card reveal-io" style="--delay:.24s">
+                        <span class="service-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-briefcase"></use></svg></span>
+                        <h3>Recrutamento e vagas</h3>
+                        <p>Conectamos sua empresa a profissionais PcD qualificados e divulgamos suas vagas nas nossas redes — para milhares de pessoas da comunidade.</p>
+                    </article>
+                    <article class="service-card reveal-io" style="--delay:.3s">
+                        <span class="service-card__ico"><svg class="ico" aria-hidden="true"><use href="#i-rocket"></use></svg></span>
+                        <h3>Programas de mentoria</h3>
+                        <p>Acompanhamos colaboradores PcD e times em trajetórias de desenvolvimento e pertencimento.</p>
+                    </article>
+                </div>
+
+                <div class="chapter-actions center">
+                    <a href="#contato" class="btn btn-primary">
+                        <svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg> Quero um diagnóstico
+                    </a>
+                    <button class="btn btn-ghost" type="button" id="shareBtn">
+                        <svg class="ico" aria-hidden="true"><use href="#i-share"></use></svg> Compartilhar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Método ===== -->
+        <section class="chapter chapter--deep" id="metodo" aria-labelledby="metodo-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="chapter-tag chapter-tag--light">Como funciona</p>
+                    <h2 id="metodo-title">Um caminho claro, do diagnóstico aos resultados</h2>
+                    <p class="chapter-text chapter-text--light">
+                        Sem promessas vazias: combinamos etapas, indicadores e acompanhamento.
+                    </p>
+                </div>
+
+                <ol class="steps">
+                    <li class="step reveal-io">
+                        <span class="step__num">1</span>
+                        <h3>Diagnóstico</h3>
+                        <p>Entendemos a realidade da empresa: barreiras, cotas, processos e cultura.</p>
+                    </li>
+                    <li class="step reveal-io" style="--delay:.06s">
+                        <span class="step__num">2</span>
+                        <h3>Plano de ação</h3>
+                        <p>Definimos metas, prioridades e responsáveis — com prazos realistas.</p>
+                    </li>
+                    <li class="step reveal-io" style="--delay:.12s">
+                        <span class="step__num">3</span>
+                        <h3>Capacitação</h3>
+                        <p>Treinamos lideranças e equipes para reduzir o capacitismo no dia a dia.</p>
+                    </li>
+                    <li class="step reveal-io" style="--delay:.18s">
+                        <span class="step__num">4</span>
+                        <h3>Implementação</h3>
+                        <p>Apoiamos a acessibilidade, os processos e a contratação de profissionais PcD.</p>
+                    </li>
+                    <li class="step reveal-io" style="--delay:.24s">
+                        <span class="step__num">5</span>
+                        <h3>Monitoramento</h3>
+                        <p>Acompanhamos indicadores e apresentamos relatórios de impacto e evolução.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ===== Resultados ===== -->
+        <section class="chapter chapter--white" id="resultados" aria-labelledby="resultados-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="chapter-tag">Impacto</p>
+                    <h2 id="resultados-title">Inclusão que já alcança milhares de pessoas</h2>
+                </div>
+
+                <div class="stats">
+                    <div class="stat reveal-io">
+                        <span class="stat__value">+7.000</span>
+                        <span class="stat__label">PcD impactadas por conteúdo, vagas e capacitações</span>
+                    </div>
+                    <div class="stat reveal-io" style="--delay:.06s">
+                        <span class="stat__value">400 mil</span>
+                        <span class="stat__label">visualizações por mês no nosso portal de vagas e informação</span>
+                    </div>
+                    <div class="stat reveal-io" style="--delay:.12s">
+                        <span class="stat__value">10 mil</span>
+                        <span class="stat__label">seguidores nas redes sociais (Instagram, LinkedIn, YouTube e Threads)</span>
+                    </div>
+                    <div class="stat reveal-io" style="--delay:.18s">
+                        <span class="stat__value">2022</span>
+                        <span class="stat__label">nascemos no Rio de Janeiro com atendimento nacional</span>
+                    </div>
+                </div>
+
+                <div class="cta-band reveal-io">
+                    <div class="cta-band__text">
+                        <h3>Quer ver esses resultados na sua empresa?</h3>
+                        <p>Comece por um diagnóstico de acessibilidade e inclusão, sem compromisso.</p>
+                    </div>
+                    <a href="#contato" class="btn btn-accent">Solicitar diagnóstico</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Para PcD ===== -->
+        <section class="chapter chapter--sky" id="pcd" aria-labelledby="pcd-title">
+            <div class="container pcd">
+                <div class="pcd__text">
+                    <p class="chapter-tag">Para pessoas com deficiência</p>
+                    <h2 id="pcd-title">Você também tem espaço aqui.</h2>
+                    <p class="chapter-text">
+                        Além da consultoria para empresas, a <strong>Já te contaram PcD?</strong> é um portal para
+                        quem busca oportunidade. Reunimos, em um só lugar, o que fortalece o protagonismo da
+                        pessoa com deficiência.
+                    </p>
+                    <ul class="who__list pcd__list">
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-briefcase"></use></svg> Vagas de emprego para diferentes níveis e experiências</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-sparkle"></use></svg> Cursos de qualificação e desenvolvimento profissional</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-shield"></use></svg> Informação sobre direitos, leis e acessibilidade</li>
+                        <li><svg class="ico" aria-hidden="true"><use href="#i-users"></use></svg> Conteúdo e comunidade para PcD e pais atípicos — <strong>#PraTodosLerem</strong></li>
+                    </ul>
+                    <div class="chapter-actions">
+                        <a href="https://www.instagram.com/jatecontarampcd" target="_blank" rel="noopener" class="btn btn-primary">
+                            <svg class="ico" aria-hidden="true"><use href="#i-instagram"></use></svg> Ver vagas e cursos no Instagram
+                        </a>
+                        <a href="https://wa.me/5521984145167?text=Ol%C3%A1!%20Sou%20PcD%20e%20gostaria%20de%20saber%20mais%20sobre%20vagas%20e%20cursos." target="_blank" rel="noopener" class="btn btn-ghost">
+                            <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"></use></svg> Falar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="pcd__card" aria-label="Nossos canais">
+                    <p class="pcd__card-title">Acompanhe nossos canais</p>
+                    <a class="pcd__link" href="https://www.instagram.com/jatecontarampcd" target="_blank" rel="noopener">
+                        <svg class="ico" aria-hidden="true"><use href="#i-instagram"></use></svg> Instagram <span>@jatecontarampcd · 1,4 mil</span>
+                    </a>
+                    <a class="pcd__link" href="https://www.threads.com/@jatecontarampcd" target="_blank" rel="noopener">
+                        <svg class="ico" aria-hidden="true"><use href="#i-threads"></use></svg> Threads <span>@jatecontarampcd</span>
+                    </a>
+                    <a class="pcd__link" href="https://www.youtube.com/@jatecontarampcd" target="_blank" rel="noopener">
+                        <svg class="ico" aria-hidden="true"><use href="#i-youtube"></use></svg> YouTube <span>@jatecontarampcd</span>
+                    </a>
+                    <a class="pcd__link" href="https://br.linkedin.com/company/jatecontarampcd" target="_blank" rel="noopener">
+                        <svg class="ico" aria-hidden="true"><use href="#i-linkedin"></use></svg> LinkedIn <span>/jatecontarampcd · 8,4 mil</span>
+                    </a>
+                    <a class="pcd__link" href="https://www.facebook.com/groups/jtcpcd" target="_blank" rel="noopener">
+                        <svg class="ico" aria-hidden="true"><use href="#i-facebook"></use></svg> Facebook <span>grupo jtcpcd</span>
+                    </a>
+                </aside>
+
+                <div class="topics reveal-io">
+                    <p class="topics__title">O que você encontra no nosso Instagram</p>
+                    <ul class="topic-chips">
+                        <li>Vagas de emprego</li>
+                        <li>Cursos e capacitações</li>
+                        <li>Direitos e acessibilidade</li>
+                        <li>Atletas PcD</li>
+                        <li>Papo de inclusão</li>
+                        <li>#PraTodosLerem</li>
+                    </ul>
+                    <p class="topics__note">
+                        Somos um exemplo de que <strong>PcD vai longe</strong>. E é aqui que as empresas
+                        mostram, na prática, quem contrata de verdade: sua vaga PcD pode alcançar
+                        milhares de profissionais.
+                    </p>
+                    <a class="btn btn-primary" href="https://www.instagram.com/jatecontarampcd" target="_blank" rel="noopener">
+                        <svg class="ico" aria-hidden="true"><use href="#i-instagram"></use></svg> Seguir @jatecontarampcd
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Dúvidas ===== -->
+        <section class="chapter chapter--white" id="duvidas" aria-labelledby="duvidas-title">
+            <div class="container narrow">
+                <p class="chapter-tag">Dúvidas</p>
+                <h2 id="duvidas-title">Antes de você perguntar</h2>
+
+                <div class="faq reveal-io">
+                    <details class="faq-item">
+                        <summary>O que é o diagnóstico de acessibilidade e inclusão?<svg class="ico faq-item__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                        <div class="faq-item__body"><p>É uma avaliação das barreiras físicas, digitais e de cultura da sua empresa. A partir dela, desenhamos um plano de ação para contratar, desenvolver e reter talentos com deficiência — com prioridades claras e mensuráveis.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Vocês ajudam a contratar profissionais PcD?<svg class="ico faq-item__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                        <div class="faq-item__body"><p>Sim. Conectamos a sua empresa a profissionais PcD de diferentes níveis de escolaridade e experiência, e apoiamos os processos de seleção, integração e desenvolvimento.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Minha empresa corre risco de multa por não cumprir a cota?<svg class="ico faq-item__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                        <div class="faq-item__body"><p>A Lei de Cotas (art. 93 da Lei 8.213/91) prevê reserva de vagas para PcD e o descumprimento gera sanções. Mas a inclusão verdadeira vai além da obrigação legal: envolve processos humanizados e uma cultura de pertencimento que reduz o risco de multas e de rotatividade.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>As palestras e treinamentos são online ou presenciais?<svg class="ico faq-item__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                        <div class="faq-item__body"><p>Nos dois formatos. Realizamos palestras, workshops e capacitações online ou presenciais, adaptados à realidade e ao porte da empresa.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Vocês atendem em todo o Brasil?<svg class="ico faq-item__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                        <div class="faq-item__body"><p>Sim. Somos fornecedores Petrobras e atendemos empresas de todo o Brasil, de forma online ou presencial.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Minha empresa é pequena. Vale a pena?<svg class="ico faq-item__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                        <div class="faq-item__body"><p>Vale. A inclusão escala de baixo para cima: começamos com um diagnóstico acessível e priorizamos as ações de maior impacto para o seu contexto, sem estruturas gigantes.</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contato ===== -->
+        <section class="chapter chapter--deep" id="contato" aria-labelledby="contato-title">
+            <div class="container narrow contact">
+                <p class="chapter-tag chapter-tag--light">Contato</p>
+                <h2 id="contato-title">Vamos incluir de verdade?</h2>
+                <p class="contact-lede">
+                    Conte um pouco sobre a sua empresa. Respondemos pelo WhatsApp e agendamos um
+                    diagnóstico sem compromisso.
+                </p>
+
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="field">
+                        <label for="cfName">Nome</label>
+                        <input type="text" id="cfName" name="nome" autocomplete="name" required>
+                    </div>
+                    <div class="field">
+                        <label for="cfCompany">Empresa</label>
+                        <input type="text" id="cfCompany" name="empresa" autocomplete="organization" required>
+                    </div>
+                    <div class="field">
+                        <label for="cfEmail">E-mail</label>
+                        <input type="email" id="cfEmail" name="email" autocomplete="email" required>
+                    </div>
+                    <div class="field field--full">
+                        <label for="cfMessage">O que a sua empresa precisa?</label>
+                        <textarea id="cfMessage" name="mensagem" rows="3" placeholder="Ex.: diagnóstico de acessibilidade, treinamento para lideranças, contratação de PcD…"></textarea>
+                    </div>
+                    <div class="field field--full">
+                        <button class="btn btn-accent" type="submit">
+                            <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"></use></svg> Enviar pelo WhatsApp
+                        </button>
+                        <p class="contact-form__note" id="contactNote" role="status" hidden></p>
+                    </div>
+                </form>
+
+                <div class="contact-links">
+                    <a class="contact-link" href="https://wa.me/5521984145167" target="_blank" rel="noopener">
+                        <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"></use></svg> (21) 98414-5167
+                    </a>
+                </div>
+
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/jatecontarampcd" target="_blank" rel="noopener" aria-label="Instagram da Já te contaram PcD?"><svg class="ico" aria-hidden="true"><use href="#i-instagram"></use></svg></a>
+                    <a href="https://www.threads.com/@jatecontarampcd" target="_blank" rel="noopener" aria-label="Threads da Já te contaram PcD?"><svg class="ico" aria-hidden="true"><use href="#i-threads"></use></svg></a>
+                    <a href="https://www.youtube.com/@jatecontarampcd" target="_blank" rel="noopener" aria-label="YouTube da Já te contaram PcD?"><svg class="ico" aria-hidden="true"><use href="#i-youtube"></use></svg></a>
+                    <a href="https://br.linkedin.com/company/jatecontarampcd" target="_blank" rel="noopener" aria-label="LinkedIn da Já te contaram PcD?"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"></use></svg></a>
+                    <a href="https://www.facebook.com/groups/jtcpcd" target="_blank" rel="noopener" aria-label="Facebook da Já te contaram PcD?"><svg class="ico" aria-hidden="true"><use href="#i-facebook"></use></svg></a>
+                    <a href="https://wa.me/5521984145167" target="_blank" rel="noopener" aria-label="WhatsApp da Já te contaram PcD?"><svg class="ico" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p>&copy; <span id="year">2026</span> Já te contaram PcD?. Todos os direitos reservados.</p>
+            <p class="footer__credit">
+                <a href="https://linktr.ee/mateusmarrero" target="_blank" rel="noopener">Desenvolvido por Mateus Marrero</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Botões flutuantes -->
+    <div class="float-stack">
+        <a href="https://wa.me/5521984145167" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar no WhatsApp">
+            <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+        </a>
+        <div class="a11y" id="a11y">
+            <button class="a11y__toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel" aria-label="Opções de acessibilidade">
+                <svg class="ico" aria-hidden="true"><use href="#i-access"></use></svg>
+            </button>
+            <div class="a11y__panel" id="a11yPanel" role="group" aria-label="Opções de acessibilidade" hidden>
+                <p class="a11y__title">Acessibilidade</p>
+                <div class="a11y__row">
+                    <button type="button" class="a11y__btn" data-a11y="font-minus" aria-label="Diminuir tamanho do texto">A−</button>
+                    <button type="button" class="a11y__btn" data-a11y="font-reset" aria-label="Tamanho de texto padrão">A</button>
+                    <button type="button" class="a11y__btn" data-a11y="font-plus" aria-label="Aumentar tamanho do texto">A+</button>
+                </div>
+                <button type="button" class="a11y__btn a11y__btn--wide" data-a11y="contrast" aria-pressed="false">
+                    <svg class="ico" aria-hidden="true"><use href="#i-contrast"></use></svg> Alto contraste
+                </button>
+                <button type="button" class="a11y__btn a11y__btn--wide" data-a11y="reset">Restaurar padrão</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="to-top" id="toTop" aria-label="Voltar ao topo" hidden>
+        <svg class="ico" aria-hidden="true"><use href="#i-arrow-up"></use></svg>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>

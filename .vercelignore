@@ -1,0 +1,5 @@
+# Arquivos que NÃO precisam ir para o servidor de produção
+server.js
+README.md
+assets/images/logo-original.png
+.vercelignore

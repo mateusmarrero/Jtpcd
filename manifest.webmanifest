@@ -1,0 +1,19 @@
+{
+  "name": "Já te contaram PcD? — Consultoria de inclusão e acessibilidade",
+  "short_name": "Já te contaram PcD?",
+  "description": "Consultoria de inclusão e acessibilidade para empresas: diagnóstico, treinamentos, palestras e recrutamento de profissionais PcD.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F6FAFE",
+  "theme_color": "#0E3A6B",
+  "icons": [
+    {
+      "src": "assets/images/favicon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
