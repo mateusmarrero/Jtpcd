@@ -123,7 +123,7 @@
       try {
         const data = await apiRequest('/api/admin/login', {
           method: 'POST',
-          body: JSON.stringify({ email, senha })
+          body: JSON.stringify({ usuario: email, email, senha })
         });
 
         currentToken = data.token;

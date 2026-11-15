@@ -64,22 +64,29 @@ async function handleApi(req, res, urlObj, body) {
   // ---------- 2. ROTA PÚBLICA: LOGIN DO ADMINISTRADOR ----------
   if (path === '/api/admin/login' && method === 'POST') {
     try {
-      const { email, senha } = JSON.parse(body || '{}');
-      if (!email || !senha) {
+      const bodyData = JSON.parse(body || '{}');
+      const loginIdentifier = (bodyData.usuario || bodyData.email || '').trim();
+      const senha = bodyData.senha || '';
+
+      if (!loginIdentifier || !senha) {
         res.writeHead(400);
-        res.end(JSON.stringify({ error: 'Informe e-mail e senha.' }));
+        res.end(JSON.stringify({ error: 'Informe usuário/e-mail e senha.' }));
         return;
       }
 
       const senhaHash = hashPassword(senha);
       const [rows] = await pool.execute(
-        'SELECT id, nome, email, cargo FROM admin_users WHERE email = ? AND senha_hash = ? AND ativo = 1',
-        [email, senhaHash]
+        `SELECT id, nome, username, email, cargo 
+         FROM admin_users 
+         WHERE (username = ? OR email = ? OR (? = 'admin' AND id = 1)) 
+           AND senha_hash = ? 
+           AND ativo = 1`,
+        [loginIdentifier, loginIdentifier, loginIdentifier, senhaHash]
       );
 
       if (rows.length === 0) {
         res.writeHead(401);
-        res.end(JSON.stringify({ error: 'E-mail ou senha incorretos.' }));
+        res.end(JSON.stringify({ error: 'Usuário ou senha incorretos.' }));
         return;
       }
 
