@@ -165,6 +165,7 @@
         'pagePalestras': 'Palestras & Eventos',
         'pageVagas': 'Vagas PcD Cadastradas',
         'pageConfig': 'Configurações do Site',
+        'pageUsers': 'Usuários & Membros da Equipe',
         'pageSecurity': 'Segurança & Senha'
       };
       document.getElementById('topbarPageTitle').textContent = pageNames[targetPage] || 'Painel Administrativo';
@@ -175,6 +176,7 @@
       if (targetPage === 'pagePalestras') loadPalestras();
       if (targetPage === 'pageVagas') loadVagas();
       if (targetPage === 'pageConfig') loadConfig();
+      if (targetPage === 'pageUsers') loadUsers();
     });
   });
 
@@ -538,6 +540,170 @@
       });
       showToast('Senha alterada com sucesso!');
       e.target.reset();
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  });
+
+  // ---------- 7. GESTÃO DE USUÁRIOS E PERMISSÕES ----------
+  let allUsersCache = [];
+
+  function getRoleBadge(role) {
+    const r = (role || 'moderador').toLowerCase();
+    switch (r) {
+      case 'admin':
+        return `<span class="role-badge role-admin">Administrador</span>`;
+      case 'moderador':
+        return `<span class="role-badge role-moderador">Moderador</span>`;
+      case 'consultor':
+        return `<span class="role-badge role-consultor">Consultor PcD</span>`;
+      case 'editor':
+        return `<span class="role-badge role-editor">Editor</span>`;
+      default:
+        return `<span class="role-badge role-moderador">${escapeHtml(role)}</span>`;
+    }
+  }
+
+  async function loadUsers() {
+    const tbody = document.getElementById('usersTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem;">Carregando membros da equipe...</td></tr>`;
+
+    try {
+      const users = await apiRequest('/api/admin/users');
+      allUsersCache = users || [];
+
+      if (!users || users.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:var(--admin-text-muted);">Nenhum usuário cadastrado.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = users.map(u => {
+        const isSelf = currentUser && currentUser.id === u.id;
+        const isSuperAdmin = u.id === 1;
+
+        return `
+          <tr>
+            <td>
+              <div style="font-weight:700; color:var(--admin-text-heading);">${escapeHtml(u.nome)}</div>
+              <div style="font-size:0.8rem; color:var(--admin-text-muted); font-family:'JetBrains Mono', monospace;">@${escapeHtml(u.username)}</div>
+            </td>
+            <td><a href="mailto:${escapeHtml(u.email)}" style="color:var(--admin-blue-600); text-decoration:none;">${escapeHtml(u.email)}</a></td>
+            <td>${getRoleBadge(u.role)}</td>
+            <td>${escapeHtml(u.cargo || '—')}</td>
+            <td>
+              <span class="status-pill status-${u.ativo ? 'fechado' : 'arquivado'}">
+                ${u.ativo ? 'Ativo' : 'Inativo'}
+              </span>
+            </td>
+            <td style="font-size:0.85rem; color:var(--admin-text-muted);">${formatDate(u.ultimo_login)}</td>
+            <td style="text-align:right; white-space:nowrap;">
+              <button class="btn btn-outline btn-sm" onclick="window.openEditUser(${u.id})" style="margin-right:0.35rem;">
+                Editar
+              </button>
+              ${!isSuperAdmin && !isSelf ? `
+                <button class="btn btn-danger btn-sm" onclick="window.deleteUser(${u.id}, '${escapeHtml(u.nome).replace(/'/g, "\\'")}')">
+                  Excluir
+                </button>
+              ` : `
+                <span style="font-size:0.75rem; color:var(--admin-text-muted); font-style:italic;">${isSuperAdmin ? 'Principal' : 'Você'}</span>
+              `}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    } catch (err) {
+      console.error('Erro ao carregar usuários:', err);
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:var(--admin-danger);">Erro ao carregar lista de usuários.</td></tr>`;
+    }
+  }
+
+  // Abrir modal de edição com dados populados
+  window.openEditUser = function(id) {
+    const user = allUsersCache.find(u => u.id === id);
+    if (!user) return;
+
+    document.getElementById('editUserId').value = user.id;
+    document.getElementById('editUserName').value = user.nome || '';
+    document.getElementById('editUserUsername').value = user.username || '';
+    document.getElementById('editUserEmail').value = user.email || '';
+    document.getElementById('editUserRole').value = user.role || 'moderador';
+    document.getElementById('editUserCargo').value = user.cargo || '';
+    document.getElementById('editUserStatus').value = user.ativo ? '1' : '0';
+    document.getElementById('editUserNewPassword').value = '';
+
+    document.getElementById('editUserModal')?.classList.add('is-open');
+  };
+
+  // Excluir usuário
+  window.deleteUser = async function(id, nome) {
+    if (!confirm(`Tem certeza que deseja remover o usuário "${nome}"? Esta ação não pode ser desfeita.`)) {
+      return;
+    }
+
+    try {
+      await apiRequest(`/api/admin/users/${id}`, { method: 'DELETE' });
+      showToast('Usuário removido com sucesso!');
+      loadUsers();
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  };
+
+  // Submit Criar Novo Usuário
+  document.getElementById('newUserForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nome = document.getElementById('newUserName').value.trim();
+    const username = document.getElementById('newUserUsername').value.trim();
+    const email = document.getElementById('newUserEmail').value.trim();
+    const role = document.getElementById('newUserRole').value;
+    const cargo = document.getElementById('newUserCargo').value.trim();
+    const senha = document.getElementById('newUserPassword').value;
+
+    if (!nome || !username || !email || !senha) {
+      showToast('Por favor, preencha todos os campos obrigatórios.', 'error');
+      return;
+    }
+
+    try {
+      await apiRequest('/api/admin/users', {
+        method: 'POST',
+        body: JSON.stringify({ nome, username, email, role, cargo, senha })
+      });
+      showToast('Usuário cadastrado com sucesso!');
+      document.getElementById('newUserModal')?.classList.remove('is-open');
+      e.target.reset();
+      loadUsers();
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  });
+
+  // Submit Editar Usuário
+  document.getElementById('editUserForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('editUserId').value;
+    const nome = document.getElementById('editUserName').value.trim();
+    const username = document.getElementById('editUserUsername').value.trim();
+    const email = document.getElementById('editUserEmail').value.trim();
+    const role = document.getElementById('editUserRole').value;
+    const cargo = document.getElementById('editUserCargo').value.trim();
+    const ativo = document.getElementById('editUserStatus').value === '1';
+    const novaSenha = document.getElementById('editUserNewPassword').value;
+
+    const payload = { nome, username, email, role, cargo, ativo };
+    if (novaSenha && novaSenha.length >= 6) {
+      payload.novaSenha = novaSenha;
+    }
+
+    try {
+      await apiRequest(`/api/admin/users/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload)
+      });
+      showToast('Usuário atualizado com sucesso!');
+      document.getElementById('editUserModal')?.classList.remove('is-open');
+      loadUsers();
     } catch (err) {
       showToast(err.message, 'error');
     }

@@ -76,7 +76,7 @@ async function handleApi(req, res, urlObj, body) {
 
       const senhaHash = hashPassword(senha);
       const [rows] = await pool.execute(
-        `SELECT id, nome, username, email, cargo 
+        `SELECT id, nome, username, email, cargo, role 
          FROM admin_users 
          WHERE (username = ? OR email = ? OR (? = 'admin' AND id = 1)) 
            AND senha_hash = ? 
@@ -463,6 +463,135 @@ async function handleApi(req, res, urlObj, body) {
       res.end(JSON.stringify({ error: 'Erro ao atualizar senha.' }));
     }
     return;
+  }
+
+  // ---------- 11. GESTÃO DE USUÁRIOS E PERMISSÕES ----------
+  if (path === '/api/admin/users') {
+    if (method === 'GET') {
+      try {
+        const [rows] = await pool.execute(
+          'SELECT id, nome, username, email, cargo, role, ativo, ultimo_login, criado_em FROM admin_users ORDER BY id ASC'
+        );
+        res.writeHead(200);
+        res.end(JSON.stringify(rows));
+      } catch (err) {
+        console.error('Erro ao listar usuários:', err);
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao buscar usuários.' }));
+      }
+      return;
+    }
+
+    if (method === 'POST') {
+      try {
+        const { nome, username, email, senha, cargo, role } = JSON.parse(body || '{}');
+        const cleanUser = (username || '').trim().toLowerCase();
+        const cleanEmail = (email || '').trim().toLowerCase();
+
+        if (!nome || !cleanUser || !cleanEmail || !senha) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Nome, usuário, e-mail e senha são obrigatórios.' }));
+          return;
+        }
+
+        if (senha.length < 6) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'A senha deve conter no mínimo 6 caracteres.' }));
+          return;
+        }
+
+        // Verifica se já existe username ou email
+        const [existing] = await pool.execute(
+          'SELECT id FROM admin_users WHERE username = ? OR email = ?',
+          [cleanUser, cleanEmail]
+        );
+        if (existing.length > 0) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Já existe um usuário cadastrado com este nome de usuário ou e-mail.' }));
+          return;
+        }
+
+        const validRoles = ['admin', 'moderador', 'consultor', 'editor'];
+        const userRole = validRoles.includes(role) ? role : 'moderador';
+        const userCargo = cargo || (userRole === 'admin' ? 'Administrador' : userRole === 'moderador' ? 'Moderador' : userRole === 'consultor' ? 'Consultor PcD' : 'Editor');
+        const senhaHash = hashPassword(senha);
+
+        const [result] = await pool.execute(
+          `INSERT INTO admin_users (nome, username, email, senha_hash, cargo, role, ativo) 
+           VALUES (?, ?, ?, ?, ?, ?, 1)`,
+          [nome.trim(), cleanUser, cleanEmail, senhaHash, userCargo, userRole]
+        );
+
+        res.writeHead(201);
+        res.end(JSON.stringify({ success: true, message: 'Usuário cadastrado com sucesso!', id: result.insertId }));
+      } catch (err) {
+        console.error('Erro ao cadastrar usuário:', err);
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro interno ao salvar usuário.' }));
+      }
+      return;
+    }
+  }
+
+  const matchUserId = path.match(/^\/api\/admin\/users\/(\d+)$/);
+  if (matchUserId) {
+    const targetUserId = parseInt(matchUserId[1], 10);
+
+    if (method === 'PUT') {
+      try {
+        const { nome, username, email, cargo, role, ativo, novaSenha } = JSON.parse(body || '{}');
+        const updates = [];
+        const params = [];
+
+        if (nome) { updates.push('nome = ?'); params.push(nome.trim()); }
+        if (username) { updates.push('username = ?'); params.push(username.trim().toLowerCase()); }
+        if (email) { updates.push('email = ?'); params.push(email.trim().toLowerCase()); }
+        if (cargo) { updates.push('cargo = ?'); params.push(cargo.trim()); }
+        if (role) { updates.push('role = ?'); params.push(role); }
+        if (typeof ativo !== 'undefined') { updates.push('ativo = ?'); params.push(ativo ? 1 : 0); }
+        if (novaSenha && novaSenha.length >= 6) {
+          updates.push('senha_hash = ?');
+          params.push(hashPassword(novaSenha));
+        }
+
+        if (updates.length > 0) {
+          params.push(targetUserId);
+          await pool.execute(`UPDATE admin_users SET ${updates.join(', ')} WHERE id = ?`, params);
+        }
+
+        res.writeHead(200);
+        res.end(JSON.stringify({ success: true, message: 'Usuário atualizado com sucesso!' }));
+      } catch (err) {
+        console.error('Erro ao editar usuário:', err);
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao salvar alterações do usuário.' }));
+      }
+      return;
+    }
+
+    if (method === 'DELETE') {
+      try {
+        if (targetUserId === 1) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'O administrador principal (ID 1) não pode ser excluído.' }));
+          return;
+        }
+        if (targetUserId === authUser.id) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Você não pode excluir sua própria conta.' }));
+          return;
+        }
+
+        await pool.execute('DELETE FROM admin_users WHERE id = ?', [targetUserId]);
+        res.writeHead(200);
+        res.end(JSON.stringify({ success: true, message: 'Usuário removido com sucesso.' }));
+      } catch (err) {
+        console.error('Erro ao excluir usuário:', err);
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao remover usuário.' }));
+      }
+      return;
+    }
   }
 
   // Rota não encontrada
