@@ -532,10 +532,14 @@
         submitBtn.disabled = true;
         submitBtn.innerHTML = 'Calculando isenções...';
 
+        const estado_uf = document.getElementById('isencaoEstadoUf')?.value || document.getElementById('isencaoUf')?.value || 'SP';
+        const condutorEl = document.getElementById('isencaoCondutor');
+        const eh_condutor = condutorEl ? (condutorEl.value === 'condutor') : (document.getElementById('isencaoEhCondutor')?.checked !== false);
+
         const payload = {
           valor_veiculo: parseFloat(document.getElementById('isencaoValorVeiculo')?.value || 0),
-          estado_uf: document.getElementById('isencaoUf')?.value || 'SP',
-          eh_condutor: document.getElementById('isencaoEhCondutor')?.checked
+          estado_uf,
+          eh_condutor
         };
 
         try {

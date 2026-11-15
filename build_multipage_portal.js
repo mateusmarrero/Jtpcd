@@ -128,10 +128,11 @@ function renderHeader(currentPath) {
 function renderBreadcrumbs(crumbs) {
   const items = crumbs.map((c, i) => {
     const isLast = i === crumbs.length - 1;
+    const text = c.name || c.label || '';
     if (isLast) {
-      return `<li aria-current="page">${c.name}</li>`;
+      return `<li aria-current="page">${text}</li>`;
     }
-    return `<li><a href="${c.url}">${c.name}</a></li>`;
+    return `<li><a href="${c.url}">${text}</a></li>`;
   }).join('');
 
   return `

@@ -1,0 +1,486 @@
+{
+  "timestamp": "2026-11-15T22:27:39.927Z",
+  "results": {
+    "totalChecked": 78,
+    "successful": 78,
+    "failures": [],
+    "emptyPages": [],
+    "shortContent": [],
+    "brokenInternalLinks": [],
+    "missingImages": [],
+    "missingBreadcrumbs": [],
+    "missingTitles": [],
+    "missingDescriptions": [],
+    "duplicateTitles": {
+      "Auxílio-Inclusão à Pessoa com Deficiência • Lei 14.176/2021": [
+        "/beneficios/auxilio-inclusao/"
+      ],
+      "Aposentadoria da Pessoa com Deficiência no INSS • Lei Complementar 142/13": [
+        "/beneficios/beneficios-do-inss/"
+      ],
+      "BPC/LOAS: O que é, Quem tem Direito e Como Funciona • Guia Completo": [
+        "/beneficios/bpc-loas/"
+      ],
+      "Cadastro Único (CadÚnico) para PcD • Como Inscrever e Atualizar no CRAS": [
+        "/beneficios/cadunico/"
+      ],
+      "Como Solicitar o BPC no Meu INSS • Guia Passo a Passo sem Intermediários": [
+        "/beneficios/como-solicitar/"
+      ],
+      "Documentos Necessários para BPC e Benefícios do INSS • Checklist Completo": [
+        "/beneficios/documentacao/"
+      ],
+      "Benefícios Sociais para Pessoas com Deficiência • BPC, INSS e Auxílios": [
+        "/beneficios/"
+      ],
+      "Acessibilidade Atitudinal: A Barreira Invisível nas Organizações | Já Te Contaram PcD?": [
+        "/blog/acessibilidade-atitudinal-barreira-invisivel/"
+      ],
+      "Como Cumprir a Lei de Cotas com Eficiência e Retenção de Talentos | Já Te Contaram PcD?": [
+        "/blog/como-cumprir-lei-de-cotas-com-eficiencia/"
+      ],
+      "Blog Editorial e Notícias PcD: Legislação, Inclusão e Cidadania | Já Te Contaram PcD?": [
+        "/blog/"
+      ],
+      "Liderança PcD: Do Assistencialismo ao Protagonismo Corporativo | Já Te Contaram PcD?": [
+        "/blog/lideranca-pcd-protagonismo-corporativo/"
+      ],
+      "Acessibilidade Arquitetônica, Digital e Urbana • Normas ABNT NBR 9050": [
+        "/direitos/acessibilidade/"
+      ],
+      "Atendimento Prioritário para PcD • Lei 10.048/00 e Lei 14.626/23": [
+        "/direitos/atendimento-prioritario/"
+      ],
+      "Cotas em Concursos Públicos para PcD • Reserva de 5% a 20%": [
+        "/direitos/concursos-publicos/"
+      ],
+      "Direitos do Consumidor PcD • Meia-Entrada, Contratos Acessíveis e Voos": [
+        "/direitos/direitos-do-consumidor/"
+      ],
+      "Vagas Reservadas e Cartão DeFis • Como Emitir a Credencial": [
+        "/direitos/estacionamento/"
+      ],
+      "Direitos da Pessoa com Deficiência • Legislação Brasileira e Cidadania": [
+        "/direitos/"
+      ],
+      "Lei Brasileira de Inclusão (Lei 13.146/15) • Guia Completo da LBI": [
+        "/direitos/lei-brasileira-inclusao/"
+      ],
+      "CIPTEA — Carteira do Autista (Lei Romeo Mion): Como Solicitar | Já Te Contaram PcD?": [
+        "/documentacao/ciptea/"
+      ],
+      "Checklist Completo de Documentos para Requerimentos PcD | Já Te Contaram PcD?": [
+        "/documentacao/documentos-necessarios/"
+      ],
+      "Identificação PcD: Nova Carteira de Identidade Nacional e Símbolos | Já Te Contaram PcD?": [
+        "/documentacao/identificacao-pcd/"
+      ],
+      "Documentação e Laudos para PcD: Guia Completo e Direitos | Já Te Contaram PcD?": [
+        "/documentacao/"
+      ],
+      "Como Deve Ser o Laudo Médico para PcD: Modelo e Normas Legais | Já Te Contaram PcD?": [
+        "/documentacao/laudo-medico/"
+      ],
+      "Cotas para PcD no SISU, ProUni e Fies • Lei Federal 12.711/12": [
+        "/educacao/cotas/"
+      ],
+      "Direitos do Estudante com Deficiência • PDI e Proibição de Taxas": [
+        "/educacao/direitos-do-estudante/"
+      ],
+      "Profissional de Apoio Escolar e AEE • Regras da LBI e STF": [
+        "/educacao/educacao-inclusiva/"
+      ],
+      "Educação Inclusiva • Direitos do Estudante com Deficiência no Brasil": [
+        "/educacao/"
+      ],
+      "Tecnologia Assistiva Pedagógica na Educação Inclusiva": [
+        "/educacao/tecnologia-assistiva/"
+      ],
+      "Acessibilidade no Ensino Superior • Núcleos de Acessibilidade (NAI)": [
+        "/educacao/universidade/"
+      ],
+      "Como Fazer um Currículo PcD Atraente • Dicas e Cuidados com Laudo": [
+        "/emprego/curriculo/"
+      ],
+      "Direitos Trabalhistas da PcD • Horário Especial, Adaptação e Estabilidade": [
+        "/emprego/direitos-trabalhistas/"
+      ],
+      "Entrevistas de Emprego PcD • O que é Permitido e Como se Preparar": [
+        "/emprego/entrevistas/"
+      ],
+      "Emprego e Carreira para Pessoas com Deficiência • Vagas e Lei de Cotas": [
+        "/emprego/"
+      ],
+      "Lei de Cotas PcD (Artigo 93 da Lei 8.213/91) • Tabela de Percentuais e Multas": [
+        "/emprego/lei-de-cotas/"
+      ],
+      "Cursos Gratuitos e Capacitação Profissional para PcD": [
+        "/emprego/qualificacao/"
+      ],
+      "Vagas de Emprego PcD • Oportunidades Inclusivas no Brasil": [
+        "/emprego/vagas-pcd/"
+      ],
+      "Calculadora da Lei de Cotas PcD (Lei 8.213/91): Calcule a Reserva Legal | Já Te Contaram PcD?": [
+        "/ferramentas/calculadora-cotas/"
+      ],
+      "Calculadora de Isenções Veiculares PcD: Calcule IPI, ICMS e IPVA | Já Te Contaram PcD?": [
+        "/ferramentas/calculadora-isencoes/"
+      ],
+      "Gerador Gratuito de Requerimentos e Petições PcD | Já Te Contaram PcD?": [
+        "/ferramentas/gerador-requerimentos/"
+      ],
+      "Central de Ferramentas Gratuitas para PcD e Empresas | Já Te Contaram PcD?": [
+        "/ferramentas/"
+      ],
+      "Simulador do BPC/LOAS 2026: Calcule Renda Per Capita e Elegibilidade | Já Te Contaram PcD?": [
+        "/ferramentas/simulador-bpc/"
+      ],
+      "JÁ TE CONTARAM PCD? • Portal Nacional de Direitos, Utilidade Pública e Inclusão": [
+        "/"
+      ],
+      "Associação de Assistência à Criança Deficiente (SP) — Atendimento e Reabilitação | Já Te Contaram PcD?": [
+        "/instituicoes/associacao-de-assistencia-a-crianca-deficiente/"
+      ],
+      "Centro Regional de Reabilitação (CER IV Minas) (MG) — Atendimento e Reabilitação | Já Te Contaram PcD?": [
+        "/instituicoes/centro-regional-de-reabilitacao-cer-iv-minas/"
+      ],
+      "Federação Nacional das APAEs (DF) — Atendimento e Reabilitação | Já Te Contaram PcD?": [
+        "/instituicoes/federacao-nacional-das-apaes/"
+      ],
+      "Diretório Nacional de Instituições de Apoio e Reabilitação PcD | Já Te Contaram PcD?": [
+        "/instituicoes/"
+      ],
+      "Instituto Benjamin Constant (IBC) (RJ) — Atendimento e Reabilitação | Já Te Contaram PcD?": [
+        "/instituicoes/instituto-benjamin-constant-ibc/"
+      ],
+      "Instituto Nacional de Educação de Surdos (INES) (RJ) — Atendimento e Reabilitação | Já Te Contaram PcD?": [
+        "/instituicoes/instituto-nacional-de-educacao-de-surdos-ines/"
+      ],
+      "Rede de Reabilitação Lucy Montoro (SP) — Atendimento e Reabilitação | Já Te Contaram PcD?": [
+        "/instituicoes/rede-de-reabilitacao-lucy-montoro/"
+      ],
+      "Guia Completo da Compra de Carro PcD com Isenções Passo a Passo": [
+        "/isencoes/compra-de-veiculos/"
+      ],
+      "Isenção de ICMS para Carros PcD • Convênio CONFAZ 147/23": [
+        "/isencoes/icms/"
+      ],
+      "Isenções Tributárias para Pessoas com Deficiência • IPI, ICMS e IPVA": [
+        "/isencoes/"
+      ],
+      "Isenção de IOF em Financiamentos de Veículos PcD": [
+        "/isencoes/iof/"
+      ],
+      "Isenção de IPI para Carros PcD • Teto de R$ 200 Mil (Lei 14.287/21)": [
+        "/isencoes/ipi/"
+      ],
+      "Isenção de IPVA para Veículos PcD nos Estados • Regras e Documentos": [
+        "/isencoes/ipva/"
+      ],
+      "Acessibilidade Urbana e Calçadas • Normas ABNT NBR 9050": [
+        "/mobilidade/acessibilidade-urbana/"
+      ],
+      "Cartão DeFis e Vagas Reservadas de Estacionamento • Como Emitir": [
+        "/mobilidade/estacionamento/"
+      ],
+      "Mobilidade e Transporte Acessível para PcD • Passe Livre e Direitos": [
+        "/mobilidade/"
+      ],
+      "Passe Livre Interestadual do Governo Federal • Lei 8.899/94": [
+        "/mobilidade/passe-livre/"
+      ],
+      "Gratuidade no Transporte Público Municipal para PcD • Bilhete Especial": [
+        "/mobilidade/transporte-publico/"
+      ],
+      "Viagens Aéreas para PcD • Resolução ANAC 280 e Desconto de 80%": [
+        "/mobilidade/viagens/"
+      ],
+      "Analista de Acessibilidade Digital e QA — Tech Inclusiva Brasil | Já Te Contaram PcD?": [
+        "/oportunidades/analista-de-acessibilidade-digital-e-qa-3/"
+      ],
+      "Assistente Administrativo PcD — Grupo Corporativo Integrar | Já Te Contaram PcD?": [
+        "/oportunidades/assistente-administrativo-pcd-1/"
+      ],
+      "Consultor Júnior de Diversidade & ESG — Já Te Contaram PcD? | Já Te Contaram PcD?": [
+        "/oportunidades/consultor-junior-de-diversidade-esg-2/"
+      ],
+      "Mural de Vagas e Oportunidades Profissionais PcD | Já Te Contaram PcD?": [
+        "/oportunidades/"
+      ],
+      "Palestras Corporativas e Consultoria de Inclusão com Moisés Souza | Já Te Contaram PcD?": [
+        "/palestras/"
+      ],
+      "Remédios de Alto Custo e Home Care pelo SUS • Como Conseguir na Justiça": [
+        "/saude/direitos-na-saude/"
+      ],
+      "Direito a Fisioterapia e Hidroterapia pelo SUS • Acesso sem Interrupção": [
+        "/saude/fisioterapia/"
+      ],
+      "Saúde e Qualidade de Vida para Pessoas com Deficiência • SUS e Direitos": [
+        "/saude/"
+      ],
+      "Centros Especializados em Reabilitação (CER IV) • Como Acessar pelo SUS": [
+        "/saude/reabilitacao/"
+      ],
+      "Saúde Mental para Famílias Atípicas e Cuidadores de PcD": [
+        "/saude/saude-mental/"
+      ],
+      "Terapias para Autismo e PcD • ABA, Fono e T.O. sem Limite de Sessões": [
+        "/saude/terapias/"
+      ],
+      "Melhores Aplicativos de Acessibilidade para PcD no Celular": [
+        "/tecnologia-assistiva/aplicativos/"
+      ],
+      "Comunicação Aumentativa e Alternativa (CAA) para PcD": [
+        "/tecnologia-assistiva/comunicacao/"
+      ],
+      "Saque do FGTS para Órteses e Próteses • Decreto 9.345/18": [
+        "/tecnologia-assistiva/equipamentos/"
+      ],
+      "Tecnologia Assistiva para PcD • Equipamentos, Softwares e Aplicativos": [
+        "/tecnologia-assistiva/"
+      ],
+      "Inteligência Artificial e Acessibilidade • Novas Fronteiras para PcD": [
+        "/tecnologia-assistiva/inteligencia-artificial/"
+      ],
+      "Leitores de Tela Gratuitos • NVDA, TalkBack e VoiceOver": [
+        "/tecnologia-assistiva/leitores-de-tela/"
+      ]
+    },
+    "duplicateH1": {
+      "Auxílio-Inclusão à Pessoa com Deficiência": [
+        "/beneficios/auxilio-inclusao/"
+      ],
+      "Aposentadoria da Pessoa com Deficiência no INSS": [
+        "/beneficios/beneficios-do-inss/"
+      ],
+      "Benefício de Prestação Continuada (BPC / LOAS)": [
+        "/beneficios/bpc-loas/"
+      ],
+      "Cadastro Único (CadÚnico) para PcD": [
+        "/beneficios/cadunico/"
+      ],
+      "Como Solicitar Benefícios pelo Meu INSS": [
+        "/beneficios/como-solicitar/"
+      ],
+      "Documentos Exigidos para Pedidos no INSS": [
+        "/beneficios/documentacao/"
+      ],
+      "Benefícios Sociais & Previdenciários da PcD": [
+        "/beneficios/"
+      ],
+      "Acessibilidade Atitudinal: A Barreira Invisível nas Organizações": [
+        "/blog/acessibilidade-atitudinal-barreira-invisivel/"
+      ],
+      "Como Cumprir a Lei de Cotas com Eficiência e Retenção de Talentos": [
+        "/blog/como-cumprir-lei-de-cotas-com-eficiencia/"
+      ],
+      "Portal Editorial Já Te Contaram PcD?": [
+        "/blog/"
+      ],
+      "Liderança PcD: Do Assistencialismo ao Protagonismo Corporativo": [
+        "/blog/lideranca-pcd-protagonismo-corporativo/"
+      ],
+      "Direito à Acessibilidade Integral": [
+        "/direitos/acessibilidade/"
+      ],
+      "Direito ao Atendimento Prioritário": [
+        "/direitos/atendimento-prioritario/"
+      ],
+      "Cotas e Acessibilidade em Concursos Públicos": [
+        "/direitos/concursos-publicos/"
+      ],
+      "Direitos da Pessoa com Deficiência nas Relações de Consumo": [
+        "/direitos/direitos-do-consumidor/"
+      ],
+      "Vagas Reservadas de Estacionamento & Cartão DeFis": [
+        "/direitos/estacionamento/"
+      ],
+      "Direitos da Pessoa com Deficiência no Brasil": [
+        "/direitos/"
+      ],
+      "Lei Brasileira de Inclusão da Pessoa com Deficiência (LBI)": [
+        "/direitos/lei-brasileira-inclusao/"
+      ],
+      "CIPTEA: Carteira de Identificação da Pessoa com Autismo": [
+        "/documentacao/ciptea/"
+      ],
+      "Checklist de Documentos para Direitos PcD": [
+        "/documentacao/documentos-necessarios/"
+      ],
+      "Nova Carteira de Identidade Nacional (CIN) com Símbolo PcD": [
+        "/documentacao/identificacao-pcd/"
+      ],
+      "Central de Documentação, Laudos e Identificação PcD": [
+        "/documentacao/"
+      ],
+      "Requisitos Essenciais do Laudo Médico para PcD": [
+        "/documentacao/laudo-medico/"
+      ],
+      "Cotas para PcD no SISU, ProUni e FIES": [
+        "/educacao/cotas/"
+      ],
+      "Direitos do Estudante & Plano Individual (PDI)": [
+        "/educacao/direitos-do-estudante/"
+      ],
+      "Profissional de Apoio Escolar & Atendimento Especializado": [
+        "/educacao/educacao-inclusiva/"
+      ],
+      "Educação Inclusiva & Cidadania Escolar": [
+        "/educacao/"
+      ],
+      "Tecnologia Assistiva na Sala de Aula": [
+        "/educacao/tecnologia-assistiva/"
+      ],
+      "Acessibilidade nas Universidades e Faculdades": [
+        "/educacao/universidade/"
+      ],
+      "Como Estruturar um Currículo PcD Eficiente": [
+        "/emprego/curriculo/"
+      ],
+      "Direitos Trabalhistas da Pessoa com Deficiência": [
+        "/emprego/direitos-trabalhistas/"
+      ],
+      "Acessibilidade em Entrevistas de Emprego": [
+        "/emprego/entrevistas/"
+      ],
+      "Emprego, Carreira e Lei de Cotas PcD": [
+        "/emprego/"
+      ],
+      "Tudo Sobre a Lei de Cotas PcD (Art. 93)": [
+        "/emprego/lei-de-cotas/"
+      ],
+      "Cursos e Formação Profissional para PcD": [
+        "/emprego/qualificacao/"
+      ],
+      "Oportunidades de Emprego PcD": [
+        "/emprego/vagas-pcd/"
+      ],
+      "Calculadora da Lei de Cotas Empresariais (Art. 93)": [
+        "/ferramentas/calculadora-cotas/"
+      ],
+      "Calculadora de Isenções Tributárias Veiculares PcD": [
+        "/ferramentas/calculadora-isencoes/"
+      ],
+      "Gerador Oficial de Requerimentos e Petições PcD": [
+        "/ferramentas/gerador-requerimentos/"
+      ],
+      "Ferramentas Interativas e Calculadoras Oficiais PcD": [
+        "/ferramentas/"
+      ],
+      "Simulador do Benefício de Prestação Continuada (BPC)": [
+        "/ferramentas/simulador-bpc/"
+      ],
+      "Associação de Assistência à Criança Deficiente": [
+        "/instituicoes/associacao-de-assistencia-a-crianca-deficiente/"
+      ],
+      "Centro Regional de Reabilitação (CER IV Minas)": [
+        "/instituicoes/centro-regional-de-reabilitacao-cer-iv-minas/"
+      ],
+      "Federação Nacional das APAEs": [
+        "/instituicoes/federacao-nacional-das-apaes/"
+      ],
+      "Diretório Nacional de Entidades e Reabilitação PcD": [
+        "/instituicoes/"
+      ],
+      "Instituto Benjamin Constant (IBC)": [
+        "/instituicoes/instituto-benjamin-constant-ibc/"
+      ],
+      "Instituto Nacional de Educação de Surdos (INES)": [
+        "/instituicoes/instituto-nacional-de-educacao-de-surdos-ines/"
+      ],
+      "Rede de Reabilitação Lucy Montoro": [
+        "/instituicoes/rede-de-reabilitacao-lucy-montoro/"
+      ],
+      "Como Comprar Carro PcD com Isenções": [
+        "/isencoes/compra-de-veiculos/"
+      ],
+      "Isenção de ICMS na Compra de Carros PcD": [
+        "/isencoes/icms/"
+      ],
+      "Isenções Tributárias para Pessoas com Deficiência": [
+        "/isencoes/"
+      ],
+      "Isenção de IOF em Financiamento de Veículos": [
+        "/isencoes/iof/"
+      ],
+      "Isenção de IPI na Compra de Veículos Novos": [
+        "/isencoes/ipi/"
+      ],
+      "Isenção de IPVA para Pessoas com Deficiência": [
+        "/isencoes/ipva/"
+      ],
+      "Acessibilidade Urbana & Calçadas Acessíveis": [
+        "/mobilidade/acessibilidade-urbana/"
+      ],
+      "Cartão DeFis e Credencial de Estacionamento": [
+        "/mobilidade/estacionamento/"
+      ],
+      "Mobilidade Urbana & Transporte Acessível": [
+        "/mobilidade/"
+      ],
+      "Passe Livre Interestadual para PcD": [
+        "/mobilidade/passe-livre/"
+      ],
+      "Gratuidade no Transporte Público Municipal": [
+        "/mobilidade/transporte-publico/"
+      ],
+      "Direitos em Viagens Aéreas (Resolução ANAC 280)": [
+        "/mobilidade/viagens/"
+      ],
+      "Analista de Acessibilidade Digital e QA": [
+        "/oportunidades/analista-de-acessibilidade-digital-e-qa-3/"
+      ],
+      "Assistente Administrativo PcD": [
+        "/oportunidades/assistente-administrativo-pcd-1/"
+      ],
+      "Consultor Júnior de Diversidade & ESG": [
+        "/oportunidades/consultor-junior-de-diversidade-esg-2/"
+      ],
+      "Mural de Oportunidades e Carreiras Inclusivas": [
+        "/oportunidades/"
+      ],
+      "Palestras Corporativas e Consultoria em Inclusão PcD": [
+        "/palestras/"
+      ],
+      "Medicamentos de Alto Custo & Home Care": [
+        "/saude/direitos-na-saude/"
+      ],
+      "Fisioterapia e Hidroterapia no SUS": [
+        "/saude/fisioterapia/"
+      ],
+      "Saúde, Reabilitação e Qualidade de Vida": [
+        "/saude/"
+      ],
+      "Centros Especializados em Reabilitação (CER)": [
+        "/saude/reabilitacao/"
+      ],
+      "Saúde Mental da Família e dos Cuidadores": [
+        "/saude/saude-mental/"
+      ],
+      "Cobertura de Terapias Especiais (ABA, Fono e T.O.)": [
+        "/saude/terapias/"
+      ],
+      "Aplicativos Móveis de Acessibilidade": [
+        "/tecnologia-assistiva/aplicativos/"
+      ],
+      "Comunicação Aumentativa e Alternativa (CAA)": [
+        "/tecnologia-assistiva/comunicacao/"
+      ],
+      "Saque do FGTS para Aquisição de Órteses e Próteses": [
+        "/tecnologia-assistiva/equipamentos/"
+      ],
+      "Tecnologia Assistiva & Recursos de Acessibilidade": [
+        "/tecnologia-assistiva/"
+      ],
+      "Inteligência Artificial a Serviço da Inclusão": [
+        "/tecnologia-assistiva/inteligencia-artificial/"
+      ],
+      "Leitores de Tela no Computador e Celular": [
+        "/tecnologia-assistiva/leitores-de-tela/"
+      ]
+    }
+  },
+  "realDupTitles": [],
+  "realDupH1": []
+}

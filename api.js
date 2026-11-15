@@ -1,11 +1,24 @@
 const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 const pool = require('./db');
 
 const SALT = 'jtpcd_salt_2026';
 const SESSIONS = new Map(); // Simple secure memory session map token -> user
 
-function hashPassword(password) {
-  return crypto.createHash('sha256').update(password + SALT).digest('hex');
+async function hashPassword(password) {
+  return await bcrypt.hash(password, 10);
+}
+
+async function verifyPassword(password, storedHash) {
+  if (!password || !storedHash) return false;
+  if (storedHash.startsWith('$2a$') || storedHash.startsWith('$2b$')) {
+    return await bcrypt.compare(password, storedHash);
+  }
+  const legacyHash = crypto.createHash('sha256').update(password + SALT).digest('hex');
+  if (legacyHash === storedHash) {
+    return 'legacy_match';
+  }
+  return false;
 }
 
 function generateToken() {
@@ -45,7 +58,9 @@ async function handleApi(req, res, urlObj, body) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
   // ---------- 1. ROTA PÚBLICA: ENVIO DE NOVO LEAD ----------
   if (path === '/api/leads' && method === 'POST') {
@@ -539,14 +554,12 @@ async function handleApi(req, res, urlObj, body) {
         return;
       }
 
-      const senhaHash = hashPassword(senha);
       const [rows] = await pool.execute(
-        `SELECT id, nome, username, email, cargo, role 
+        `SELECT id, nome, username, email, cargo, role, senha_hash 
          FROM admin_users 
          WHERE (username = ? OR email = ? OR (? = 'admin' AND id = 1)) 
-           AND senha_hash = ? 
            AND ativo = 1`,
-        [loginIdentifier, loginIdentifier, loginIdentifier, senhaHash]
+        [loginIdentifier, loginIdentifier, loginIdentifier]
       );
 
       if (rows.length === 0) {
@@ -555,7 +568,30 @@ async function handleApi(req, res, urlObj, body) {
         return;
       }
 
-      const user = rows[0];
+      const candidateUser = rows[0];
+      const match = await verifyPassword(senha, candidateUser.senha_hash);
+
+      if (!match) {
+        res.writeHead(401);
+        res.end(JSON.stringify({ error: 'Usuário ou senha incorretos.' }));
+        return;
+      }
+
+      // Se era hash legado SHA-256, atualiza em tempo de execução para Bcrypt
+      if (match === 'legacy_match') {
+        const newBcrypt = await hashPassword(senha);
+        await pool.execute('UPDATE admin_users SET senha_hash = ? WHERE id = ?', [newBcrypt, candidateUser.id]);
+      }
+
+      const user = {
+        id: candidateUser.id,
+        nome: candidateUser.nome,
+        username: candidateUser.username,
+        email: candidateUser.email,
+        cargo: candidateUser.cargo,
+        role: candidateUser.role
+      };
+
       const token = generateToken();
       SESSIONS.set(token, { user, timestamp: Date.now() });
 
@@ -917,27 +953,34 @@ async function handleApi(req, res, urlObj, body) {
         return;
       }
 
-      const atualHash = hashPassword(senhaAtual);
       const [rows] = await pool.execute(
-        'SELECT id FROM admin_users WHERE id = ? AND senha_hash = ?',
-        [authUser.id, atualHash]
+        'SELECT id, senha_hash FROM admin_users WHERE id = ?',
+        [authUser.id]
       );
 
       if (rows.length === 0) {
+        res.writeHead(404);
+        res.end(JSON.stringify({ error: 'Usuário não encontrado.' }));
+        return;
+      }
+
+      const match = await verifyPassword(senhaAtual, rows[0].senha_hash);
+      if (!match) {
         res.writeHead(400);
         res.end(JSON.stringify({ error: 'Senha atual incorreta.' }));
         return;
       }
 
-      const novaHash = hashPassword(novaSenha);
+      const novaHash = await hashPassword(novaSenha);
       await pool.execute('UPDATE admin_users SET senha_hash = ? WHERE id = ?', [novaHash, authUser.id]);
+      logAudit(authUser.username, 'Alteração de Senha', 'Autenticação', 'Senha própria atualizada com sucesso', req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1');
 
       res.writeHead(200);
-      res.end(JSON.stringify({ success: true, message: 'Senha atualizada com sucesso!' }));
-    } catch (err) {
-      console.error('Erro ao trocar senha:', err);
+      res.end(JSON.stringify({ success: true, message: 'Senha atualizada com sucesso com criptografia Bcrypt!' }));
+    } catch (e) {
+      console.error('Erro ao alterar senha:', e);
       res.writeHead(500);
-      res.end(JSON.stringify({ error: 'Erro ao atualizar senha.' }));
+      res.end(JSON.stringify({ error: 'Erro ao alterar senha.' }));
     }
     return;
   }
@@ -961,6 +1004,12 @@ async function handleApi(req, res, urlObj, body) {
 
     if (method === 'POST') {
       try {
+        if (authUser.role !== 'admin') {
+          res.writeHead(403);
+          res.end(JSON.stringify({ error: 'Acesso negado: Apenas administradores podem cadastrar novos usuários.' }));
+          return;
+        }
+
         const { nome, username, email, senha, cargo, role } = JSON.parse(body || '{}');
         const cleanUser = (username || '').trim().toLowerCase();
         const cleanEmail = (email || '').trim().toLowerCase();
@@ -991,7 +1040,7 @@ async function handleApi(req, res, urlObj, body) {
         const validRoles = ['admin', 'moderador', 'consultor', 'editor'];
         const userRole = validRoles.includes(role) ? role : 'moderador';
         const userCargo = cargo || (userRole === 'admin' ? 'Administrador' : userRole === 'moderador' ? 'Moderador' : userRole === 'consultor' ? 'Consultor PcD' : 'Editor');
-        const senhaHash = hashPassword(senha);
+        const senhaHash = await hashPassword(senha);
 
         const [result] = await pool.execute(
           `INSERT INTO admin_users (nome, username, email, senha_hash, cargo, role, ativo) 
@@ -1014,6 +1063,12 @@ async function handleApi(req, res, urlObj, body) {
   if (matchUserId) {
     const targetUserId = parseInt(matchUserId[1], 10);
 
+    if (authUser.role !== 'admin') {
+      res.writeHead(403);
+      res.end(JSON.stringify({ error: 'Acesso negado: Requer privilégios de Administrador.' }));
+      return;
+    }
+
     if (method === 'PUT') {
       try {
         const { nome, username, email, cargo, role, ativo, novaSenha } = JSON.parse(body || '{}');
@@ -1028,7 +1083,7 @@ async function handleApi(req, res, urlObj, body) {
         if (typeof ativo !== 'undefined') { updates.push('ativo = ?'); params.push(ativo ? 1 : 0); }
         if (novaSenha && novaSenha.length >= 6) {
           updates.push('senha_hash = ?');
-          params.push(hashPassword(novaSenha));
+          params.push(await hashPassword(novaSenha));
         }
 
         if (updates.length > 0) {
