@@ -1,98 +1,76 @@
-# Já te contaram PcD? — Novo Website Institucional (v2.0)
+# Já Te Contaram PcD? — Portal Nacional de Direitos, Utilidade Pública e Inclusão (v3.0)
 
-Website institucional e corporativo de alto padrão desenvolvido para a consultoria **Já te contaram PcD?**, fundada por **Moisés Souza**. 
+O **JÁ TE CONTARAM PCD?** é a plataforma digital brasileira de referência nacional em informação, orientação jurídica simplificada, ferramentas gratuitas e utilidade pública para pessoas com deficiência (PcD), seus familiares e cuidadores em todo o Brasil.
 
-O projeto preserva **todo o conteúdo e essência do site original** (https://jtpcd.vercel.app/), elevando o design, a autoridade B2B, a segurança jurídica em relação à Lei de Cotas (Art. 93 da Lei 8.213/91) e implementando conformidade rigorosa com diretrizes internacionais de acessibilidade digital (**WCAG 2.1 níveis AA e AAA**).
-
----
-
-## 🌟 Principais Inovações e Melhorias Implementadas
-
-1. **Design System & Estética Corporativa B2B:**
-   - Paleta de cores sofisticada com azul marinho profundo (`#060D1A`, `#0B192C`), acentos de confiança em ciano e botões de alta conversão em âmbar/dourado com contraste testado (WCAG AAA).
-   - Tipografia premium moderna: **Sora** para títulos e **Inter** para textos e interface.
-   - Glassmorphism, iluminação ambiente, microinterações e cards elevados.
-
-2. **Simulador Interativo da Lei de Cotas (Art. 93 Lei 8.213/91):**
-   - Ferramenta interativa de conversão para gestores de RH e diretores corporativos.
-   - O usuário seleciona ou digita a quantidade de colaboradores (de 10 a 5.000+) e o sistema calcula instantaneamente:
-     - Percentual de cota legal (2%, 3%, 4% ou 5%);
-     - Quantidade exata de vagas PcD obrigatórias por lei;
-     - Enquadramento jurídico e classificação de risco do MTE;
-     - Botão contextual com preenchimento automático do formulário de contato.
-
-3. **Suíte Completa de Acessibilidade Digital (WCAG 2.1 AA / AAA):**
-   - **Ajuste de Escala de Fonte:** Modos A−, Padrão, A+ e A++ com redimensionamento fluido sem quebrar o layout;
-   - **Modo Alto Contraste Nativo:** Tema preto e amarelo de alta definição para pessoas com baixa visão ou fotofobia;
-   - **Fonte Adaptada para Dislexia:** Ajuste de espaçamento entre letras e altura de linha para leitura facilitada;
-   - **Régua / Guia de Leitura Interativa:** Linha visual que acompanha o mouse na tela para focar a leitura;
-   - **Leitor de Texto por Áudio (Voz):** Síntese nativa em português (Web Speech API) para ler o conteúdo da página;
-   - **Pausar Animações:** Suporte completo para usuários com sensibilidade vestibular (`prefers-reduced-motion`);
-   - **Integração com VLibras:** Widget oficial do governo brasileiro para tradução em Língua Brasileira de Sinais.
-
-4. **Galeria de Palestras com Modal Lightbox Acessível:**
-   - Registros fotográficos reais de eventos com Moisés Souza (incluindo palestras corporativas e na OAB-RJ);
-   - Visualização ampliada em modal com proporções preservadas, foco acessível e fechamento por tecla Escape ou clique fora.
-
-5. **Formulário Comercial de Conversão Duplo:**
-   - Envio rápido estruturado com mensagem pronta para o **WhatsApp oficial ((21) 98414-5167)**;
-   - Opção de solicitação formal de proposta por e-mail com protocolo automático e salvamento de leads.
-
-6. **FAQ Interativo com Filtro de Busca em Tempo Real:**
-   - Barra de pesquisa instantânea que filtra perguntas e respostas dinamicamente conforme o usuário digita.
-
-7. **Arquitetura 100% Otimizada para SEO e Performance:**
-   - Meta tags OpenGraph e Twitter Cards;
-   - Dados estruturados Schema.org (`Organization`, `Service`, `FAQPage`);
-   - Carregamento rápido sem dependências externas pesadas (CSS e JavaScript puros e modulares).
+Fundado pelo consultor de inclusão, palestrante e pai atípico **Moisés Souza** (fornecedor homologado Petrobras), o portal combina um ecossistema de utilidade pública com soluções corporativas e treinamentos empresariais.
 
 ---
 
-## 📁 Estrutura de Arquivos
+## 🌟 Pilares do Portal Nacional
 
-```
-JTPCD/
-├── assets/
-│   └── images/
-│       ├── favicon.png
-│       ├── logo.png
-│       ├── selo.png
-│       ├── linkedin-capa.png
-│       └── palestras/
-│           ├── palestra-1.jpg
-│           ├── palestra-2.jpg
-│           ├── palestra-3.jpg
-│           └── palestra-4.jpg
-├── index.html            # Estrutura semântica HTML5 completa
-├── styles.css            # Folha de estilos master (Design System, Tokens, A11y, Responsividade)
-├── script.js             # Lógica interativa (Simulador, Acessibilidade, FAQ, Modais, Validações)
-├── server.js             # Servidor local Node.js para visualização instantânea
-├── package.json          # Metadados e scripts de execução
-└── _backup_original/     # Cópia dos arquivos originais para consulta histórica
-```
+### 1. 13 Eixos Estratégicos de Cidadania
+1. **Direitos da Pessoa com Deficiência:** Lei Brasileira de Inclusão (LBI - Lei 13.146/15) e Convenção da ONU.
+2. **Benefícios Sociais:** BPC/LOAS (1 salário mínimo), Auxílio-Inclusão e CadÚnico.
+3. **Saúde e Qualidade de Vida:** Centros Especializados em Reabilitação (CER IV) e medicamentos de alto custo pelo SUS.
+4. **Educação Inclusiva:** Profissional de Apoio Escolar / AEE sem taxa extra e adaptações pedagógicas.
+5. **Emprego e Carreira:** Mural de vagas afirmativas e cumprimento da Lei de Cotas (Lei 8.213/91).
+6. **Tecnologia Assistiva:** Próteses, cadeiras de rodas motorizadas e saque do FGTS para aquisição.
+7. **Mobilidade e Acessibilidade:** Passe Livre Interestadual e Cartão de Estacionamento DeFis.
+8. **Isenções Tributárias:** IPI (teto R$ 200 mil), ICMS (teto R$ 120 mil), IPVA e isenção de IRPF.
+9. **Documentação e Laudos:** Laudo biopsicossocial multiprofissional, CIPTEA para autistas e validade de laudos.
+10. **Serviços Públicos:** CRAS, CREAS, Defensoria Pública da União (DPU) e canais do Disque 100.
+11. **Família e Cuidadores:** Rede de apoio a mães atípicas, redução de jornada para servidores com dependente PcD.
+12. **Notícias e Jurisprudência:** Decisões consolidadas do STF, STJ e atualizações legislativas.
+13. **Guias e Tutoriais:** Manuais passo a passo para requisições no Meu INSS e recursos administrativos.
+
+### 2. Ferramentas & Calculadoras Inteligentes Gratuitas
+- **Simulador do BPC/LOAS:** Avalia renda familiar bruta per capita (critério estrito de 1/4 do SM e jurisprudência de 1/2 do SM com dedução de remédios e fraldas não fornecidos pelo SUS).
+- **Calculadora de Isenções Veiculares:** Calcula economia detalhada de IPI, ICMS e IPVA na compra de veículos novos conforme o estado.
+- **Calculadora da Lei de Cotas (Art. 93 Lei 8.213/91):** Determina vagas compulsórias (2% a 5%) e riscos fiscais de autuação.
+- **Gerador de Petições e Requerimentos:** Gera minutas formais prontas para impressão e cópia (Apoio Escolar, Adaptação no Trabalho e Recursos ao INSS).
+
+### 3. Diretório Nacional de Centros de Reabilitação & Apoio
+- Catálogo geolocalizado com filtros por Estado (UF): Rede Lucy Montoro, AACD, Instituto Benjamin Constant (IBC), INES, Federação das APAEs, CER IV, etc.
+
+### 4. Suíte de Acessibilidade Digital WCAG 2.2 Níveis AA / AAA
+- **Navegação por Teclado e Foco Visível:** Atalhos de salto (`[Alt + 1]` a `[Alt + 4]`) e indicadores de foco em conformidade total.
+- **Modo Alto Contraste Real:** Fundo escuro com realces em amarelo vivo e branco para baixa visão e fotofobia.
+- **Tipografia Adaptada para Dislexia:** Espaçamento e peso de linhas otimizados para fluidez na leitura.
+- **Régua Visual de Leitura:** Guia horizontal que acompanha o cursor na tela para auxiliar pessoas com TDAH e dislexia.
+- **Leitor por Voz Nativo (Web Speech API):** Síntese vocal nativa em português sem dependências externas.
+- **Ajuste Escalonável de Fonte:** Controles de A-, A (Padrão) e A+ com persistência em `localStorage`.
+
+### 5. Painel Administrativo Completo & Seguro
+- 13 módulos operacionais: Dashboard, Gestão de Leads, Vagas PcD, Blog/Notícias, Palestras, FAQ, Depoimentos, Barra de Alerta, Media Kit, Gestão de Usuários (RBAC com Admin e Moderador), Auditoria de Logs, Exportação CSV e Backup em JSON.
 
 ---
 
-## 🚀 Como Executar Localmente
+## 🛠️ Tecnologias Utilizadas
 
-### Opção 1: Via Node.js (Recomendado)
-No terminal, dentro da pasta do projeto:
+- **Frontend:** HTML5 Semântico, CSS3 Moderno (Custom Properties, Grid, Flexbox), Vanilla JavaScript (sem frameworks pesados).
+- **Backend / API:** Node.js (compatível com Vercel Serverless Functions).
+- **Banco de Dados:** StackCP MySQL Remoto (`mysql2` com connection pooling e prepared statements).
+- **Segurança:** OWASP Top 10, sanitização de entradas, headers de segurança (`nosniff`, `SAMEORIGIN`, CSP, HSTS).
+
+---
+
+## 🚀 Execução Local
+
 ```bash
-npm start
-```
-Ou:
-```bash
+# Instalar dependências
+npm install
+
+# Iniciar servidor local
 node server.js
 ```
-Abra o navegador em: [http://localhost:4123](http://localhost:4123)
-
-### Opção 2: Abrir Diretamente no Navegador
-Você também pode simplesmente dar um duplo clique no arquivo [index.html](file:///c:/Users/usuario/Downloads/ANTIGRAVITY/JTPCD/index.html) para abri-lo em qualquer navegador moderno.
+Acesse:
+- **Portal Principal:** `http://localhost:4123/`
+- **Painel Administrativo:** `http://localhost:4123/admin` (Credenciais: `admin` / `admin123`)
 
 ---
 
-## 🌐 Publicação / Deploy (Vercel, Netlify, GitHub Pages)
-O projeto é 100% estático e compatível com qualquer plataforma:
-- **Vercel:** Basta conectar o repositório ou rodar `vercel` na pasta;
-- **Netlify:** Arraste a pasta ou conecte seu GitHub;
-- **GitHub Pages:** Ative a publicação da branch `main` na raiz.
+## 🌐 Deploy em Produção
+
+O projeto é implantado continuamente na Vercel conectado ao banco StackCP MySQL:
+- **URL Oficial:** https://jtpcd.vercel.app/
+- **Painel Administrativo em Produção:** https://jtpcd.vercel.app/admin

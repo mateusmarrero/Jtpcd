@@ -43,6 +43,9 @@ async function handleApi(req, res, urlObj, body) {
   const method = req.method;
 
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
 
   // ---------- 1. ROTA PÚBLICA: ENVIO DE NOVO LEAD ----------
   if (path === '/api/leads' && method === 'POST') {
@@ -113,6 +116,412 @@ async function handleApi(req, res, urlObj, body) {
     } catch (err) {
       res.writeHead(500);
       res.end(JSON.stringify({ error: 'Erro ao carregar dados públicos.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.3 ROTAS PÚBLICAS DO PORTAL NACIONAL: DIREITOS E BENEFÍCIOS ----------
+  if (path === '/api/public/direitos' && method === 'GET') {
+    try {
+      const cat = urlObj.searchParams.get('categoria');
+      const q = urlObj.searchParams.get('q');
+      let query = 'SELECT id, slug, titulo, categoria, resumo, o_que_e, quem_tem_direito, documentos_necessarios, passo_a_passo, base_legal, orgao_responsavel, link_oficial, icone, destaque FROM direitos_beneficios WHERE 1=1';
+      const params = [];
+      if (cat && cat !== 'todas') {
+        query += ' AND categoria = ?';
+        params.push(cat);
+      }
+      if (q) {
+        query += ' AND (titulo LIKE ? OR resumo LIKE ? OR o_que_e LIKE ? OR base_legal LIKE ?)';
+        const like = `%${q}%`;
+        params.push(like, like, like, like);
+      }
+      query += ' ORDER BY destaque DESC, id ASC';
+      const [rows] = await pool.execute(query, params);
+      res.writeHead(200);
+      res.end(JSON.stringify(rows));
+    } catch (e) {
+      console.error('Erro ao buscar direitos:', e);
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao carregar catálogo de direitos.' }));
+    }
+    return;
+  }
+
+  if (path.startsWith('/api/public/direitos/') && method === 'GET') {
+    try {
+      const slug = decodeURIComponent(path.replace('/api/public/direitos/', ''));
+      const [rows] = await pool.execute('SELECT * FROM direitos_beneficios WHERE slug = ? OR id = ?', [slug, isNaN(slug) ? -1 : parseInt(slug)]);
+      if (rows.length === 0) {
+        res.writeHead(404);
+        res.end(JSON.stringify({ error: 'Direito não encontrado.' }));
+        return;
+      }
+      res.writeHead(200);
+      res.end(JSON.stringify(rows[0]));
+    } catch (e) {
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao carregar detalhes do direito.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.4 ROTAS PÚBLICAS: INSTITUIÇÕES DE APOIO E CENTROS DE REABILITAÇÃO ----------
+  if (path === '/api/public/instituicoes' && method === 'GET') {
+    try {
+      const uf = urlObj.searchParams.get('uf');
+      const tipo = urlObj.searchParams.get('tipo');
+      const q = urlObj.searchParams.get('q');
+      let query = 'SELECT * FROM instituicoes_apoio WHERE 1=1';
+      const params = [];
+      if (uf && uf !== 'todos') {
+        query += ' AND (estado = ? OR estado = "Nacional" OR estado = "BR")';
+        params.push(uf);
+      }
+      if (tipo && tipo !== 'todos') {
+        query += ' AND tipo = ?';
+        params.push(tipo);
+      }
+      if (q) {
+        query += ' AND (nome LIKE ? OR descricao LIKE ? OR cidade LIKE ? OR sigla LIKE ?)';
+        const like = `%${q}%`;
+        params.push(like, like, like, like);
+      }
+      query += ' ORDER BY id ASC';
+      const [rows] = await pool.execute(query, params);
+      res.writeHead(200);
+      res.end(JSON.stringify(rows));
+    } catch (e) {
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao buscar instituições.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.5 ROTAS PÚBLICAS: BIBLIOTECA DE MODELOS E REQUERIMENTOS ----------
+  if (path === '/api/public/documentos' && method === 'GET') {
+    try {
+      const cat = urlObj.searchParams.get('categoria');
+      const q = urlObj.searchParams.get('q');
+      let query = 'SELECT id, titulo, categoria, descricao, arquivo_url, formato, tamanho, downloads, conteudo_texto FROM documentos_modelos WHERE 1=1';
+      const params = [];
+      if (cat && cat !== 'todas') {
+        query += ' AND categoria = ?';
+        params.push(cat);
+      }
+      if (q) {
+        query += ' AND (titulo LIKE ? OR descricao LIKE ?)';
+        const like = `%${q}%`;
+        params.push(like, like);
+      }
+      query += ' ORDER BY id ASC';
+      const [rows] = await pool.execute(query, params);
+      res.writeHead(200);
+      res.end(JSON.stringify(rows));
+    } catch (e) {
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao buscar modelos de documentos.' }));
+    }
+    return;
+  }
+
+  if (path.startsWith('/api/public/documentos/') && method === 'GET') {
+    try {
+      const docId = decodeURIComponent(path.replace('/api/public/documentos/', ''));
+      const [rows] = await pool.execute('SELECT * FROM documentos_modelos WHERE id = ? OR titulo LIKE ?', [isNaN(docId) ? -1 : parseInt(docId), `%${docId}%`]);
+      if (rows.length === 0) {
+        res.writeHead(404);
+        res.end(JSON.stringify({ error: 'Modelo não encontrado.' }));
+        return;
+      }
+      res.writeHead(200);
+      res.end(JSON.stringify(rows[0]));
+    } catch (e) {
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao carregar modelo de documento.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.6 ROTAS PÚBLICAS: FAQ NACIONAL ----------
+  if (path === '/api/public/faq-portal' && method === 'GET') {
+    try {
+      const cat = urlObj.searchParams.get('categoria');
+      let query = 'SELECT * FROM faq_portal WHERE ativo = 1';
+      const params = [];
+      if (cat && cat !== 'todas') {
+        query += ' AND categoria = ?';
+        params.push(cat);
+      }
+      query += ' ORDER BY ordem ASC, id ASC';
+      const [rows] = await pool.execute(query, params);
+      res.writeHead(200);
+      res.end(JSON.stringify(rows));
+    } catch (e) {
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao buscar FAQ.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.7 ROTAS PÚBLICAS: VAGAS, ARTIGOS E PALESTRAS ----------
+  if (path === '/api/public/vagas' && method === 'GET') {
+    try {
+      const [rows] = await pool.execute('SELECT * FROM vagas_pcd WHERE ativo = 1 ORDER BY id DESC LIMIT 20');
+      res.writeHead(200);
+      res.end(JSON.stringify(rows));
+    } catch (e) {
+      console.error('Erro ao buscar vagas:', e);
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao buscar vagas.' }));
+    }
+    return;
+  }
+
+  if (path === '/api/public/artigos' && method === 'GET') {
+    try {
+      const [rows] = await pool.execute("SELECT id, slug, titulo, resumo, autor, categoria, imagem_url, criado_em FROM artigos_blog WHERE status = 'publicado' ORDER BY id DESC LIMIT 12");
+      res.writeHead(200);
+      res.end(JSON.stringify(rows));
+    } catch (e) {
+      console.error('Erro ao buscar artigos:', e);
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao buscar artigos.' }));
+    }
+    return;
+  }
+
+  if (path === '/api/public/palestras' && method === 'GET') {
+    try {
+      const [rows] = await pool.execute('SELECT * FROM palestras WHERE ativo = 1 ORDER BY ordem ASC, id ASC');
+      res.writeHead(200);
+      res.end(JSON.stringify(rows));
+    } catch (e) {
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Erro ao buscar palestras.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.8 FERRAMENTAS INTELIGENTES: SIMULADOR DE BPC/LOAS ----------
+  if (path === '/api/ferramentas/simulador-bpc' && method === 'POST') {
+    try {
+      const data = JSON.parse(body || '{}');
+      const rendaBruta = parseFloat(data.renda_total || 0);
+      const membros = Math.max(1, parseInt(data.qtd_pessoas || 1));
+      const gastosSaude = parseFloat(data.gastos_comprovados || 0);
+      const idade = parseInt(data.idade || 0);
+      const temDeficiencia = Boolean(data.tem_deficiencia_longo_prazo);
+      const temCadUnico = Boolean(data.tem_cadunico);
+
+      const SALARIO_MINIMO = 1412.00;
+      const LIMITE_ESTRITO = SALARIO_MINIMO / 4; // R$ 353,00
+      const LIMITE_FLEXIBILIZADO = SALARIO_MINIMO / 2; // R$ 706,00 (jurisprudência consolidada STF RE 567.985)
+
+      const rendaLiquida = Math.max(0, rendaBruta - gastosSaude);
+      const rendaPerCapita = rendaLiquida / membros;
+
+      const aptoIdade = idade >= 65;
+      const aptoDeficiencia = temDeficiencia;
+      const aptoPerfil = aptoIdade || aptoDeficiencia;
+
+      const elegivelRendaEstrita = rendaPerCapita <= LIMITE_ESTRITO;
+      const elegivelRendaFlex = rendaPerCapita <= LIMITE_FLEXIBILIZADO;
+
+      let status = 'inapto';
+      let recomendacao = '';
+
+      if (!aptoPerfil) {
+        status = 'perfil_invalido';
+        recomendacao = 'O BPC é destinado a pessoas com deficiência de qualquer idade com impedimentos de longo prazo (mínimo de 2 anos) ou idosos com 65 anos ou mais.';
+      } else if (elegivelRendaEstrita) {
+        status = 'alta_probabilidade';
+        recomendacao = `Sua renda familiar líquida per capita calculada é de R$ ${rendaPerCapita.toFixed(2)}, estando dentro do limite estrito da Lei 8.742/93 (até R$ ${LIMITE_ESTRITO.toFixed(2)} por pessoa). Você preenche os critérios objetivos para concessão do BPC/LOAS no valor de 1 salário mínimo mensal (R$ ${SALARIO_MINIMO.toFixed(2)}).`;
+      } else if (elegivelRendaFlex) {
+        status = 'provavel_com_comprovacao';
+        recomendacao = `Sua renda per capita líquida é de R$ ${rendaPerCapita.toFixed(2)}. Embora ultrapasse o 1/4 estrito, está abaixo de 1/2 salário mínimo (R$ ${LIMITE_FLEXIBILIZADO.toFixed(2)}). A jurisprudência pacífica do STF e TNU autoriza a concessão deduzindo gastos contínuos essenciais comprovados com remédios, fraldas e tratamentos médicos não fornecidos pelo SUS.`;
+      } else {
+        status = 'renda_excedente';
+        recomendacao = `Sua renda por pessoa (R$ ${rendaPerCapita.toFixed(2)}) ultrapassa os parâmetros de vulnerabilidade da LOAS. Caso a família tenha custos médicos contínuos elevados comprovados por laudo do SUS, é possível requerer abatimento administrativo ou ação com assistência da Defensoria Pública da União (DPU).`;
+      }
+
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        rendaBruta,
+        gastosSaude,
+        rendaLiquida,
+        membros,
+        rendaPerCapita: parseFloat(rendaPerCapita.toFixed(2)),
+        limiteEstrito: LIMITE_ESTRITO,
+        limiteFlexibilizado: LIMITE_FLEXIBILIZADO,
+        salarioMinimo: SALARIO_MINIMO,
+        valorBeneficioMensal: SALARIO_MINIMO,
+        aptoPerfil,
+        temCadUnico,
+        status,
+        recomendacao,
+        proximosPassos: [
+          'Cadastrar ou atualizar o CadÚnico no CRAS do seu município (obrigatório)',
+          'Reunir laudos médicos detalhados com CID, histórico e relatórios de especialistas',
+          'Guardar notas fiscais e receituários de gastos com saúde e medicamentos',
+          'Solicitar o benefício pelo portal ou aplicativo "Meu INSS" ou telefone 135',
+          'Comparecer à avaliação social e perícia médica do INSS agendadas'
+        ]
+      }));
+    } catch (e) {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: 'Erro ao processar simulação do BPC.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.9 FERRAMENTAS INTELIGENTES: CALCULADORA DE ISENÇÃO VEICULAR PCD ----------
+  if (path === '/api/ferramentas/calculadora-isencao' && method === 'POST') {
+    try {
+      const data = JSON.parse(body || '{}');
+      const valor = parseFloat(data.valor_veiculo || 0);
+      const uf = (data.estado_uf || 'SP').toUpperCase();
+      const ehCondutor = Boolean(data.eh_condutor !== false);
+
+      const TETO_IPI = 200000.00; // Lei Federal 14.287/2021
+      const TETO_ICMS_COMPRA = 120000.00; // Convênio CONFAZ 147/2023
+      const TETO_ICMS_ISENCAO = 70000.00; // Parcela isenta
+      const ALIQUOTA_MEDIA_IPI = 0.08; // ~8% para veículos flex comuns
+      const ALIQUOTA_MEDIA_ICMS = 0.12; // 12% a 14.5% conforme estado
+      const ALIQUOTA_IPVA = uf === 'SP' || uf === 'RJ' || uf === 'MG' ? 0.04 : 0.03;
+
+      let elegivelIpi = valor <= TETO_IPI;
+      let economiaIpi = elegivelIpi ? valor * ALIQUOTA_MEDIA_IPI : 0;
+
+      let elegivelIcms = valor <= TETO_ICMS_COMPRA;
+      let economiaIcms = 0;
+      if (elegivelIcms) {
+        const baseCalculo = Math.min(valor, TETO_ICMS_ISENCAO);
+        economiaIcms = baseCalculo * ALIQUOTA_MEDIA_ICMS;
+      }
+
+      let elegivelIpva = valor <= TETO_ICMS_COMPRA;
+      let economiaIpvaAnual = elegivelIpva ? Math.min(valor, TETO_ICMS_ISENCAO) * ALIQUOTA_IPVA : 0;
+      let economiaTotalPrimeiroAno = economiaIpi + economiaIcms + economiaIpvaAnual;
+      let valorFinalEstimado = valor - economiaIpi - economiaIcms;
+
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        valorOriginal: valor,
+        uf,
+        ehCondutor,
+        tetoIpi: TETO_IPI,
+        tetoIcmsCompra: TETO_ICMS_COMPRA,
+        tetoIcmsIsencao: TETO_ICMS_ISENCAO,
+        elegivelIpi,
+        economiaIpi: parseFloat(economiaIpi.toFixed(2)),
+        elegivelIcms,
+        economiaIcms: parseFloat(economiaIcms.toFixed(2)),
+        elegivelIpva,
+        economiaIpvaAnual: parseFloat(economiaIpvaAnual.toFixed(2)),
+        economiaTotalPrimeiroAno: parseFloat(economiaTotalPrimeiroAno.toFixed(2)),
+        valorFinalEstimado: parseFloat(valorFinalEstimado.toFixed(2)),
+        observacoes: [
+          'Isenção de IPI válida para carros novos de até R$ 200.000,00 (motores até 2.0).',
+          'Isenção de ICMS autorizada para carros até R$ 120.000,00, incidindo gratuidade sobre a cota de R$ 70.000,00.',
+          'Dispensa do Rodízio Municipal de Veículos aplicável em grandes centros como São Paulo.',
+          'Isenção de IPVA deve ser solicitada à Secretaria da Fazenda do seu Estado após o faturamento.'
+        ]
+      }));
+    } catch (e) {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: 'Erro ao calcular isenções veiculares.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.10 FERRAMENTAS INTELIGENTES: CALCULADORA DE COTAS PCD (LEI 8.213/91) ----------
+  if (path === '/api/ferramentas/calculadora-cotas' && method === 'POST') {
+    try {
+      const data = JSON.parse(body || '{}');
+      const totalColaboradores = parseInt(data.total_funcionarios || 0);
+
+      let percentual = 0;
+      let faixa = '';
+
+      if (totalColaboradores < 100) {
+        percentual = 0;
+        faixa = 'Menos de 100 colaboradores (Isento de cota legal obrigatória)';
+      } else if (totalColaboradores <= 200) {
+        percentual = 0.02;
+        faixa = 'De 100 a 200 empregados: 2%';
+      } else if (totalColaboradores <= 500) {
+        percentual = 0.03;
+        faixa = 'De 201 a 500 empregados: 3%';
+      } else if (totalColaboradores <= 1000) {
+        percentual = 0.04;
+        faixa = 'De 501 a 1.000 empregados: 4%';
+      } else {
+        percentual = 0.05;
+        faixa = 'De 1.001 empregados em diante: 5%';
+      }
+
+      const vagasObrigatorias = Math.ceil(totalColaboradores * percentual);
+      const multaMinimaPorVaga = 3100.00;
+      const multaMaximaPorVaga = 31000.00;
+
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        totalColaboradores,
+        percentual: percentual * 100,
+        faixa,
+        vagasObrigatorias,
+        baseLegal: 'Artigo 93 da Lei Federal nº 8.213/1991',
+        riscoFiscal: vagasObrigatorias > 0 ? {
+          multaEstimadaMinima: vagasObrigatorias * multaMinimaPorVaga,
+          multaEstimadaMaxima: vagasObrigatorias * multaMaximaPorVaga,
+          aviso: 'O descumprimento da cota gera autuação pelo Ministério do Trabalho e Emprego (MTE) e Termo de Ajustamento de Conduta (TAC) do Ministério Público do Trabalho (MPT).'
+        } : null,
+        recomendacaoConsultoria: 'Para estruturar seu programa de atração, inclusão real e acessibilidade atitudinal corporativa, conheça as palestras e consultoria de Moisés Souza.'
+      }));
+    } catch (e) {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: 'Erro ao calcular cota legal de PcD.' }));
+    }
+    return;
+  }
+
+  // ---------- 1.11 FERRAMENTAS INTELIGENTES: GERADOR DE REQUERIMENTOS E PETIÇÕES ----------
+  if (path === '/api/ferramentas/gerador-peticao' && method === 'POST') {
+    try {
+      const data = JSON.parse(body || '{}');
+      const { tipo, nome, cpf, rg, endereco, cidade, uf, cid, detalhes, orgao_ou_empresa } = data;
+
+      if (!nome || !cpf) {
+        res.writeHead(400);
+        res.end(JSON.stringify({ error: 'Nome e CPF são obrigatórios para emissão do requerimento.' }));
+        return;
+      }
+
+      const dataHoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+      let titulo = '';
+      let corpo = '';
+
+      if (tipo === 'apoio_escolar') {
+        titulo = 'REQUERIMENTO ADMINISTRATIVO DE PROFISSIONAL DE APOIO ESCOLAR / AEE';
+        corpo = `ILUSTRÍSSIMO(A) SENHOR(A) DIRETOR(A) DA INSTITUIÇÃO DE ENSINO: ${orgao_ou_empresa || '[NOME DA ESCOLA / SECRETARIA DE EDUCAÇÃO]'}\n\nREQUERENTE / RESPONSÁVEL LEGAL:\nNome: ${nome}\nCPF: ${cpf} | RG: ${rg || '---'}\nEndereço: ${endereco || '[Endereço completo]'}, ${cidade || '[Cidade]'} - ${uf || '[UF]'}\nDiagnóstico / Condição: ${cid ? `CID: ${cid}` : '[Anexar laudo médico multiprofissional]'}\n\nVenho respeitosamente, com fundamento no Art. 205 e 208, III da Constituição Federal de 1988, e nos Arts. 27 e 28, XVII da Lei Brasileira de Inclusão da Pessoa com Deficiência (Lei nº 13.146/2015), REQUERER:\n\n1. A disponibilização imediata de PROFISSIONAL DE APOIO ESCOLAR e Atendimento Educacional Especializado (AEE), sem qualquer taxa adicional de matrícula ou mensalidade (conforme expressamente vedado pelo Art. 28, § 1º da Lei 13.146/15).\n2. A elaboração do Plano de Desenvolvimento Individualizado (PDI) com adaptação curricular e recursos de tecnologia assistiva.\n\nEspecificidades do educando:\n${detalhes || 'Necessidade de suporte contínuo para locomoção, alimentação, higiene pessoal e mediação pedagógica conforme laudo.'}\n\nNestes termos, pede e aguarda deferimento tempestivo no prazo legal de 10 (dez) dias.\n\n${cidade || 'Localidade'}, ${dataHoje}.\n\n___________________________________________________\n${nome}\nCPF: ${cpf}`;
+      } else if (tipo === 'adaptacao_trabalho') {
+        titulo = 'REQUERIMENTO DE ADAPTAÇÃO RAZOÁVEL DE POSTO DE TRABALHO E HORÁRIO ESPECIAL';
+        corpo = `À DIRETORIA DE RECURSOS HUMANOS DA EMPRESA: ${orgao_ou_empresa || '[NOME DA EMPRESA]'}\n\nCOLABORADOR(A):\nNome: ${nome}\nCPF: ${cpf} | RG: ${rg || '---'}\nEndereço: ${endereco || '[Endereço completo]'}, ${cidade || '[Cidade]'} - ${uf || '[UF]'}\n\nCom amparo no Art. 34, § 2º e Art. 37 da Lei Brasileira de Inclusão (Lei Federal nº 13.146/2015) e na Convenção da ONU sobre Direitos das Pessoas com Deficiência (Decreto nº 6.949/2009), venho solicitar formalmente a ADAPTAÇÃO RAZOÁVEL DO POSTO DE TRABALHO:\n\nNecessidades específicas solicitadas:\n${detalhes || 'Adequação ergonômica, ferramentas de tecnologia assistiva acessíveis e flexibilidade de escala/teletrabalho para acompanhamento de sessões terapêuticas contínuas.'}\n\nRessalta-se que a recusa injustificada de adaptações razoáveis configura discriminação em razão de deficiência nos termos do Art. 4º, § 1º da Lei 13.146/2015.\n\nTermos em que pede deferimento.\n\n${cidade || 'Localidade'}, ${dataHoje}.\n\n___________________________________________________\n${nome}\nCPF: ${cpf}`;
+      } else {
+        titulo = 'RECURSO ADMINISTRATIVO CONTRA INDEFERIMENTO DE BENEFÍCIO';
+        corpo = `À JUNTA DE RECURSOS DA PREVIDÊNCIA SOCIAL (CRPS) / ÓRGÃO COMPETENTE\nÓrgão Destino: ${orgao_ou_empresa || 'Instituto Nacional do Seguro Social - INSS'}\n\nRECORRENTE:\nNome: ${nome}\nCPF: ${cpf} | RG: ${rg || '---'}\nEndereço: ${endereco || '[Endereço completo]'}, ${cidade || '[Cidade]'} - ${uf || '[UF]'}\n\nVem respeitosamente interpor o presente RECURSO ORDINÁRIO contra a decisão administrativa de indeferimento, expondo e requerendo o quanto segue:\n\n1. DA VULNERABILIDADE E IMPEDIMENTO DE LONGO PRAZO:\nO(a) Recorrente é pessoa com impedimento de longo prazo de natureza física, mental, intelectual ou sensorial (CID: ${cid || '[CID conforme laudo]'}), o qual obstrui sua participação plena e efetiva na sociedade em igualdade de condições (Art. 2º da Lei 13.146/15).\n\n2. DOS MOTIVOS DA REFORMA:\n${detalhes || 'A avaliação desconsiderou os gastos contínuos essenciais com medicamentos e tratamentos indispensáveis à subsistência, reduzindo a renda líquida real a patamar inferior ao critério de vulnerabilidade do STF (RE 567.985).'}\n\n3. DO PEDIDO:\nRequer-se a reconsideração da decisão para DEFERIMENTO INTEGRAL do benefício com pagamento dos valores retroativos desde a Data de Entrada do Requerimento (DER).\n\nPede e espera deferimento.\n\n${cidade || 'Localidade'}, ${dataHoje}.\n\n___________________________________________________\n${nome}\nCPF: ${cpf}`;
+      }
+
+      res.writeHead(200);
+      res.end(JSON.stringify({
+        titulo,
+        documentoTexto: corpo,
+        geradoEm: new Date().toISOString()
+      }));
+    } catch (e) {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: 'Erro ao gerar documento.' }));
     }
     return;
   }
@@ -958,6 +1367,168 @@ async function handleApi(req, res, urlObj, body) {
       res.end(JSON.stringify({ error: 'Erro ao gerar backup.' }));
     }
     return;
+  }
+
+  // ---------- 17. ADMIN: GESTÃO DE DIREITOS E BENEFÍCIOS ----------
+  if (path === '/api/admin/direitos') {
+    if (method === 'GET') {
+      try {
+        const [rows] = await pool.execute('SELECT * FROM direitos_beneficios ORDER BY destaque DESC, ordem ASC, id DESC');
+        res.writeHead(200);
+        res.end(JSON.stringify(rows));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao listar direitos.' }));
+      }
+      return;
+    }
+
+    if (method === 'POST') {
+      try {
+        const data = JSON.parse(body || '{}');
+        const { slug, titulo, categoria, resumo, base_legal, requisitos, passo_a_passo, links_oficiais, icon_class, badge, destaque, ordem } = data;
+        const [result] = await pool.execute(
+          `INSERT INTO direitos_beneficios (slug, titulo, categoria, resumo, base_legal, requisitos, passo_a_passo, links_oficiais, icon_class, badge, destaque, ordem, ativo)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)`,
+          [slug, titulo, categoria, resumo, base_legal, requisitos, passo_a_passo, links_oficiais, icon_class || 'fas fa-gavel', badge || '', destaque ? 1 : 0, ordem || 0]
+        );
+        logAudit(authUser.username, 'Criação de Direito', 'Direitos e Benefícios', `Criado direito: ${titulo}`);
+        res.writeHead(201);
+        res.end(JSON.stringify({ success: true, id: result.insertId }));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao criar direito.' }));
+      }
+      return;
+    }
+
+    if (method === 'PUT') {
+      try {
+        const data = JSON.parse(body || '{}');
+        const { id, slug, titulo, categoria, resumo, base_legal, requisitos, passo_a_passo, links_oficiais, icon_class, badge, destaque, ordem, ativo } = data;
+        await pool.execute(
+          `UPDATE direitos_beneficios SET slug = ?, titulo = ?, categoria = ?, resumo = ?, base_legal = ?, requisitos = ?, passo_a_passo = ?, links_oficiais = ?, icon_class = ?, badge = ?, destaque = ?, ordem = ?, ativo = ? WHERE id = ?`,
+          [slug, titulo, categoria, resumo, base_legal, requisitos, passo_a_passo, links_oficiais, icon_class, badge, destaque ? 1 : 0, ordem || 0, ativo !== undefined ? ativo : 1, id]
+        );
+        logAudit(authUser.username, 'Atualização de Direito', 'Direitos e Benefícios', `Atualizado ID ${id}`);
+        res.writeHead(200);
+        res.end(JSON.stringify({ success: true }));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao atualizar direito.' }));
+      }
+      return;
+    }
+
+    if (method === 'DELETE') {
+      try {
+        const id = urlObj.searchParams.get('id');
+        await pool.execute('DELETE FROM direitos_beneficios WHERE id = ?', [id]);
+        logAudit(authUser.username, 'Exclusão de Direito', 'Direitos e Benefícios', `Excluído ID ${id}`);
+        res.writeHead(200);
+        res.end(JSON.stringify({ success: true }));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao excluir direito.' }));
+      }
+      return;
+    }
+  }
+
+  // ---------- 18. ADMIN: GESTÃO DE INSTITUIÇÕES DE APOIO ----------
+  if (path === '/api/admin/instituicoes') {
+    if (method === 'GET') {
+      try {
+        const [rows] = await pool.execute('SELECT * FROM instituicoes_apoio ORDER BY destaque DESC, nome ASC');
+        res.writeHead(200);
+        res.end(JSON.stringify(rows));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao listar instituições.' }));
+      }
+      return;
+    }
+
+    if (method === 'POST') {
+      try {
+        const data = JSON.parse(body || '{}');
+        const { nome, sigla, tipo, abrangencia, uf, cidade, telefone, email, site_url, descricao, servicos_oferecidos, destaque } = data;
+        const [result] = await pool.execute(
+          `INSERT INTO instituicoes_apoio (nome, sigla, tipo, abrangencia, uf, cidade, telefone, email, site_url, descricao, servicos_oferecidos, destaque, ativo)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)`,
+          [nome, sigla || '', tipo, abrangencia || 'Nacional', uf || '', cidade || '', telefone || '', email || '', site_url || '', descricao || '', servicos_oferecidos || '', destaque ? 1 : 0]
+        );
+        logAudit(authUser.username, 'Criação de Instituição', 'Instituições de Apoio', `Criada instituição: ${nome}`);
+        res.writeHead(201);
+        res.end(JSON.stringify({ success: true, id: result.insertId }));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao criar instituição.' }));
+      }
+      return;
+    }
+
+    if (method === 'DELETE') {
+      try {
+        const id = urlObj.searchParams.get('id');
+        await pool.execute('DELETE FROM instituicoes_apoio WHERE id = ?', [id]);
+        logAudit(authUser.username, 'Exclusão de Instituição', 'Instituições de Apoio', `Excluído ID ${id}`);
+        res.writeHead(200);
+        res.end(JSON.stringify({ success: true }));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao excluir instituição.' }));
+      }
+      return;
+    }
+  }
+
+  // ---------- 19. ADMIN: GESTÃO DE DOCUMENTOS E MODELOS ----------
+  if (path === '/api/admin/documentos') {
+    if (method === 'GET') {
+      try {
+        const [rows] = await pool.execute('SELECT * FROM documentos_modelos ORDER BY id DESC');
+        res.writeHead(200);
+        res.end(JSON.stringify(rows));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao listar documentos.' }));
+      }
+      return;
+    }
+
+    if (method === 'POST') {
+      try {
+        const data = JSON.parse(body || '{}');
+        const { slug, titulo, categoria, orgao_destino, descricao, base_legal, template_texto, instrucoes_uso } = data;
+        const [result] = await pool.execute(
+          `INSERT INTO documentos_modelos (slug, titulo, categoria, orgao_destino, descricao, base_legal, template_texto, instrucoes_uso, ativo)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)`,
+          [slug, titulo, categoria, orgao_destino, descricao, base_legal, template_texto, instrucoes_uso]
+        );
+        logAudit(authUser.username, 'Criação de Modelo', 'Documentos Modelos', `Criado modelo: ${titulo}`);
+        res.writeHead(201);
+        res.end(JSON.stringify({ success: true, id: result.insertId }));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao criar modelo de documento.' }));
+      }
+      return;
+    }
+
+    if (method === 'DELETE') {
+      try {
+        const id = urlObj.searchParams.get('id');
+        await pool.execute('DELETE FROM documentos_modelos WHERE id = ?', [id]);
+        logAudit(authUser.username, 'Exclusão de Modelo', 'Documentos Modelos', `Excluído ID ${id}`);
+        res.writeHead(200);
+        res.end(JSON.stringify({ success: true }));
+      } catch (err) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Erro ao excluir documento.' }));
+      }
+      return;
+    }
   }
 
   // Rota não encontrada
