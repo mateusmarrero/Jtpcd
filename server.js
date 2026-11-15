@@ -14,12 +14,14 @@ const MIME_TYPES = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8'
 };
 
 const server = http.createServer((req, res) => {
   const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
-  let reqPath = urlObj.pathname;
+  let reqPath = decodeURIComponent(urlObj.pathname);
 
   // CORS Headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -55,15 +57,33 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // ---------- ROTA DE ARQUIVOS ESTÁTICOS ----------
-  if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
-  if (reqPath === '/admin' || reqPath === '/admin/') reqPath = '/admin.html';
+  // ---------- ROTA DE ARQUIVOS ESTÁTICOS MULTIPÁGINAS & CLEAN URLS ----------
+  let targetPath = reqPath;
+  if (targetPath === '/' || targetPath === '') targetPath = '/index.html';
+  if (targetPath === '/admin' || targetPath === '/admin/') targetPath = '/admin.html';
 
-  const filePath = path.join(__dirname, reqPath);
+  let filePath = path.join(__dirname, targetPath);
 
+  // Se for diretório, procura index.html
+  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+    const indexPath = path.join(filePath, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      filePath = indexPath;
+    }
+  } else if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath = filePath + '.html';
+  }
+
+  // Se não encontrar o arquivo, serve a 404 personalizada
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('404 - Arquivo não encontrado');
+    const errorPage = path.join(__dirname, '404.html');
+    if (fs.existsSync(errorPage)) {
+      res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+      fs.createReadStream(errorPage).pipe(res);
+    } else {
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('404 - Página não encontrada');
+    }
     return;
   }
 
@@ -73,7 +93,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`\n🚀 Servidor Já te contaram PcD? (Site + API + Painel Admin) rodando com sucesso!`);
-  console.log(`👉 Site Principal: http://localhost:${PORT}/`);
+  console.log(`\n🚀 Servidor Portal Nacional Já Te Contaram PcD (Multi-páginas) rodando com sucesso!`);
+  console.log(`👉 Portal Principal: http://localhost:${PORT}/`);
   console.log(`👉 Painel Administrativo: http://localhost:${PORT}/admin\n`);
 });

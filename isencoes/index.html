@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isenções Tributárias para Pessoas com Deficiência • IPI, ICMS e IPVA</title>
+    <meta name="description" content="Guia completo de isenções de impostos para PcD: IPI (até R$ 200 mil), ICMS (até R$ 120 mil), IPVA anual nos Estados e isenção de IRPF em aposentadorias.">
+    <meta name="author" content="Já Te Contaram PcD? — Moisés Souza">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#001B44">
+    <link rel="canonical" href="https://jtpcd.vercel.app/isencoes/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Já Te Contaram PcD?">
+    <meta property="og:title" content="Isenções Tributárias para Pessoas com Deficiência • IPI, ICMS e IPVA">
+    <meta property="og:description" content="Guia completo de isenções de impostos para PcD: IPI (até R$ 200 mil), ICMS (até R$ 120 mil), IPVA anual nos Estados e isenção de IRPF em aposentadorias.">
+    <meta property="og:url" content="https://jtpcd.vercel.app/isencoes/">
+    <meta property="og:image" content="/assets/images/banner-jtpcd.jpg">
+
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/images/selo-jtpcd.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body id="inicio" class="bg-grid-blue">
+
+    
+    <!-- ===== BARRA DE ACESSIBILIDADE WCAG 2.2 ===== -->
+    <nav class="skip-links-bar" aria-label="Atalhos rápidos de acessibilidade">
+        <a class="skip-link" href="#conteudo" accesskey="1">Pular para o conteúdo principal [Alt + 1]</a>
+        <a class="skip-link" href="#portalSearchInput" accesskey="2">Pular para a busca [Alt + 2]</a>
+        <a class="skip-link" href="#navMenu" accesskey="3">Pular para o menu [Alt + 3]</a>
+        <a class="skip-link" href="#rodape" accesskey="4">Pular para o rodapé [Alt + 4]</a>
+    </nav>
+
+    <!-- Barra de Progresso de Leitura -->
+    <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+    <!-- Régua Visual de Leitura -->
+    <div class="reading-guide-line" id="readingGuideLine" aria-hidden="true"></div>
+
+    <!-- Barra Flutuante de Leitura por Voz (Web Speech API) -->
+    <aside class="tts-floating-bar" id="ttsFloatingBar" aria-label="Controle de áudio do leitor de voz">
+        <button type="button" class="tts-btn" id="ttsStopBtn" title="Interromper leitura" aria-label="Parar leitura de voz">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 6h12v12H6z"/></svg>
+        </button>
+        <span class="tts-status-text" id="ttsStatusText">Lendo conteúdo...</span>
+    </aside>
+
+    <!-- Top Notice Bar -->
+    <aside class="top-notice-bar" aria-label="Aviso institucional e canais de atendimento">
+        <div class="container top-notice-inner">
+            <div class="top-notice-left" id="topNoticeContent">
+                <span class="top-notice-dot" aria-hidden="true"></span>
+                <span id="topNoticeText"><strong>PORTAL NACIONAL PCD:</strong> Informação de utilidade pública, direitos fundamentais e cidadania para todos.</span>
+            </div>
+            <div class="top-notice-links">
+                <div style="display:flex; align-items:center; gap:6px; margin-right:12px;">
+                    <button type="button" id="a11yFontMinus" class="top-notice-link-btn" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A-</button>
+                    <button type="button" id="a11yFontReset" class="top-notice-link-btn" title="Tamanho normal" aria-label="Restaurar tamanho padrão da fonte">A</button>
+                    <button type="button" id="a11yFontPlus" class="top-notice-link-btn" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+                    <button type="button" id="a11yContrastBtn" class="top-notice-link-btn" title="Alternar alto contraste" aria-label="Ativar ou desativar modo de alto contraste" aria-pressed="false">Alto Contraste</button>
+                    <button type="button" id="a11ySpeechBtn" class="top-notice-link-btn" title="Ouvir conteúdo da página" aria-label="Ouvir página por voz" aria-pressed="false">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:14px; height:14px;"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        Ouvir
+                    </button>
+                </div>
+                <a href="https://wa.me/5521984145167" target="_blank" rel="noopener noreferrer" class="top-notice-link-btn">
+                    WhatsApp: (21) 98414-5167
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Header Principal -->
+    <header class="site-header" id="siteHeader">
+        <div class="container nav-container">
+            <a href="/" class="brand-logo" aria-label="Já Te Contaram PcD?, retornar à página inicial">
+                <img class="brand-logo-img" src="/assets/images/logo-jtpcd.png" alt="Já Te Contaram PcD? — Logotipo Oficial" width="220" height="52" loading="eager">
+            </a>
+
+            <nav aria-label="Navegação principal">
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="/" class="">Início</a></li>
+
+                    <li class="nav-item nav-dropdown">
+                        <a href="/direitos/" class="nav-dropdown-toggle ">Direitos ▾</a>
+                        <div class="nav-dropdown-menu">
+                            <a href="/direitos/">Visão Geral de Direitos</a>
+                            <a href="/direitos/lei-brasileira-inclusao/">Lei Brasileira de Inclusão (LBI)</a>
+                            <a href="/direitos/estacionamento/">Cartão DeFis / Vagas Reservadas</a>
+                            <a href="/direitos/acessibilidade/">Acessibilidade Legal</a>
+                            <a href="/direitos/atendimento-prioritario/">Atendimento Prioritário</a>
+                            <a href="/direitos/concursos-publicos/">Cotas em Concursos</a>
+                            <a href="/direitos/direitos-do-consumidor/">Direitos do Consumidor</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item nav-dropdown">
+                        <a href="/beneficios/" class="nav-dropdown-toggle ">Benefícios ▾</a>
+                        <div class="nav-dropdown-menu">
+                            <a href="/beneficios/">Visão Geral de Benefícios</a>
+                            <a href="/beneficios/bpc-loas/">BPC / LOAS</a>
+                            <a href="/beneficios/auxilio-inclusao/">Auxílio-Inclusão</a>
+                            <a href="/beneficios/beneficios-do-inss/">Aposentadoria PcD (INSS)</a>
+                            <a href="/beneficios/cadunico/">CadÚnico Passo a Passo</a>
+                            <a href="/beneficios/como-solicitar/">Como Solicitar no Meu INSS</a>
+                            <a href="/beneficios/documentacao/">Documentação Exigida</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item"><a href="/saude/" class="">Saúde</a></li>
+                    <li class="nav-item"><a href="/educacao/" class="">Educação</a></li>
+                    <li class="nav-item"><a href="/emprego/" class="">Emprego</a></li>
+                    <li class="nav-item"><a href="/isencoes/" class="active">Isenções</a></li>
+
+                    <li class="nav-item nav-dropdown">
+                        <a href="/ferramentas/" class="nav-dropdown-toggle ">Ferramentas ▾</a>
+                        <div class="nav-dropdown-menu">
+                            <a href="/ferramentas/">Central de Ferramentas</a>
+                            <a href="/ferramentas/simulador-bpc/">Simulador de BPC/LOAS</a>
+                            <a href="/ferramentas/calculadora-isencoes/">Calculadora de Isenções Veiculares</a>
+                            <a href="/ferramentas/calculadora-cotas/">Calculadora Lei de Cotas</a>
+                            <a href="/ferramentas/gerador-requerimentos/">Gerador de Petições</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item"><a href="/instituicoes/" class="">Instituições</a></li>
+                    <li class="nav-item"><a href="/blog/" class="">Blog</a></li>
+                    <li class="nav-item"><a href="/palestras/" class="">Palestras</a></li>
+                    <li class="nav-item"><a href="/admin" class="btn btn-secondary btn-sm" title="Acessar Painel de Controle">Painel</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle-btn" id="themeToggleBtn" title="Alternar Modo Claro / Escuro" aria-label="Alternar modo claro e escuro">
+                    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                </button>
+                <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menu de navegação">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+  
+
+    <main id="conteudo">
+        
+    <nav class="portal-breadcrumbs" aria-label="Você está em:">
+        <div class="container">
+            <ol>
+                <li><a href="/">Início</a></li><li aria-current="page">Isenções Tributárias</li>
+            </ol>
+        </div>
+    </nav>
+  
+
+        <section class="page-banner" aria-labelledby="page-title">
+            <div class="container">
+                <span class="page-banner-badge">BENEFÍCIOS FISCAIS & TRIBUTOS</span>
+                <h1 id="page-title">Isenções Tributárias para Pessoas com Deficiência</h1>
+                <p class="page-banner-lead">A legislação brasileira concede isenções de tributos federais e estaduais para compensar os custos adicionais enfrentados por pessoas com deficiência e suas famílias.</p>
+                
+    <nav class="category-subnav" aria-label="Tópicos da área">
+      <a href="/isencoes/" class="subnav-link is-active">Visão Geral</a><a href="/isencoes/ipi/" class="subnav-link ">IPI Federal</a><a href="/isencoes/icms/" class="subnav-link ">ICMS Estadual</a><a href="/isencoes/iof/" class="subnav-link ">IOF</a><a href="/isencoes/ipva/" class="subnav-link ">IPVA</a><a href="/isencoes/compra-de-veiculos/" class="subnav-link ">Compra de Veículos</a>
+    </nav>
+  
+            </div>
+        </section>
+
+        <section class="portal-categories-section" style="padding-top:2rem;">
+            <div class="container">
+                <div class="portal-content-grid">
+                    <article class="article-main-body">
+                        
+    <h2>Panorama das Isenções Tributárias</h2>
+    <p>Tanto pessoas com deficiência que dirigem (condutores) quanto aquelas que não dirigem (não-condutores, com deficiência severa ou autismo transportadas por familiares) têm direito a importantes benefícios fiscais na compra de veículos novos e na aposentadoria.</p>
+
+    <div class="category-grid" style="grid-template-columns:1fr 1fr; gap:1.25rem; margin:1.5rem 0;">
+      <a href="/isencoes/ipi/" class="category-card">
+        <h3 class="category-title">Isenção de IPI (Federal)</h3>
+        <p class="category-desc">Teto elevado para R$ 200.000,00 pela Lei Federal 14.287/21 com motores até 2.0.</p>
+      </a>
+      <a href="/isencoes/icms/" class="category-card">
+        <h3 class="category-title">Isenção de ICMS (Estadual)</h3>
+        <p class="category-desc">Convênio CONFAZ 147/23: compra de veículos de até R$ 120.000,00 com cota isenta de R$ 70.000,00.</p>
+      </a>
+      <a href="/isencoes/ipva/" class="category-card">
+        <h3 class="category-title">Isenção de IPVA nos Estados</h3>
+        <p class="category-desc">Economia anual permanente do imposto sobre propriedade de veículos automotores.</p>
+      </a>
+      <a href="/isencoes/iof/" class="category-card">
+        <h3 class="category-title">Isenção de IOF em Financiamentos</h3>
+        <p class="category-desc">Dispensa do imposto sobre operações financeiras para condutores habilitados.</p>
+      </a>
+      <a href="/isencoes/compra-de-veiculos/" class="category-card">
+        <h3 class="category-title">Guia Completo da Compra de Carro</h3>
+        <p class="category-desc">Passo a passo: da CNH especial e laudo médico ao faturamento direto na concessionária.</p>
+      </a>
+    </div>
+
+    <div class="info-callout success">
+      <strong>Simulador Financeiro:</strong> Calcule o desconto exato do carro que você deseja em nossa <a href="/ferramentas/calculadora-isencoes/"><strong>Calculadora de Isenções Veiculares</strong></a>.
+    </div>
+  
+
+                        <div class="author-card">
+                            <div class="author-avatar">MS</div>
+                            <div class="author-info">
+                                <h4>Revisão Editorial & Conformidade Legal</h4>
+                                <p>Conteúdo supervisionado por <strong>Moisés Souza</strong>, consultor de inclusão, especialista na Lei Brasileira de Inclusão e fornecedor homologado Petrobras.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <aside class="portal-sidebar" aria-label="Navegação complementar e ferramentas">
+                        
+    <div class="sidebar-card">
+      <h3>Guias de Isenções</h3>
+      <ul class="sidebar-links-list">
+        <li><a href="/isencoes/">👉 Visão Geral</a></li><li><a href="/isencoes/ipi/">👉 IPI Federal</a></li><li><a href="/isencoes/icms/">👉 ICMS Estadual</a></li><li><a href="/isencoes/iof/">👉 IOF</a></li><li><a href="/isencoes/ipva/">👉 IPVA</a></li><li><a href="/isencoes/compra-de-veiculos/">👉 Compra de Veículos</a></li>
+      </ul>
+    </div>
+  
+                        
+    <div class="sidebar-card" style="background:var(--bg-subtle-blue); border-color:var(--color-blue-500);">
+      <h3 style="color:var(--color-blue-600);">Ferramentas Úteis</h3>
+      <ul class="sidebar-links-list">
+        <li><a href="/ferramentas/calculadora-isencoes/" style="font-weight:700;">🧮 Calculadora de Isenções Veiculares</a></li><li><a href="/ferramentas/gerador-requerimentos/" style="font-weight:700;">🧮 Requerimento de Isenção de IPVA</a></li>
+      </ul>
+    </div>
+  
+                        
+                        <div class="sidebar-card">
+                            <h3>Precisa de Orientação?</h3>
+                            <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
+                                Entre em contato com a equipe da Já Te Contaram PcD? pelo WhatsApp oficial.
+                            </p>
+                            <a href="https://wa.me/5521984145167" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="width:100%; justify-content:center;">
+                                Falar no WhatsApp
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+    <footer class="site-footer" id="rodape" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="/assets/images/logo-jtpcd.png" alt="Já Te Contaram PcD?" width="180" height="42" style="margin-bottom:1rem; filter:brightness(0) invert(1);">
+                    <p style="font-size:0.875rem; color:#CBD5E1; line-height:1.6; margin-bottom:1rem;">
+                        Portal brasileiro de utilidade pública, informação e direitos da pessoa com deficiência. Construído para promover autonomia, dignidade e cidadania.
+                    </p>
+                    <p style="font-size:0.8125rem; color:#94A3B8;">
+                        Fundado por <strong>Moisés Souza</strong> • Fornecedor Homologado Petrobras.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="color:#FFFFFF; font-size:1rem; font-weight:700; margin-bottom:1rem;">Áreas do Portal</h4>
+                    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:0.875rem;">
+                        <li><a href="/direitos/" style="color:#CBD5E1; text-decoration:none;">Direitos & Legislação</a></li>
+                        <li><a href="/beneficios/" style="color:#CBD5E1; text-decoration:none;">Benefícios Sociais (BPC)</a></li>
+                        <li><a href="/saude/" style="color:#CBD5E1; text-decoration:none;">Saúde & Reabilitação</a></li>
+                        <li><a href="/educacao/" style="color:#CBD5E1; text-decoration:none;">Educação Inclusiva</a></li>
+                        <li><a href="/emprego/" style="color:#CBD5E1; text-decoration:none;">Emprego & Lei de Cotas</a></li>
+                        <li><a href="/isencoes/" style="color:#CBD5E1; text-decoration:none;">Isenções Tributárias</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color:#FFFFFF; font-size:1rem; font-weight:700; margin-bottom:1rem;">Serviços & Ferramentas</h4>
+                    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:0.875rem;">
+                        <li><a href="/ferramentas/simulador-bpc/" style="color:#CBD5E1; text-decoration:none;">Simulador de BPC/LOAS</a></li>
+                        <li><a href="/ferramentas/calculadora-isencoes/" style="color:#CBD5E1; text-decoration:none;">Calculadora de Isenções Veiculares</a></li>
+                        <li><a href="/ferramentas/calculadora-cotas/" style="color:#CBD5E1; text-decoration:none;">Calculadora da Lei de Cotas</a></li>
+                        <li><a href="/ferramentas/gerador-requerimentos/" style="color:#CBD5E1; text-decoration:none;">Gerador de Requerimentos</a></li>
+                        <li><a href="/instituicoes/" style="color:#CBD5E1; text-decoration:none;">Diretório de Reabilitação</a></li>
+                        <li><a href="/palestras/" style="color:#CBD5E1; text-decoration:none;">Palestras com Moisés Souza</a></li>
+                        <li><a href="/admin" style="color:#38BDF8; font-weight:700; text-decoration:none;">Painel Administrativo</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color:#FFFFFF; font-size:1rem; font-weight:700; margin-bottom:1rem;">Acessibilidade & LGPD</h4>
+                    <p style="font-size:0.8125rem; color:#94A3B8; line-height:1.5; margin-bottom:8px;">
+                        Este portal atende rigorosamente às diretrizes internacionais de acessibilidade na web <strong>WCAG 2.2 Nível AA</strong>.
+                    </p>
+                    <p style="font-size:0.8125rem; color:#94A3B8; line-height:1.5;">
+                        Privacidade protegida conforme a Lei Geral de Proteção de Dados (LGPD - Lei 13.709/18). Não armazenamos laudos nem dados médicos sensíveis sem consentimento.
+                    </p>
+                </div>
+            </div>
+
+            <div style="border-top:1px solid #1E293B; margin-top:2.5rem; padding-top:1.5rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; font-size:0.8125rem; color:#94A3B8;">
+                <div>
+                    © <span id="currentYear">2026</span> Já Te Contaram PcD?. Todos os direitos reservados.
+                </div>
+                <div>
+                    <a href="#inicio" style="color:#CBD5E1; text-decoration:none;">Voltar ao Topo ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Widget Flutuante de Acessibilidade -->
+    <aside class="a11y-widget" aria-label="Painel rápido de acessibilidade">
+        <button type="button" class="a11y-toggle-btn" id="a11yToggleBtn" aria-label="Abrir menu de recursos de acessibilidade" aria-expanded="false" title="Menu de Acessibilidade">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:26px; height:26px;"><path fill="currentColor" d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+        </button>
+
+        <div class="a11y-panel" id="a11yPanel" role="region" aria-label="Opções de acessibilidade">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:8px;">
+                <h3 style="font-size:0.95rem; font-weight:800; color:var(--text-heading); margin:0;">Acessibilidade</h3>
+                <button type="button" id="a11yPanelClose" style="background:none; border:none; font-size:1.1rem; cursor:pointer; color:var(--text-muted);" aria-label="Fechar painel de acessibilidade">✕</button>
+            </div>
+
+            <div>
+                <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; display:block; margin-bottom:6px;">Tamanho do Texto:</span>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+                    <button type="button" class="a11y-btn" onclick="document.getElementById('a11yFontMinus').click()">A- Menor</button>
+                    <button type="button" class="a11y-btn" onclick="document.getElementById('a11yFontReset').click()">A Normal</button>
+                    <button type="button" class="a11y-btn" onclick="document.getElementById('a11yFontPlus').click()">A+ Maior</button>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:6px;">
+                <button type="button" class="a11y-btn a11y-btn-full" id="a11yRulerBtn" aria-pressed="false">
+                    <span>📏 Régua de Leitura Visual</span>
+                </button>
+                <button type="button" class="a11y-btn a11y-btn-full" id="a11yDyslexiaBtn" aria-pressed="false">
+                    <span>📖 Fonte Amigável para Dislexia</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Botão Voltar ao Topo -->
+    <button type="button" id="toTopBtn" class="to-top-btn" title="Voltar ao início da página" aria-label="Voltar ao início da página">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </button>
+
+    <!-- Script Master Oficial do Portal -->
+    <script src="/app.js" defer></script>
+  
+</body>
+</html>
