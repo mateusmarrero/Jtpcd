@@ -58,12 +58,21 @@
             </div>
 
             <ul class="sidebar-nav">
+                <li class="sidebar-section-title">Principal</li>
                 <li>
                     <button class="nav-link-btn active" data-page="pageOverview">
                         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
                         Dashboard
                     </button>
                 </li>
+                <li>
+                    <button class="nav-link-btn" data-page="pageAnalytics">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                        Tráfego & Analytics
+                    </button>
+                </li>
+
+                <li class="sidebar-section-title">Conteúdo & Oportunidades</li>
                 <li>
                     <button class="nav-link-btn" data-page="pageLeads">
                         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -84,15 +93,49 @@
                     </button>
                 </li>
                 <li>
-                    <button class="nav-link-btn" data-page="pageConfig">
-                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                        Configurações
+                    <button class="nav-link-btn" data-page="pageDepoimentos">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        Depoimentos & Casos
                     </button>
                 </li>
+                <li>
+                    <button class="nav-link-btn" data-page="pageBlog">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        Artigos & Blog PcD
+                    </button>
+                </li>
+
+                <li class="sidebar-section-title">Marketing & Comercial</li>
+                <li>
+                    <button class="nav-link-btn" data-page="pageBroadcast">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                        Alerta Topo (Banner)
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-link-btn" data-page="pageMediakit">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2zM9 12h6v2H9v-2zm-3 4h12v2H6v-2z"/></svg>
+                        Mídia Kit & Propostas
+                    </button>
+                </li>
+
+                <li class="sidebar-section-title">Administração</li>
                 <li>
                     <button class="nav-link-btn" data-page="pageUsers">
                         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                         Usuários & Equipe
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-link-btn" data-page="pageAudit">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        Auditoria & Logs
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-link-btn" data-page="pageConfig">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                        Configurações & Backup
                     </button>
                 </li>
                 <li>
@@ -141,7 +184,7 @@
 
                 <!-- 1. ABA DASHBOARD (OVERVIEW) -->
                 <div id="pageOverview" class="page-view">
-                    <!-- Cards de Métricas -->
+                    <!-- Cards de Métricas Principais -->
                     <div class="metrics-grid">
                         <div class="metric-card">
                             <div>
@@ -165,11 +208,21 @@
 
                         <div class="metric-card">
                             <div>
+                                <div class="metric-title">Visitas Registradas</div>
+                                <div class="metric-value" id="metricVisitas" style="color:#8B5CF6;">0</div>
+                            </div>
+                            <div class="metric-icon-box" style="background:#EDE9FE; color:#6D28D9;">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div>
                                 <div class="metric-title">Palestras Ativas</div>
                                 <div class="metric-value" id="metricPalestras">0</div>
                             </div>
                             <div class="metric-icon-box metric-icon-cyan">
-                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/></svg>
                             </div>
                         </div>
 
@@ -182,6 +235,46 @@
                                 <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
                             </div>
                         </div>
+
+                        <div class="metric-card">
+                            <div>
+                                <div class="metric-title">Depoimentos Aprovados</div>
+                                <div class="metric-value" id="metricDepoimentos">0</div>
+                            </div>
+                            <div class="metric-icon-box" style="background:#FEF3C7; color:#B45309;">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div>
+                                <div class="metric-title">Artigos Publicados</div>
+                                <div class="metric-value" id="metricArtigos">0</div>
+                            </div>
+                            <div class="metric-icon-box" style="background:#E0F2FE; color:#0369A1;">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div>
+                                <div class="metric-title">Equipe / Usuários</div>
+                                <div class="metric-value" id="metricUsuarios">0</div>
+                            </div>
+                            <div class="metric-icon-box" style="background:#EDE9FE; color:#6D28D9;">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ações Rápidas -->
+                    <div style="margin-bottom:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+                        <button class="btn btn-outline btn-sm" data-modal-open="newPalestraModal">+ Nova Palestra</button>
+                        <button class="btn btn-outline btn-sm" data-modal-open="newVagaModal">+ Nova Vaga PcD</button>
+                        <button class="btn btn-outline btn-sm" data-modal-open="newDepoimentoModal">+ Novo Depoimento</button>
+                        <button class="btn btn-outline btn-sm" data-modal-open="newArtigoModal">+ Novo Artigo</button>
+                        <button class="btn btn-outline btn-sm" onclick="document.querySelector('[data-page=pageBroadcast]').click()">📢 Alerta Topo</button>
+                        <button class="btn btn-outline btn-sm" onclick="document.querySelector('[data-page=pageAnalytics]').click()">📈 Ver Analytics</button>
                     </div>
 
                     <!-- Tabela de Últimos Leads -->
@@ -209,6 +302,102 @@
                     </div>
                 </div>
 
+                <!-- 1.1 ABA TRÁFEGO & ANALYTICS -->
+                <div id="pageAnalytics" class="page-view" style="display:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+                        <div>
+                            <h2 style="font-family:'Sora',sans-serif; font-size:1.35rem; color:var(--admin-text-heading); font-weight:800;">Estatísticas de Tráfego & Audiência</h2>
+                            <p style="font-size:0.875rem; color:var(--admin-text-muted);">Métricas em tempo real de acessos, canais de atração, dispositivos e distribuição regional</p>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="window.loadAnalytics()">Atualizar Métricas ⟳</button>
+                    </div>
+
+                    <!-- Métricas Rápidas -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div>
+                                <div class="metric-title">Visitas Hoje</div>
+                                <div class="metric-value" id="analyticsHoje">0</div>
+                            </div>
+                            <div class="metric-icon-box metric-icon-green">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div>
+                                <div class="metric-title">Acessos no Mês</div>
+                                <div class="metric-value" id="analyticsMes">0</div>
+                            </div>
+                            <div class="metric-icon-box metric-icon-blue">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div>
+                                <div class="metric-title">Total de Visitas Registradas</div>
+                                <div class="metric-value" id="analyticsTotal">0</div>
+                            </div>
+                            <div class="metric-icon-box" style="background:#EDE9FE; color:#6D28D9;">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div>
+                                <div class="metric-title">Conversão Comercial (Leads)</div>
+                                <div class="metric-value" id="analyticsTaxaConversao" style="color:var(--admin-blue-600);">0%</div>
+                            </div>
+                            <div class="metric-icon-box metric-icon-amber">
+                                <svg style="width:26px; height:26px;" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-grid">
+                        <!-- Canais de Origem -->
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h3 class="data-card-title">Origem do Tráfego (Canais)</h3>
+                            </div>
+                            <div style="padding:1.5rem;" id="analyticsOrigemList" class="progress-list">
+                                <p style="text-align:center; color:var(--admin-text-muted);">Carregando canais...</p>
+                            </div>
+                        </div>
+
+                        <!-- Dispositivos -->
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h3 class="data-card-title">Dispositivos dos Usuários</h3>
+                            </div>
+                            <div style="padding:1.5rem;" id="analyticsDispositivoList" class="progress-list">
+                                <p style="text-align:center; color:var(--admin-text-muted);">Carregando dispositivos...</p>
+                            </div>
+                        </div>
+
+                        <!-- Páginas Mais Acessadas -->
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h3 class="data-card-title">Páginas Mais Visitadas</h3>
+                            </div>
+                            <div style="padding:1.5rem;" id="analyticsPaginasList" class="progress-list">
+                                <p style="text-align:center; color:var(--admin-text-muted);">Carregando páginas...</p>
+                            </div>
+                        </div>
+
+                        <!-- Distribuição Regional (Estados) -->
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h3 class="data-card-title">Distribuição por Estado (UF)</h3>
+                            </div>
+                            <div style="padding:1.5rem;" id="analyticsEstadosList" class="progress-list">
+                                <p style="text-align:center; color:var(--admin-text-muted);">Carregando estados...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 2. ABA LEADS & CONTATOS -->
                 <div id="pageLeads" class="page-view" style="display:none;">
                     <div class="data-card">
@@ -224,7 +413,10 @@
                                     <option value="arquivado">Arquivado</option>
                                 </select>
                             </div>
-                            <button class="btn btn-primary btn-sm" onclick="window.loadLeads()">Atualizar</button>
+                            <div style="display:flex; gap:0.5rem;">
+                                <button class="btn btn-outline btn-sm" onclick="window.exportData('leads')">📥 Exportar CSV</button>
+                                <button class="btn btn-primary btn-sm" onclick="window.loadLeads()">Atualizar</button>
+                            </div>
                         </div>
 
                         <div class="table-responsive">
@@ -270,7 +462,10 @@
                             <h2 style="font-family:'Sora',sans-serif; font-size:1.3rem; color:var(--admin-text-heading);">Vagas & Oportunidades PcD</h2>
                             <p style="font-size:0.875rem; color:var(--admin-text-muted);">Divulgação de oportunidades de trabalho inclusivas</p>
                         </div>
-                        <button class="btn btn-primary" data-modal-open="newVagaModal">+ Nova Vaga</button>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-outline btn-sm" onclick="window.exportData('vagas')">📥 Exportar CSV</button>
+                            <button class="btn btn-primary" data-modal-open="newVagaModal">+ Nova Vaga</button>
+                        </div>
                     </div>
 
                     <div class="data-card">
@@ -294,39 +489,327 @@
                     </div>
                 </div>
 
-                <!-- 5. ABA CONFIGURAÇÕES GERAIS -->
-                <div id="pageConfig" class="page-view" style="display:none;">
-                    <div class="data-card" style="max-width:760px;">
+                <!-- 4.1 ABA DEPOIMENTOS & CASOS DE SUCESSO -->
+                <div id="pageDepoimentos" class="page-view" style="display:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+                        <div>
+                            <h2 style="font-family:'Sora',sans-serif; font-size:1.35rem; color:var(--admin-text-heading); font-weight:800;">Depoimentos & Casos de Sucesso</h2>
+                            <p style="font-size:0.875rem; color:var(--admin-text-muted);">Depoimentos de empresas clientes e lideranças que vivenciaram as palestras e consultorias</p>
+                        </div>
+                        <button class="btn btn-primary" data-modal-open="newDepoimentoModal">
+                            <svg viewBox="0 0 24 24" style="width:16px; height:16px;"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            + Novo Depoimento
+                        </button>
+                    </div>
+
+                    <div id="depoimentosGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.5rem;">
+                        <p style="text-align:center; padding:2rem; color:var(--admin-text-muted);">Carregando depoimentos...</p>
+                    </div>
+                </div>
+
+                <!-- 4.2 ABA ARTIGOS & BLOG PCD -->
+                <div id="pageBlog" class="page-view" style="display:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+                        <div>
+                            <h2 style="font-family:'Sora',sans-serif; font-size:1.35rem; color:var(--admin-text-heading); font-weight:800;">Artigos, Notícias & Conscientização</h2>
+                            <p style="font-size:0.875rem; color:var(--admin-text-muted);">Publicações educativas, guias práticos sobre a Lei de Cotas e artigos de reflexão</p>
+                        </div>
+                        <button class="btn btn-primary" data-modal-open="newArtigoModal">
+                            <svg viewBox="0 0 24 24" style="width:16px; height:16px;"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            + Novo Artigo
+                        </button>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Título do Artigo</th>
+                                        <th>Categoria</th>
+                                        <th>Autor</th>
+                                        <th>Visualizações</th>
+                                        <th>Status</th>
+                                        <th>Data</th>
+                                        <th style="text-align:right;">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="artigosTableBody">
+                                    <tr><td colspan="7" style="text-align:center; padding:2rem;">Carregando artigos...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4.3 ABA ALERTA TOPO (BROADCAST BAR) -->
+                <div id="pageBroadcast" class="page-view" style="display:none;">
+                    <div style="margin-bottom:1.5rem;">
+                        <h2 style="font-family:'Sora',sans-serif; font-size:1.35rem; color:var(--admin-text-heading); font-weight:800;">Alerta de Topo (Broadcast Bar)</h2>
+                        <p style="font-size:0.875rem; color:var(--admin-text-muted);">Barra de aviso prioritária fixada no topo de todas as páginas do site para anúncios urgentes</p>
+                    </div>
+
+                    <div class="data-card" style="max-width:800px;">
                         <div class="data-card-header">
-                            <h2 class="data-card-title">Configurações Gerais do Site</h2>
+                            <h3 class="data-card-title">Configurar Notificação Global</h3>
                         </div>
                         <div style="padding:1.5rem;">
-                            <form id="siteConfigForm">
-                                <div class="form-group">
-                                    <label class="form-label" for="cfgWhatsapp">Número de WhatsApp (com DDD)</label>
-                                    <input type="text" id="cfgWhatsapp" class="form-control" placeholder="5521984145167">
-                                    <small style="color:var(--admin-text-muted);">Usado nos botões de atendimento do site inteiro.</small>
+                            <!-- Preview ao vivo -->
+                            <div style="margin-bottom:1.5rem;">
+                                <label class="form-label">Pré-visualização em Tempo Real no Site</label>
+                                <div id="broadcastPreviewBar" class="broadcast-preview-bar broadcast-azul">
+                                    <span id="broadcastPreviewText">🚀 Inscrições Abertas para o Programa de Capacitação e Liderança PcD 2026!</span>
+                                    <span id="broadcastPreviewBtn" style="background:#FFFFFF; color:#001B44; padding:4px 12px; border-radius:999px; font-size:0.75rem; font-weight:700;">Solicitar Proposta &rarr;</span>
+                                </div>
+                            </div>
+
+                            <form id="broadcastConfigForm">
+                                <div class="form-group" style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem; background:#F8FAFD; padding:0.85rem 1rem; border-radius:var(--admin-radius-md); border:1px solid var(--admin-border);">
+                                    <input type="checkbox" id="cfgAlertaAtivo" style="width:20px; height:20px;">
+                                    <div>
+                                        <label for="cfgAlertaAtivo" style="font-weight:700; font-size:0.95rem; cursor:pointer;">Ativar Barra de Alerta no Topo do Site</label>
+                                        <div style="font-size:0.8rem; color:var(--admin-text-muted);">Quando desmarcado, a barra fica completamente oculta para os visitantes.</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label" for="cfgEmail">E-mail Institucional</label>
-                                    <input type="email" id="cfgEmail" class="form-control" placeholder="contato@jatecontarampcd.com.br">
+                                    <label class="form-label" for="cfgAlertaTexto">Texto da Mensagem de Alerta</label>
+                                    <input type="text" id="cfgAlertaTexto" class="form-control" placeholder="Ex: 🎯 Garanta já sua vaga no Workshop de Liderança Inclusiva!">
+                                </div>
+
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgAlertaBotao">Texto do Botão (CTA)</label>
+                                        <input type="text" id="cfgAlertaBotao" class="form-control" placeholder="Ex: Saiba Mais &rarr;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgAlertaLink">Link de Destino</label>
+                                        <input type="text" id="cfgAlertaLink" class="form-control" placeholder="#contato ou https://...">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-label" for="cfgAvisoTopo">Texto da Barra Superior de Aviso</label>
-                                    <input type="text" id="cfgAvisoTopo" class="form-control">
+                                    <label class="form-label" for="cfgAlertaCor">Tema Visual da Barra</label>
+                                    <select id="cfgAlertaCor" class="form-control">
+                                        <option value="azul">Azul Profundo & Royal (Padrão Corporativo JTPCD)</option>
+                                        <option value="verde">Verde Sucesso (Oportunidades & Inscrições Abertas)</option>
+                                        <option value="laranja">Laranja Destaque (Avisos Importantes)</option>
+                                        <option value="vermelho">Vermelho Urgente (Últimos Dias / Comunicado Urgente)</option>
+                                    </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label" for="cfgTitulo">Título Principal do Site (SEO)</label>
-                                    <input type="text" id="cfgTitulo" class="form-control">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary" style="margin-top:1rem;">
-                                    Salvar Configurações
+                                <button type="submit" class="btn btn-primary" style="margin-top:0.5rem;">
+                                    Salvar e Aplicar Alerta
                                 </button>
                             </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4.4 ABA MÍDIA KIT & PROPOSTAS COMERCIAIS -->
+                <div id="pageMediakit" class="page-view" style="display:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+                        <div>
+                            <h2 style="font-family:'Sora',sans-serif; font-size:1.35rem; color:var(--admin-text-heading); font-weight:800;">Mídia Kit & Propostas Comerciais</h2>
+                            <p style="font-size:0.875rem; color:var(--admin-text-muted);">Apresentação institucional e modelos de mensagens prontas para prospecção de empresas</p>
+                        </div>
+                        <button class="btn btn-outline" onclick="window.print()">
+                            <svg viewBox="0 0 24 24" style="width:16px; height:16px;"><path fill="currentColor" d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+                            Imprimir / Salvar PDF
+                        </button>
+                    </div>
+
+                    <!-- Card de Apresentação Oficial -->
+                    <div class="data-card" style="margin-bottom:1.5rem; border-left:4px solid var(--admin-blue-500);">
+                        <div style="padding:1.5rem; display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap;">
+                            <img src="assets/images/logo-jtpcd.png" alt="Já te contaram PcD?" style="height:60px; object-fit:contain;">
+                            <div style="flex:1;">
+                                <h3 style="font-size:1.15rem; font-weight:800; color:var(--admin-text-heading); margin-bottom:0.25rem;">Já te contaram PcD? • Moisés Souza</h3>
+                                <p style="font-size:0.875rem; color:var(--admin-text-muted); line-height:1.5;">
+                                    Palestrante, Consultor de Inclusão, Líder e Defensor dos Direitos das Pessoas com Deficiência. Mais de uma década capacitando organizações a transformarem a inclusão PcD em diferencial estratégico, inovação e retenção de talentos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size:1.1rem; font-weight:800; color:var(--admin-text-heading); margin-bottom:1rem;">
+                        📋 Kit de Divulgação Oficial (Copiar com 1 Clique)
+                    </h3>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.25rem;">
+                        <!-- Modelo 1 -->
+                        <div class="copy-card">
+                            <div class="copy-card-title">
+                                <span>1. Abordagem para RH no LinkedIn</span>
+                                <button class="btn btn-outline btn-sm btn-copy" onclick="window.copyTextToClipboard(this, 'copyText1')">Copiar</button>
+                            </div>
+                            <div class="copy-text-box" id="copyText1">Olá [Nome do Líder/RH], tudo bem?
+
+Acompanho o compromisso da [Nome da Empresa] com Diversidade e Inclusão e gostaria de apresentar o projeto "Já te contaram PcD?", liderado por Moisés Souza.
+
+Realizamos palestras e consultorias práticas focadas no cumprimento humanizado da Lei de Cotas (Lei 8.213), eliminação de barreiras atitudinais e capacitação de gestores para liderar profissionais com deficiência com foco em competência e alta performance.
+
+Podemos agendar uma rápida conversa de 15 minutos nesta semana para apresentar nosso Mídia Kit?
+
+Site Oficial: https://jtpcd.vercel.app/
+WhatsApp: 21 98414-5167</div>
+                        </div>
+
+                        <!-- Modelo 2 -->
+                        <div class="copy-card">
+                            <div class="copy-card-title">
+                                <span>2. Apresentação de Palestra (WhatsApp)</span>
+                                <button class="btn btn-outline btn-sm btn-copy" onclick="window.copyTextToClipboard(this, 'copyText2')">Copiar</button>
+                            </div>
+                            <div class="copy-text-box" id="copyText2">Olá! Tudo bem? Aqui é da equipe do Já te contaram PcD? 🌟
+
+Moisés Souza é palestrante especialista em Inclusão e Liderança PcD no ambiente corporativo. Nossas palestras são dinâmicas, emocionantes e 100% práticas, mostrando como transformar a cultura da empresa para acolher e reter profissionais com deficiência.
+
+Temas mais solicitados:
+• Inclusão na Prática: Desmistificando o Art. 93 da Lei 8.213
+• Acessibilidade Atitudinal: A Barreira Invisível
+• Liderança Inclusiva: Do Assistencialismo ao Protagonismo
+
+Confira detalhes e vídeos em: https://jtpcd.vercel.app/
+Qual seria a melhor data para conversarmos sobre um evento corporativo com a sua equipe?</div>
+                        </div>
+
+                        <!-- Modelo 3 -->
+                        <div class="copy-card">
+                            <div class="copy-card-title">
+                                <span>3. Convite para Divulgação de Vagas PcD</span>
+                                <button class="btn btn-outline btn-sm btn-copy" onclick="window.copyTextToClipboard(this, 'copyText3')">Copiar</button>
+                            </div>
+                            <div class="copy-text-box" id="copyText3">Olá! Sabemos o quanto é desafiador encontrar profissionais com deficiência qualificados para posições estratégicas.
+
+O portal "Já te contaram PcD?" possui um banco de oportunidades gratuito onde divulgamos vagas afirmativas de empresas parceiras diretamente para a nossa comunidade de talentos PcD em todo o Brasil.
+
+Gostaria de cadastrar uma oportunidade afirmativa da sua empresa em nossa plataforma?
+Acesse: https://jtpcd.vercel.app/ ou responda aqui que cuidamos da divulgação!</div>
+                        </div>
+
+                        <!-- Modelo 4 -->
+                        <div class="copy-card">
+                            <div class="copy-card-title">
+                                <span>4. Pitch Rápido / Apresentação Institucional</span>
+                                <button class="btn btn-outline btn-sm btn-copy" onclick="window.copyTextToClipboard(this, 'copyText4')">Copiar</button>
+                            </div>
+                            <div class="copy-text-box" id="copyText4">"Já te contaram PcD?" é uma plataforma e movimento de inclusão profissional fundado por Moisés Souza. Atuamos como ponte entre o mercado de trabalho corporativo e talentos com deficiência, oferecendo palestras inspiradoras, consultorias em acessibilidade atitudinal e conexão de vagas afirmativas.
+
+Transformamos obrigações legais em inovação humana e valor para o seu negócio.
+Conheça: https://jtpcd.vercel.app/</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. ABA CONFIGURAÇÕES GERAIS & BACKUP -->
+                <div id="pageConfig" class="page-view" style="display:none;">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.5rem; max-width:1100px;">
+                        <!-- Card 1: Informações e Contatos -->
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h2 class="data-card-title">Canais Oficiais & SEO</h2>
+                            </div>
+                            <div style="padding:1.5rem;">
+                                <form id="siteConfigForm">
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgWhatsapp">WhatsApp Comercial (com DDD)</label>
+                                        <input type="text" id="cfgWhatsapp" class="form-control" placeholder="5521984145167">
+                                        <small style="color:var(--admin-text-muted);">Alimenta os botões flutuantes e links de contato.</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgEmail">E-mail Institucional</label>
+                                        <input type="email" id="cfgEmail" class="form-control" placeholder="contato@jatecontarampcd.com.br">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgTitulo">Título Principal do Site (SEO)</label>
+                                        <input type="text" id="cfgTitulo" class="form-control" placeholder="Já te contaram PcD? • Palestras & Inclusão">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgAvisoTopo">Texto Rápido de Rodapé / Topo</label>
+                                        <input type="text" id="cfgAvisoTopo" class="form-control">
+                                    </div>
+
+                                    <h4 style="font-size:0.95rem; font-weight:700; color:var(--admin-text-heading); margin:1.25rem 0 0.75rem; border-top:1px solid var(--admin-border); padding-top:1rem;">
+                                        Redes Sociais Oficiais
+                                    </h4>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgLinkedin">LinkedIn Oficial</label>
+                                        <input type="url" id="cfgLinkedin" class="form-control" placeholder="https://linkedin.com/in/...">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgInstagram">Instagram</label>
+                                        <input type="url" id="cfgInstagram" class="form-control" placeholder="https://instagram.com/...">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label" for="cfgYoutube">Canal do YouTube</label>
+                                        <input type="url" id="cfgYoutube" class="form-control" placeholder="https://youtube.com/@...">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary" style="margin-top:0.5rem; width:100%;">
+                                        Salvar Todas as Configurações
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Central de Backup & Exportação de Dados -->
+                        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+                            <div class="data-card">
+                                <div class="data-card-header">
+                                    <h3 class="data-card-title">Central de Relatórios & Backup</h3>
+                                </div>
+                                <div style="padding:1.5rem; display:flex; flex-direction:column; gap:1rem;">
+                                    <p style="font-size:0.875rem; color:var(--admin-text-muted); line-height:1.5;">
+                                        Exporte os dados estratégicos do seu banco MySQL da StackCP a qualquer momento em planilhas ou backup completo JSON:
+                                    </p>
+
+                                    <button class="btn btn-outline" onclick="window.exportData('leads')" style="display:flex; justify-content:space-between; align-items:center;">
+                                        <span>📥 Exportar Todos os Leads</span>
+                                        <span class="role-badge role-admin">Planilha CSV</span>
+                                    </button>
+
+                                    <button class="btn btn-outline" onclick="window.exportData('vagas')" style="display:flex; justify-content:space-between; align-items:center;">
+                                        <span>📥 Exportar Vagas PcD</span>
+                                        <span class="role-badge role-consultor">Planilha CSV</span>
+                                    </button>
+
+                                    <button class="btn btn-primary" onclick="window.exportData('backup')" style="display:flex; justify-content:space-between; align-items:center;">
+                                        <span>💾 Backup Completo do Portal</span>
+                                        <span style="font-size:0.75rem; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:999px;">JSON Geral</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="data-card">
+                                <div class="data-card-header">
+                                    <h3 class="data-card-title">Status da Infraestrutura</h3>
+                                </div>
+                                <div style="padding:1.5rem; display:flex; flex-direction:column; gap:0.75rem; font-size:0.875rem;">
+                                    <div style="display:flex; justify-content:space-between; padding-bottom:0.5rem; border-bottom:1px solid #EDF2F7;">
+                                        <span style="color:var(--admin-text-muted);">Banco de Dados:</span>
+                                        <strong style="color:#047857;">StackCP MySQL (Porta 47368)</strong>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; padding-bottom:0.5rem; border-bottom:1px solid #EDF2F7;">
+                                        <span style="color:var(--admin-text-muted);">Hospedagem & Deploy:</span>
+                                        <strong>Vercel Edge Network</strong>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; padding-bottom:0.5rem; border-bottom:1px solid #EDF2F7;">
+                                        <span style="color:var(--admin-text-muted);">Segurança & SSL:</span>
+                                        <strong style="color:#047857;">HTTPS Ativo (TLS 1.3)</strong>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between;">
+                                        <span style="color:var(--admin-text-muted);">Versão do Painel:</span>
+                                        <span class="role-badge role-admin">v3.0 PRO</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -409,6 +892,40 @@
                                 </thead>
                                 <tbody id="usersTableBody">
                                     <tr><td colspan="7" style="text-align:center; padding:2rem;">Carregando usuários...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. ABA SEGURANÇA & LOGS DE AUDITORIA -->
+                <div id="pageAudit" class="page-view" style="display:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+                        <div>
+                            <h2 style="font-family:'Sora',sans-serif; font-size:1.35rem; color:var(--admin-text-heading); font-weight:800;">Auditoria & Logs do Sistema</h2>
+                            <p style="font-size:0.875rem; color:var(--admin-text-muted);">Histórico transparente em tempo real de acessos, alterações e operações administrativas</p>
+                        </div>
+                        <div style="display:flex; gap:0.5rem;">
+                            <input type="text" id="auditSearchInput" class="form-control" placeholder="Filtrar por usuário ou ação..." style="max-width:260px;">
+                            <button class="btn btn-outline btn-sm" onclick="window.loadAuditLogs()">Atualizar ⟳</button>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data / Horário</th>
+                                        <th>Usuário</th>
+                                        <th>Módulo</th>
+                                        <th>Ação Realizada</th>
+                                        <th>Detalhes</th>
+                                        <th>IP de Origem</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="auditLogsTableBody">
+                                    <tr><td colspan="6" style="text-align:center; padding:2rem;">Carregando registros de auditoria...</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -695,6 +1212,233 @@
                                 <svg class="eye-hide" style="display:none;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.44-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>
                             </button>
                         </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal-close>Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL DE NOVO DEPOIMENTO ==================== -->
+    <div id="newDepoimentoModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Cadastrar Novo Depoimento</h3>
+                <button type="button" class="modal-close-btn" data-modal-close>&times;</button>
+            </div>
+            <form id="newDepoimentoForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label" for="newDepNome">Nome do Cliente / Líder</label>
+                        <input type="text" id="newDepNome" class="form-control" required placeholder="Ex: Roberta Albuquerque">
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="newDepCargo">Cargo & Empresa</label>
+                            <input type="text" id="newDepCargo" class="form-control" required placeholder="Ex: Gerente de D&I • Grupo Votorantim">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="newDepEstrelas">Avaliação</label>
+                            <select id="newDepEstrelas" class="form-control">
+                                <option value="5">⭐⭐⭐⭐⭐ (5 Estrelas - Excelente)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 Estrelas - Muito Bom)</option>
+                                <option value="3">⭐⭐⭐ (3 Estrelas - Bom)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="newDepFoto">URL da Foto / Avatar</label>
+                        <input type="text" id="newDepFoto" class="form-control" placeholder="assets/images/depoimentos/default.jpg ou https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="newDepTexto">Texto do Depoimento</label>
+                        <textarea id="newDepTexto" class="form-control" rows="4" required placeholder="Descreva o impacto da palestra ou consultoria na empresa..."></textarea>
+                    </div>
+
+                    <div class="form-group" style="display:flex; align-items:center; gap:0.5rem;">
+                        <input type="checkbox" id="newDepDestaque" checked style="width:18px; height:18px;">
+                        <label for="newDepDestaque" style="font-weight:600; font-size:0.875rem;">Destacar na página principal</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal-close>Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Depoimento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL DE EDITAR DEPOIMENTO ==================== -->
+    <div id="editDepoimentoModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Editar Depoimento</h3>
+                <button type="button" class="modal-close-btn" data-modal-close>&times;</button>
+            </div>
+            <form id="editDepoimentoForm">
+                <input type="hidden" id="editDepId">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label" for="editDepNome">Nome</label>
+                        <input type="text" id="editDepNome" class="form-control" required>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="editDepCargo">Cargo & Empresa</label>
+                            <input type="text" id="editDepCargo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="editDepEstrelas">Avaliação</label>
+                            <select id="editDepEstrelas" class="form-control">
+                                <option value="5">⭐⭐⭐⭐⭐ (5 Estrelas)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 Estrelas)</option>
+                                <option value="3">⭐⭐⭐ (3 Estrelas)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editDepFoto">Foto URL</label>
+                        <input type="text" id="editDepFoto" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editDepTexto">Depoimento</label>
+                        <textarea id="editDepTexto" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="editDepAtivo">Status</label>
+                            <select id="editDepAtivo" class="form-control">
+                                <option value="1">Ativo (Exibido)</option>
+                                <option value="0">Oculto (Rascunho)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="display:flex; align-items:center; margin-top:1.8rem; gap:0.5rem;">
+                            <input type="checkbox" id="editDepDestaque" style="width:18px; height:18px;">
+                            <label for="editDepDestaque" style="font-weight:600; font-size:0.875rem;">Destacar no site</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal-close>Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL DE NOVO ARTIGO ==================== -->
+    <div id="newArtigoModal" class="modal-overlay">
+        <div class="modal-container" style="max-width:760px;">
+            <div class="modal-header">
+                <h3>Criar Novo Artigo / Publicação</h3>
+                <button type="button" class="modal-close-btn" data-modal-close>&times;</button>
+            </div>
+            <form id="newArtigoForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label" for="newArtTitulo">Título do Artigo</label>
+                        <input type="text" id="newArtTitulo" class="form-control" required placeholder="Ex: Como Desmistificar a Lei de Cotas no RH">
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="newArtCategoria">Categoria</label>
+                            <select id="newArtCategoria" class="form-control">
+                                <option value="Legislação & Cotas">Legislação & Lei de Cotas</option>
+                                <option value="Cultura & Inclusão">Cultura & Acessibilidade Atitudinal</option>
+                                <option value="Carreira & Liderança">Carreira & Liderança PcD</option>
+                                <option value="Tecnologia Assistiva">Tecnologia & Acessibilidade Digital</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="newArtStatus">Status de Publicação</label>
+                            <select id="newArtStatus" class="form-control">
+                                <option value="publicado">Publicado Imediatamente</option>
+                                <option value="rascunho">Salvar como Rascunho</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="newArtResumo">Resumo / Subtítulo</label>
+                        <input type="text" id="newArtResumo" class="form-control" placeholder="Breve resumo que aparece no card de chamada...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="newArtImg">URL da Imagem de Destaque</label>
+                        <input type="text" id="newArtImg" class="form-control" placeholder="assets/images/blog/lei-de-cotas.jpg ou https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="newArtConteudo">Conteúdo Completo do Artigo</label>
+                        <textarea id="newArtConteudo" class="form-control" rows="8" placeholder="Escreva o texto completo do artigo..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal-close>Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar e Publicar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL DE EDITAR ARTIGO ==================== -->
+    <div id="editArtigoModal" class="modal-overlay">
+        <div class="modal-container" style="max-width:760px;">
+            <div class="modal-header">
+                <h3>Editar Artigo / Publicação</h3>
+                <button type="button" class="modal-close-btn" data-modal-close>&times;</button>
+            </div>
+            <form id="editArtigoForm">
+                <input type="hidden" id="editArtId">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label" for="editArtTitulo">Título</label>
+                        <input type="text" id="editArtTitulo" class="form-control" required>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="editArtCategoria">Categoria</label>
+                            <select id="editArtCategoria" class="form-control">
+                                <option value="Legislação & Cotas">Legislação & Lei de Cotas</option>
+                                <option value="Cultura & Inclusão">Cultura & Acessibilidade Atitudinal</option>
+                                <option value="Carreira & Liderança">Carreira & Liderança PcD</option>
+                                <option value="Tecnologia Assistiva">Tecnologia & Acessibilidade Digital</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="editArtStatus">Status</label>
+                            <select id="editArtStatus" class="form-control">
+                                <option value="publicado">Publicado</option>
+                                <option value="rascunho">Rascunho</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editArtResumo">Resumo</label>
+                        <input type="text" id="editArtResumo" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editArtImg">URL da Imagem</label>
+                        <input type="text" id="editArtImg" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editArtConteudo">Conteúdo</label>
+                        <textarea id="editArtConteudo" class="form-control" rows="8"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -692,3 +692,145 @@ textarea.form-control {
     margin-left: 0;
   }
 }
+
+/* ==================== EXPANSÃO DE MÓDULOS AVANÇADOS ==================== */
+
+/* Títulos de Seção na Sidebar */
+.sidebar-section-title {
+  font-size: 0.685rem;
+  font-weight: 800;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 0.85rem 0.25rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Gráficos e Barras de Progresso Analytics */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--admin-text-heading);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #EDF2F7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--admin-blue-500);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.progress-fill-alt {
+  background: #10B981;
+}
+
+.progress-fill-amber {
+  background: #F59E0B;
+}
+
+.progress-fill-purple {
+  background: #8B5CF6;
+}
+
+/* Estrelas de Avaliação */
+.stars-display {
+  color: #F59E0B;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+/* Cards de Copy e Mídia Kit */
+.copy-card {
+  background: #FFFFFF;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--admin-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.copy-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--admin-text-heading);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copy-text-box {
+  background: #F8FAFD;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-md);
+  padding: 0.85rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--admin-text-main);
+  white-space: pre-wrap;
+  font-family: inherit;
+}
+
+/* Banner de Alerta Topo (Broadcast Bar Preview) */
+.broadcast-preview-bar {
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--admin-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.broadcast-azul { background: linear-gradient(135deg, #001B44 0%, #0066FF 100%); }
+.broadcast-verde { background: linear-gradient(135deg, #064E3B 0%, #10B981 100%); }
+.broadcast-laranja { background: linear-gradient(135deg, #7C2D12 0%, #EA580C 100%); }
+.broadcast-vermelho { background: linear-gradient(135deg, #881337 0%, #EF4444 100%); }
+
+/* Estilo para Impressão da Proposta Comercial */
+@media print {
+  .admin-sidebar, .admin-topbar, .btn, .no-print {
+    display: none !important;
+  }
+  .admin-main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  .data-card {
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
