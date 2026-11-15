@@ -261,10 +261,29 @@
       setTimeout(() => { if (type !== 'success') alertBox.style.display = 'none'; }, 6000);
     };
 
+    const saveLeadToDb = () => {
+      const leadData = {
+        nome: nameInput.value.trim(),
+        empresa: companyInput.value.trim(),
+        email: emailInput.value.trim(),
+        telefone: phoneInput.value.trim() || 'WhatsApp Direto',
+        servico_interesse: (sizeSelect && sizeSelect.value) ? sizeSelect.value : 'Consultoria Inclusiva',
+        mensagem: messageInput.value.trim()
+      };
+
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadData)
+      }).catch(err => console.error('Erro ao registrar lead no MySQL:', err));
+    };
+
     if (btnWhatsApp) {
       btnWhatsApp.addEventListener('click', (e) => {
         e.preventDefault();
         if (!validate()) return;
+
+        saveLeadToDb();
 
         const lines = [
           'Olá! Gostaria de falar sobre a consultoria de inclusão da Já te contaram PcD?.',
@@ -277,7 +296,7 @@
         ].filter(Boolean);
 
         const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(lines.join('\n'))}`;
-        showAlert('Abrindo o WhatsApp oficial...', 'success');
+        showAlert('Mensagem registrada e abrindo o WhatsApp oficial...', 'success');
         window.open(url, '_blank', 'noopener');
       });
     }
@@ -287,7 +306,9 @@
         e.preventDefault();
         if (!validate()) return;
 
-        showAlert(`Obrigado, ${nameInput.value.trim()}! Sua mensagem foi enviada. Nossa equipe entrará em contato em breve.`, 'success');
+        saveLeadToDb();
+
+        showAlert(`Obrigado, ${nameInput.value.trim()}! Sua solicitação foi registrada no sistema. Nossa equipe entrará em contato em breve.`, 'success');
         form.reset();
       });
     }

@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const handleApi = require('./api');
 
 const PORT = process.env.PORT || 4123;
 
@@ -17,8 +18,47 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  let reqPath = req.url.split('?')[0];
-  if (reqPath === '/') reqPath = '/index.html';
+  const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  let reqPath = urlObj.pathname;
+
+  // CORS Headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
+  // ---------- ROTA DE API BACKEND ----------
+  if (reqPath.startsWith('/api/')) {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+      // Proteção de tamanho (máx 5MB)
+      if (body.length > 5 * 1024 * 1024) {
+        req.destroy();
+      }
+    });
+
+    req.on('end', () => {
+      handleApi(req, res, urlObj, body).catch(err => {
+        console.error('Unhandled API Error:', err);
+        if (!res.headersSent) {
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Erro interno no servidor de API.' }));
+        }
+      });
+    });
+    return;
+  }
+
+  // ---------- ROTA DE ARQUIVOS ESTÁTICOS ----------
+  if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
+  if (reqPath === '/admin' || reqPath === '/admin/') reqPath = '/admin.html';
+
   const filePath = path.join(__dirname, reqPath);
 
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
@@ -33,6 +73,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`\n🚀 Site Já te contaram PcD? rodando com sucesso!`);
-  console.log(`👉 Acesse no seu navegador: http://localhost:${PORT}/\n`);
+  console.log(`\n🚀 Servidor Já te contaram PcD? (Site + API + Painel Admin) rodando com sucesso!`);
+  console.log(`👉 Site Principal: http://localhost:${PORT}/`);
+  console.log(`👉 Painel Administrativo: http://localhost:${PORT}/admin\n`);
 });
