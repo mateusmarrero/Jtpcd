@@ -1,2 +1,7 @@
-.vercel
-.env*
+node_modules/
+.env.local
+.vercel/
+_backup_original/
+.DS_Store
+Thumbs.db
+*.log

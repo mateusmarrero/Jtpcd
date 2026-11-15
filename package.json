@@ -1,0 +1,20 @@
+{
+  "name": "jatecontarampcd-website",
+  "version": "2.0.0",
+  "description": "Novo website institucional e consultoria da Já te contaram PcD? — Moderno, Acessível (WCAG 2.1 AA/AAA) e de Alto Padrão",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "pcd",
+    "acessibilidade",
+    "consultoria",
+    "diversidade",
+    "lei-de-cotas",
+    "esg"
+  ],
+  "author": "Já te contaram PcD?",
+  "license": "ISC"
+}
