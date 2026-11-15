@@ -557,6 +557,29 @@
     });
   });
 
+  // ---------- TOGGLE VISIBILIDADE DE SENHA ----------
+  document.querySelectorAll('[data-toggle-password]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const inputId = btn.getAttribute('data-toggle-password');
+      const input = document.getElementById(inputId);
+      if (!input) return;
+
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+
+      const eyeShow = btn.querySelector('.eye-show');
+      const eyeHide = btn.querySelector('.eye-hide');
+
+      if (eyeShow && eyeHide) {
+        eyeShow.style.display = isPassword ? 'none' : 'block';
+        eyeHide.style.display = isPassword ? 'block' : 'none';
+      }
+
+      btn.setAttribute('title', isPassword ? 'Ocultar senha' : 'Visualizar senha');
+    });
+  });
+
   // ---------- UTILS ----------
   function escapeHtml(str) {
     if (!str) return '';

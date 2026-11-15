@@ -458,6 +458,43 @@ body {
   box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
 }
 
+/* Wrapper com visualização de senha (olhinho) */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-input-wrapper .form-control {
+  padding-right: 48px;
+}
+
+.btn-toggle-password {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: var(--admin-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--admin-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.btn-toggle-password:hover {
+  color: var(--admin-blue-500);
+  background: #EEF5FF;
+}
+
+.btn-toggle-password svg {
+  width: 20px;
+  height: 20px;
+}
+
 textarea.form-control {
   resize: vertical;
   min-height: 90px;
