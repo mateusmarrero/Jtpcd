@@ -43,10 +43,28 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://jtpcd.vercel.app/blog/acessibilidade-atitudinal-barreira-invisivel/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/blog/como-cumprir-lei-de-cotas-com-eficiencia/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://jtpcd.vercel.app/blog/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/blog/lideranca-pcd-protagonismo-corporativo/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://jtpcd.vercel.app/direitos/acessibilidade/</loc>
@@ -235,10 +253,46 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://jtpcd.vercel.app/instituicoes/associacao-de-assistencia-a-crianca-deficiente/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/instituicoes/centro-regional-de-reabilitacao-cer-iv-minas/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/instituicoes/federacao-nacional-das-apaes/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://jtpcd.vercel.app/instituicoes/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/instituicoes/instituto-benjamin-constant-ibc/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/instituicoes/instituto-nacional-de-educacao-de-surdos-ines/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/instituicoes/rede-de-reabilitacao-lucy-montoro/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://jtpcd.vercel.app/isencoes/compra-de-veiculos/</loc>
@@ -308,6 +362,24 @@
   </url>
   <url>
     <loc>https://jtpcd.vercel.app/mobilidade/viagens/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/oportunidades/analista-de-acessibilidade-digital-e-qa-3/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/oportunidades/assistente-administrativo-pcd-1/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jtpcd.vercel.app/oportunidades/consultor-junior-de-diversidade-esg-2/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
