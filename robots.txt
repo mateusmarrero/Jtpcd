@@ -1,4 +1,43 @@
+# ==============================================================================
+# ROBOTS.TXT — PORTAL NACIONAL JÁ TE CONTARAM PCD (HTTPS://JTPCD.VERCEL.APP)
+# Configuração oficial para rastreamento e indexação no Google Search & Bing
+# ==============================================================================
+
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /api/admin/
+Disallow: /*?*token=*
 
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /api/admin/
+
+User-agent: Googlebot-Image
+Allow: /assets/images/
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Googlebot-Mobile
+Allow: /
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /api/admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /api/admin/
+
+# Sitemap Oficial
 Sitemap: https://jtpcd.vercel.app/sitemap.xml
+Host: https://jtpcd.vercel.app

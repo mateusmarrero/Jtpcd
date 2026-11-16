@@ -6,7 +6,7 @@
 
     <!-- SEO & Metatags Primárias -->
     <title>JÁ TE CONTARAM PCD? • Portal Nacional de Direitos, Utilidade Pública e Inclusão</title>
-    <meta name="description" content="O maior portal brasileiro de informação, orientação jurídica e utilidade pública para pessoas com deficiência, familiares e cuidadores. Áreas temáticas de direitos, benefícios, saúde, educação, emprego, isenções e ferramentas gratuitas.">
+    <meta name="description" content="Portal nacional de direitos da pessoa com deficiência: simulador BPC/LOAS, calculadora de cotas, isenções veiculares, laudo médico e orientação jurídica gratuita.">
     <meta name="author" content="Já Te Contaram PcD? — Moisés Souza">
     <meta name="keywords" content="direitos PcD, BPC LOAS simulador, isenção carro PcD, Lei de Cotas, passe livre interestadual, cartão de estacionamento DeFis, LBI Lei 13146, inclusão escolar PcD, laudo médico PcD, reabilitação física, palestras Moisés Souza">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -20,13 +20,16 @@
     <meta property="og:title" content="JÁ TE CONTARAM PCD? • Portal Nacional de Direitos & Utilidade Pública">
     <meta property="og:description" content="Ecossistema digital de informação, direitos, ferramentas gratuitas e orientação para pessoas com deficiência, famílias e cuidadores em todo o Brasil.">
     <meta property="og:url" content="https://jtpcd.vercel.app/">
-    <meta property="og:image" content="/assets/images/banner-jtpcd.jpg">
+    <meta property="og:image" content="https://jtpcd.vercel.app/assets/images/banner-jtpcd.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Portal Nacional Já Te Contaram PcD?">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="JÁ TE CONTARAM PCD? • Portal Nacional de Direitos & Inclusão">
     <meta name="twitter:description" content="Portal multipáginas de utilidade pública: Direitos, Benefícios Sociais, Saúde, Educação, Emprego, Isenções e Ferramentas Gratuitas.">
-    <meta name="twitter:image" content="/assets/images/banner-jtpcd.jpg">
+    <meta name="twitter:image" content="https://jtpcd.vercel.app/assets/images/banner-jtpcd.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="180x180" href="/assets/images/selo-jtpcd.png">
@@ -39,7 +42,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org JSON-LD (Otimizado para Rich Snippets do Google) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,30 +52,51 @@
           "@id": "https://jtpcd.vercel.app/#website",
           "url": "https://jtpcd.vercel.app/",
           "name": "Já Te Contaram PcD?",
-          "description": "Portal brasileiro de informação, utilidade pública e ferramentas para pessoas com deficiência.",
+          "alternateName": ["JTPCD", "Portal Já Te Contaram PcD"],
+          "description": "Portal nacional de direitos, benefícios, isenções e utilidade pública para pessoas com deficiência.",
           "inLanguage": "pt-BR",
           "publisher": {
             "@type": "Organization",
             "name": "Já Te Contaram PcD?",
-            "logo": "https://jtpcd.vercel.app/assets/images/logo-jtpcd.png"
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://jtpcd.vercel.app/assets/images/logo-jtpcd.png"
+            }
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://jtpcd.vercel.app/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
           }
         },
         {
           "@type": "Organization",
           "@id": "https://jtpcd.vercel.app/#organizacao",
           "name": "Já Te Contaram PcD?",
+          "url": "https://jtpcd.vercel.app/",
+          "logo": "https://jtpcd.vercel.app/assets/images/logo-jtpcd.png",
+          "image": "https://jtpcd.vercel.app/assets/images/banner-jtpcd.jpg",
           "founder": {
             "@type": "Person",
             "name": "Moisés Souza",
-            "jobTitle": "Consultor de Inclusão, Palestrante e Pai Atípico"
+            "jobTitle": "Consultor de Inclusão, Palestrante e Pai Atípico",
+            "url": "https://jtpcd.vercel.app/palestras/"
           },
-          "url": "https://jtpcd.vercel.app/",
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+55-21-98414-5167",
             "contactType": "atendimento",
+            "areaServed": "BR",
             "availableLanguage": "Portuguese"
-          }
+          },
+          "sameAs": [
+            "https://instagram.com/jatecontarampcd",
+            "https://linkedin.com/in/moises-souza-jtpcd",
+            "https://youtube.com/@jatecontarampcd"
+          ]
         }
       ]
     }
