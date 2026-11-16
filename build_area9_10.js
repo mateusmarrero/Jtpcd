@@ -373,7 +373,7 @@ writePage('ferramentas/simulador-bpc/index.html', {
                 <label for="bpcRendaTotal" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                     Renda Familiar Bruta Mensal Total (R$):
                 </label>
-                <input type="number" step="0.01" id="bpcRendaTotal" name="bpcRendaTotal" required placeholder="Ex: 1400.00" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" aria-describedby="rendaHelp">
+                <input type="number" step="0.01" id="bpcRendaTotal" name="bpcRendaTotal" required placeholder="Digite a renda familiar bruta mensal (R$)" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" aria-describedby="rendaHelp">
                 <small id="rendaHelp" style="color:#64748b; font-size:0.8rem; display:block; margin-top:0.25rem;">Some salários, aposentadorias ou pensões dos membros que residem sob o mesmo teto.</small>
             </div>
 
@@ -382,13 +382,13 @@ writePage('ferramentas/simulador-bpc/index.html', {
                     <label for="bpcQtdPessoas" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                         Número de Pessoas no Domicílio:
                     </label>
-                    <input type="number" min="1" id="bpcQtdPessoas" name="bpcQtdPessoas" required placeholder="Ex: 4" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
+                    <input type="number" min="1" id="bpcQtdPessoas" name="bpcQtdPessoas" required placeholder="Quantidade de pessoas na família" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
                 </div>
                 <div>
                     <label for="bpcDespesasMedicas" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                         Despesas com Medicamentos/Fraldas (R$):
                     </label>
-                    <input type="number" step="0.01" id="bpcDespesasMedicas" name="bpcDespesasMedicas" placeholder="Ex: 350.00" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
+                    <input type="number" step="0.01" id="bpcDespesasMedicas" name="bpcDespesasMedicas" placeholder="Total de despesas com remédios e saúde (R$)" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
                 </div>
             </div>
 
@@ -434,7 +434,7 @@ writePage('ferramentas/calculadora-isencoes/index.html', {
                 <label for="isencaoValorVeiculo" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                     Preço de Tabela do Veículo 0km (R$):
                 </label>
-                <input type="number" step="100" id="isencaoValorVeiculo" name="isencaoValorVeiculo" required placeholder="Ex: 115000" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" aria-describedby="precoHelp">
+                <input type="number" step="100" id="isencaoValorVeiculo" name="isencaoValorVeiculo" required placeholder="Digite o valor de tabela do veículo (R$)" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" aria-describedby="precoHelp">
                 <small id="precoHelp" style="color:#64748b; font-size:0.8rem; display:block; margin-top:0.25rem;">Preço público sugerido da montadora (sem os descontos PcD).</small>
             </div>
 
@@ -512,7 +512,7 @@ writePage('ferramentas/calculadora-cotas/index.html', {
                 <label for="cotasTotalFuncionarios" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                     Total de Empregados em Todas as Unidades/Filiais:
                 </label>
-                <input type="number" min="1" id="cotasTotalFuncionarios" name="cotasTotalFuncionarios" required placeholder="Ex: 450" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" aria-describedby="cotasHelp">
+                <input type="number" min="1" id="cotasTotalFuncionarios" name="cotasTotalFuncionarios" required placeholder="Digite a quantidade total de empregados" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" aria-describedby="cotasHelp">
                 <small id="cotasHelp" style="color:#64748b; font-size:0.8rem; display:block; margin-top:0.25rem;">Considere a totalidade dos empregados com contrato CLT ativo em todo o país.</small>
             </div>
 
@@ -609,13 +609,13 @@ writePage('ferramentas/gerador-requerimentos/index.html', {
                     <label for="peticaoNome" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                         Nome Completo do Solicitante / Responsável:
                     </label>
-                    <input type="text" id="peticaoNome" name="peticaoNome" required placeholder="Ex: Maria da Silva Santos" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
+                    <input type="text" id="peticaoNome" name="peticaoNome" required placeholder="Digite o nome completo do solicitante" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
                 </div>
                 <div>
                     <label for="peticaoCpf" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                         CPF do Solicitante:
                     </label>
-                    <input type="text" id="peticaoCpf" name="peticaoCpf" required placeholder="000.000.000-00" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
+                    <input type="text" id="peticaoCpf" name="peticaoCpf" required placeholder="Digite o número do CPF" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
                 </div>
             </div>
 
@@ -624,13 +624,13 @@ writePage('ferramentas/gerador-requerimentos/index.html', {
                     <label for="peticaoCidade" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                         Cidade / UF:
                     </label>
-                    <input type="text" id="peticaoCidade" name="peticaoCidade" required placeholder="Ex: Rio de Janeiro - RJ" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
+                    <input type="text" id="peticaoCidade" name="peticaoCidade" required placeholder="Digite sua Cidade e Estado (UF)" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
                 </div>
                 <div>
                     <label for="peticaoDestinatario" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                         Órgão, Escola ou Empresa Destinatária:
                     </label>
-                    <input type="text" id="peticaoDestinatario" name="peticaoDestinatario" required placeholder="Ex: Colégio Estadual Dom Pedro II" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
+                    <input type="text" id="peticaoDestinatario" name="peticaoDestinatario" required placeholder="Nome do órgão, escola ou empresa destinatária" style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;">
                 </div>
             </div>
 
@@ -638,7 +638,7 @@ writePage('ferramentas/gerador-requerimentos/index.html', {
                 <label for="peticaoDetalhes" style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#1e293b;">
                     Detalhes do Caso (Opcional):
                 </label>
-                <textarea id="peticaoDetalhes" name="peticaoDetalhes" rows="3" placeholder="Ex: O aluno possui diagnóstico de autismo (CID 11: 6A02) e necessita de acompanhamento para mediação pedagógica..." style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;"></textarea>
+                <textarea id="peticaoDetalhes" name="peticaoDetalhes" rows="3" placeholder="Descreva os fatos, laudos médicos, CID e a fundamentação do pedido..." style="width:100%; padding:0.75rem 1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary" style="padding:0.9rem 1.5rem; font-size:1.05rem; font-weight:700; width:100%; justify-content:center; margin-top:0.5rem;">
