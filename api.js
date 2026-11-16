@@ -4,6 +4,202 @@ const pool = require('./db');
 
 const SALT = 'jtpcd_salt_2026';
 const SESSIONS = new Map(); // Simple secure memory session map token -> user
+const LOGIN_ATTEMPTS = new Map(); // IP-based Rate Limiter (ip -> { count, firstAttempt, lockedUntil })
+
+function getTrustedClientIp(req) {
+  // 1. Ambiente Vercel Edge / Serverless:
+  // Conforme documentação oficial da Vercel (https://vercel.com/docs/headers/request-headers):
+  // - 'x-forwarded-for': Contém o IP público do cliente. A Vercel sobrescreve esse cabeçalho
+  //   na borda para evitar spoofing (descartando headers externos forjados).
+  // - 'x-real-ip': É idêntico a 'x-forwarded-for' e contém o IP público do cliente.
+  // - 'x-vercel-forwarded-for': Idêntico a 'x-forwarded-for'.
+  // O IP público original do cliente situa-se na primeira posição (parts[0]).
+  if (process.env.VERCEL === '1') {
+    const xForwarded = req.headers['x-forwarded-for'];
+    if (xForwarded && typeof xForwarded === 'string') {
+      const parts = xForwarded.split(',').map(p => p.trim()).filter(Boolean);
+      if (parts.length > 0 && parts[0] !== 'unknown') return parts[0];
+    }
+    const xRealIp = req.headers['x-real-ip'];
+    if (xRealIp && typeof xRealIp === 'string') {
+      const clean = xRealIp.split(',')[0].trim();
+      if (clean && clean !== 'unknown') return clean;
+    }
+    const xVercelFwd = req.headers['x-vercel-forwarded-for'];
+    if (xVercelFwd && typeof xVercelFwd === 'string') {
+      const clean = xVercelFwd.split(',')[0].trim();
+      if (clean && clean !== 'unknown') return clean;
+    }
+    return req.socket?.remoteAddress || '127.0.0.1';
+  }
+
+  // 2. Ambiente Local / Dev / Suítes de Testes (Loopback):
+  const socketIp = req.socket?.remoteAddress || '127.0.0.1';
+  const isLoopback = (
+    socketIp === '127.0.0.1' ||
+    socketIp === '::1' ||
+    socketIp === '::ffff:127.0.0.1' ||
+    socketIp === 'localhost'
+  );
+
+  if (isLoopback) {
+    const devReal = req.headers['x-real-ip'];
+    if (devReal && typeof devReal === 'string' && devReal.trim()) {
+      return devReal.split(',')[0].trim();
+    }
+    const devFwd = req.headers['x-forwarded-for'];
+    if (devFwd && typeof devFwd === 'string') {
+      const parts = devFwd.split(',').map(p => p.trim()).filter(Boolean);
+      if (parts.length > 0) return parts[0];
+    }
+  }
+
+  // 3. Em conexões externas diretas ao Node.js (sem Vercel à frente), NUNCA confiar em headers HTTP enviados pelo cliente:
+  return socketIp;
+}
+
+function maskIp(ip) {
+  if (!ip) return '0.0.0.xxx';
+  const clean = String(ip).trim();
+  if (clean.includes('.')) {
+    return clean.replace(/\.\d+$/, '.xxx');
+  }
+  if (clean.includes(':')) {
+    const parts = clean.split(':');
+    return parts.slice(0, 3).join(':') + ':xxxx:xxxx';
+  }
+  return 'anonymized';
+}
+
+function consumeMemoryRateLimit(ip, maxAttempts = 5, windowMinutes = 15, lockoutMinutes = 15) {
+  const now = Date.now();
+  const record = LOGIN_ATTEMPTS.get(ip) || { count: 0, firstAttempt: now, lockedUntil: null };
+
+  // 1. Bloqueio ativo: NÃO estende o bloqueio (evita rolling lockout)
+  if (record.lockedUntil && now < record.lockedUntil) {
+    const remainingSeconds = Math.ceil((record.lockedUntil - now) / 1000);
+    record.count += 1;
+    LOGIN_ATTEMPTS.set(ip, record);
+    return { allowed: false, remainingSeconds, source: 'memory' };
+  }
+
+  // 2. Bloqueio expirou: reinicia o contador estritamente em 1
+  if (record.lockedUntil && now >= record.lockedUntil) {
+    record.count = 1;
+    record.firstAttempt = now;
+    record.lockedUntil = null;
+    LOGIN_ATTEMPTS.set(ip, record);
+    return { allowed: true, ticket: 1, source: 'memory' };
+  }
+
+  // 3. Janela de tempo expirou sem bloqueio: reinicia em 1
+  if (now - record.firstAttempt > windowMinutes * 60 * 1000) {
+    record.count = 1;
+    record.firstAttempt = now;
+    record.lockedUntil = null;
+    LOGIN_ATTEMPTS.set(ip, record);
+    return { allowed: true, ticket: 1, source: 'memory' };
+  }
+
+  const nextCount = record.count + 1;
+  record.count = nextCount;
+
+  if (nextCount > maxAttempts) {
+    return { allowed: false, remainingSeconds: lockoutMinutes * 60, source: 'memory' };
+  }
+
+  if (nextCount === maxAttempts) {
+    record.lockedUntil = now + lockoutMinutes * 60 * 1000;
+  }
+
+  LOGIN_ATTEMPTS.set(ip, record);
+  return { allowed: true, ticket: nextCount, source: 'memory' };
+}
+
+// Rate Limiter Centralizado & Compartilhado com Atomic Ticket via LAST_INSERT_ID
+// e Proteção Estrita contra Rolling Lockout e Erro de Avaliação Sequencial no MariaDB 10.11
+async function consumeDistributedRateLimit(ip, endpoint, maxAttempts = 5, windowMinutes = 15, lockoutMinutes = 15, failClosed = false) {
+  let conn;
+  try {
+    conn = await pool.getConnection();
+
+    const windowSec = windowMinutes * 60;
+    const lockoutSec = lockoutMinutes * 60;
+
+    // A ordem de avaliação na cláusula UPDATE é fundamental no MariaDB 10.11:
+    // 1. 'attempts' é avaliado PRIMEIRO, antes que 'first_attempt' seja alterado.
+    // 2. Se 'locked_until' expirou (<= NOW()), 'attempts' reseta para 1 e 'first_attempt' para NOW().
+    // 3. Se 'locked_until' está ativo (> NOW()), 'locked_until' NÃO é renovado (previne rolling lockout perpétuo).
+    const [res] = await conn.execute(
+      `INSERT INTO security_rate_limits (ip, endpoint, attempts, first_attempt, locked_until)
+       VALUES (?, ?, 1, NOW(), NULL)
+       ON DUPLICATE KEY UPDATE
+         attempts = LAST_INSERT_ID(
+           IF(locked_until IS NOT NULL AND locked_until > NOW(), attempts + 1,
+             IF(locked_until IS NOT NULL AND locked_until <= NOW(), 1,
+               IF(TIMESTAMPDIFF(SECOND, first_attempt, NOW()) > ${windowSec}, 1, attempts + 1)))
+         ),
+         first_attempt = IF(locked_until IS NOT NULL AND locked_until > NOW(), first_attempt,
+                           IF(locked_until IS NOT NULL AND locked_until <= NOW(), NOW(),
+                             IF(TIMESTAMPDIFF(SECOND, first_attempt, NOW()) > ${windowSec}, NOW(), first_attempt))),
+         locked_until = IF(locked_until IS NOT NULL AND locked_until > NOW(), locked_until,
+                          IF(attempts = 1, NULL,
+                            IF(attempts >= ${maxAttempts}, DATE_ADD(NOW(), INTERVAL ${lockoutSec} SECOND), NULL)))`,
+      [ip, endpoint]
+    );
+
+    // Determina o ticket atribuído a esta conexão
+    const isInsert = (res.affectedRows === 1);
+    let ticket = 1;
+    if (!isInsert) {
+      const [[{ t }]] = await conn.execute('SELECT LAST_INSERT_ID() AS t');
+      ticket = t;
+    }
+
+    // Se o ticket ultrapassou o limite de tentativas
+    if (ticket > maxAttempts) {
+      const [[lockInfo]] = await conn.execute(
+        'SELECT TIMESTAMPDIFF(SECOND, NOW(), locked_until) AS rem_sec FROM security_rate_limits WHERE ip = ? AND endpoint = ?',
+        [ip, endpoint]
+      );
+      conn.release();
+      const remSec = lockInfo?.rem_sec && lockInfo.rem_sec > 0 ? lockInfo.rem_sec : lockoutSec;
+      return { allowed: false, ticket, remainingSeconds: remSec, source: 'database' };
+    }
+
+    conn.release();
+    return { allowed: true, ticket, source: 'database' };
+
+  } catch (err) {
+    if (conn) conn.release();
+    console.error('Falha no Rate Limiter centralizado:', err.message);
+    if (failClosed) {
+      return { allowed: false, failClosed: true, source: 'fail-closed' };
+    }
+    return consumeMemoryRateLimit(ip, maxAttempts, windowMinutes, lockoutMinutes);
+  }
+}
+
+async function clearDistributedRateLimit(ip, endpoint) {
+  try {
+    LOGIN_ATTEMPTS.delete(ip);
+    await pool.execute('DELETE FROM security_rate_limits WHERE ip = ? AND endpoint = ?', [ip, endpoint]);
+  } catch (err) {
+    console.error('Erro ao limpar rate limit:', err.message);
+  }
+}
+
+async function cleanupExpiredRateLimits() {
+  try {
+    await pool.execute(
+      `DELETE FROM security_rate_limits
+       WHERE (locked_until IS NOT NULL AND locked_until < DATE_SUB(NOW(), INTERVAL 1 HOUR))
+          OR (locked_until IS NULL AND first_attempt < DATE_SUB(NOW(), INTERVAL 2 HOUR))`
+    );
+  } catch (e) {
+    // Silencioso em caso de falha de conexão na limpeza em segundo plano
+  }
+}
 
 async function hashPassword(password) {
   return await bcrypt.hash(password, 10);
@@ -42,9 +238,10 @@ function verifyAuth(req) {
 
 async function logAudit(usuario, acao, modulo, detalhes, ip) {
   try {
+    const safeIp = maskIp(ip);
     await pool.execute(
       'INSERT INTO audit_logs (usuario, acao, modulo, detalhes, ip) VALUES (?, ?, ?, ?, ?)',
-      [usuario || 'admin', acao, modulo, detalhes || '', ip || '127.0.0.1']
+      [usuario || 'admin', acao, modulo, detalhes || '', safeIp]
     );
   } catch (e) {
     console.error('Audit log error:', e);
@@ -62,9 +259,26 @@ async function handleApi(req, res, urlObj, body) {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
+  // ---------- 0. MONITORAMENTO: HEALTH CHECK PÚBLICO (UPTIME MONITORS) ----------
+  if (path === '/api/health' && method === 'GET') {
+    res.writeHead(200);
+    res.end(JSON.stringify({
+      status: 'ok',
+      timestamp: new Date().toISOString()
+    }));
+    return;
+  }
+
   // ---------- 1. ROTA PÚBLICA: ENVIO DE NOVO LEAD ----------
   if (path === '/api/leads' && method === 'POST') {
     try {
+      const clientIp = getTrustedClientIp(req);
+      const rateCheck = await consumeDistributedRateLimit(clientIp, 'public_leads', 10, 60, 60);
+      if (!rateCheck.allowed) {
+        res.writeHead(429);
+        res.end(JSON.stringify({ error: 'Muitas mensagens enviadas recentemente. Por favor, aguarde alguns instantes.' }));
+        return;
+      }
       const data = JSON.parse(body || '{}');
       const { nome, empresa, cargo, email, telefone, servico_interesse, mensagem } = data;
 
@@ -544,6 +758,24 @@ async function handleApi(req, res, urlObj, body) {
   // ---------- 2. ROTA PÚBLICA: LOGIN DO ADMINISTRADOR ----------
   if (path === '/api/admin/login' && method === 'POST') {
     try {
+      cleanupExpiredRateLimits(); // Limpeza oportunística em background
+      const clientIp = getTrustedClientIp(req);
+      const rateCheck = await consumeDistributedRateLimit(clientIp, 'admin_login', 5, 15, 15, true);
+      if (rateCheck.failClosed) {
+        res.writeHead(503);
+        res.end(JSON.stringify({
+          error: 'Serviço de autenticação temporariamente indisponível para proteção do sistema. Tente novamente mais tarde.'
+        }));
+        return;
+      }
+      if (!rateCheck.allowed) {
+        res.writeHead(429);
+        res.end(JSON.stringify({
+          error: `Muitas tentativas incorretas de login. Acesso bloqueado temporariamente por ${rateCheck.remainingSeconds} segundos.`
+        }));
+        return;
+      }
+
       const bodyData = JSON.parse(body || '{}');
       const loginIdentifier = (bodyData.usuario || bodyData.email || '').trim();
       const senha = bodyData.senha || '';
@@ -577,6 +809,9 @@ async function handleApi(req, res, urlObj, body) {
         return;
       }
 
+      // Login com sucesso: reseta tentativas e grava auditoria
+      await clearDistributedRateLimit(clientIp, 'admin_login');
+
       // Se era hash legado SHA-256, atualiza em tempo de execução para Bcrypt
       if (match === 'legacy_match') {
         const newBcrypt = await hashPassword(senha);
@@ -597,7 +832,6 @@ async function handleApi(req, res, urlObj, body) {
 
       // Atualiza último login
       await pool.execute('UPDATE admin_users SET ultimo_login = NOW() WHERE id = ?', [user.id]);
-      const clientIp = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1';
       logAudit(user.username, 'Login no Painel', 'Autenticação', `Acesso autorizado para ${user.nome}`, clientIp);
 
       res.writeHead(200);
@@ -638,6 +872,45 @@ async function handleApi(req, res, urlObj, body) {
   if (!authUser) {
     res.writeHead(401);
     res.end(JSON.stringify({ error: 'Não autorizado. Faça login novamente.' }));
+    return;
+  }
+
+  // ---------- 4.1 TELEMETRIA DE INFRAESTRUTURA (RESTRITA A ADMIN) ----------
+  if (path === '/api/admin/health' && method === 'GET') {
+    if (authUser.role !== 'admin') {
+      res.writeHead(403);
+      res.end(JSON.stringify({ error: 'Acesso negado: Requer privilégios de Administrador.' }));
+      return;
+    }
+    const startTime = Date.now();
+    let dbStatus = 'ok';
+    let dbLatencyMs = 0;
+    try {
+      await pool.execute('SELECT 1 + 1 AS check_val');
+      dbLatencyMs = Date.now() - startTime;
+    } catch (e) {
+      dbStatus = 'degraded';
+    }
+
+    const uptimeSeconds = Math.floor(process.uptime());
+    const memUsage = process.memoryUsage();
+
+    res.writeHead(dbStatus === 'ok' ? 200 : 503);
+    res.end(JSON.stringify({
+      status: dbStatus === 'ok' ? 'healthy' : 'degraded',
+      timestamp: new Date().toISOString(),
+      uptimeSeconds,
+      database: {
+        status: dbStatus,
+        latencyMs: dbLatencyMs,
+        provider: 'StackCP MySQL'
+      },
+      memory: {
+        rssMb: Math.round(memUsage.rss / 1024 / 1024),
+        heapUsedMb: Math.round(memUsage.heapUsed / 1024 / 1024)
+      },
+      activeSessions: SESSIONS.size
+    }));
     return;
   }
 
@@ -925,6 +1198,12 @@ async function handleApi(req, res, urlObj, body) {
 
     if (method === 'POST') {
       try {
+        if (authUser.role !== 'admin') {
+          res.writeHead(403);
+          res.end(JSON.stringify({ error: 'Acesso negado: Apenas administradores podem modificar configurações.' }));
+          return;
+        }
+
         const configs = JSON.parse(body || '{}');
         for (const [chave, valor] of Object.entries(configs)) {
           await pool.execute(
@@ -989,6 +1268,12 @@ async function handleApi(req, res, urlObj, body) {
   if (path === '/api/admin/users') {
     if (method === 'GET') {
       try {
+        if (authUser.role !== 'admin') {
+          res.writeHead(403);
+          res.end(JSON.stringify({ error: 'Acesso negado: Listagem de usuários restrita a administradores.' }));
+          return;
+        }
+
         const [rows] = await pool.execute(
           'SELECT id, nome, username, email, cargo, role, ativo, ultimo_login, criado_em FROM admin_users ORDER BY id ASC'
         );
@@ -1348,6 +1633,12 @@ async function handleApi(req, res, urlObj, body) {
   // ---------- 15. AUDITORIA & LOGS DO SISTEMA ----------
   if (path === '/api/admin/audit-logs' && method === 'GET') {
     try {
+      if (authUser.role !== 'admin') {
+        res.writeHead(403);
+        res.end(JSON.stringify({ error: 'Acesso negado: Visualização de logs de auditoria restrita a administradores.' }));
+        return;
+      }
+
       const [rows] = await pool.execute('SELECT * FROM audit_logs ORDER BY id DESC LIMIT 100');
       res.writeHead(200);
       res.end(JSON.stringify(rows));
@@ -1398,6 +1689,12 @@ async function handleApi(req, res, urlObj, body) {
 
   if (path === '/api/admin/export/backup' && method === 'GET') {
     try {
+      if (authUser.role !== 'admin') {
+        res.writeHead(403);
+        res.end(JSON.stringify({ error: 'Acesso negado: Exportação de backup restrita a administradores.' }));
+        return;
+      }
+
       const [leads] = await pool.execute('SELECT * FROM leads');
       const [palestras] = await pool.execute('SELECT * FROM palestras');
       const [vagas] = await pool.execute('SELECT * FROM vagas_pcd');

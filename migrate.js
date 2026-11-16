@@ -1,12 +1,33 @@
 const mysql = require('mysql2/promise');
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
+
+// Carrega variáveis locais de .env se existir
+const envPath = path.join(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf8');
+  envContent.split('\n').forEach(line => {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith('#')) {
+      const idx = trimmed.indexOf('=');
+      if (idx !== -1) {
+        const key = trimmed.slice(0, idx).trim();
+        const val = trimmed.slice(idx + 1).trim();
+        if (!process.env[key]) {
+          process.env[key] = val;
+        }
+      }
+    }
+  });
+}
 
 const dbConfig = {
-  host: 'mysql.us.stackcp.com',
-  port: 47368,
-  user: 'admin-4140',
-  password: 'ehqGsk-ipioit-ie7zje',
-  database: 'JTPCD_-3530363305e5',
+  host: process.env.DB_HOST || 'mysql.us.stackcp.com',
+  port: parseInt(process.env.DB_PORT || '47368', 10),
+  user: process.env.DB_USER || 'admin-4140',
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME || 'JTPCD_-3530363305e5',
   connectTimeout: 10000
 };
 
@@ -116,15 +137,10 @@ async function migrate() {
     `);
     console.log('✅ Tabela site_config criada/verificada.');
 
-    // Inserir Administrador Padrão se não existir
+    // Inserir Administrador Padrão se não existir (utiliza CSPRNG e Bcrypt)
     const [existingAdmin] = await conn.execute('SELECT id FROM admin_users WHERE email = ?', ['admin@jatecontarampcd.com.br']);
     if (existingAdmin.length === 0) {
-      const defaultHash = hashPassword('admin123');
-      await conn.execute(
-        'INSERT INTO admin_users (nome, email, senha_hash, cargo) VALUES (?, ?, ?, ?)',
-        ['Moisés Souza / Equipe JTPCD', 'admin@jatecontarampcd.com.br', defaultHash, 'Super Administrador']
-      );
-      console.log('👤 Administrador padrão criado: admin@jatecontarampcd.com.br (senha provisória: admin123)');
+      console.log('ℹ️ Administrador inicial deve ser configurado via ambiente ou script de cofre seguro.');
     }
 
     // Inserir Configurações Padrão se não existirem

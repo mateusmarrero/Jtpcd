@@ -1,7 +1,25 @@
 node_modules/
-.env.local
+.env*
 .vercel/
 _backup_original/
 .DS_Store
 Thumbs.db
 *.log
+.admin_credentials_vault.txt
+backups/
+
+# Scripts locais de auditoria e testes de bancada
+test_*.js
+audit_*.js
+verify_*.js
+probe_*.js
+catalog_*.js
+deep_audit_*.js
+run_master_validation.js
+enhanced_disaster_recovery.js
+rotate_credentials_vault.js
+create_rate_limit_table.js
+backup_manager.js
+*.json
+!package*.json
+!vercel.json
